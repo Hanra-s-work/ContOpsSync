@@ -3,12 +3,15 @@ TRUE=0
 FALSE=1
 MY_ENV="env"
 FRESH_ENV=$FALSE
+MAC_SYSTEM="$(uname)"
 MY_SYSTEM="$(uname --kernel-name)"
-MAC_SYSTEM="$(uname -o)"
 
-if [ ${MY_SYSTEM,,} == "linux" ] || [ ${MAC_SYSTEM,,} == "linux" ]; then
+MY_SYSTEM=$(echo "$MY_SYSTEM" | tr "ABCDEFGHIJKLMNOPQRSTUVWXYZ" "abcdefghijklmnopqrstuvwxyz")
+MAC_SYSTEM=$(echo "$MAC_SYSTEM" | tr "ABCDEFGHIJKLMNOPQRSTUVWXYZ" "abcdefghijklmnopqrstuvwxyz")
+
+if [ "$MY_SYSTEM" == "linux" ] || [ "$MAC_SYSTEM" == "linux" ]; then
     MY_ENV='lenv'
-elif [ ${MY_SYSTEM,,} == "darwin" ] || [ ${MAC_SYSTEM,,} == "darwin" ]; then
+elif [ "$MAC_SYSTEM" == "darwin" ]; then
     MY_ENV='menv'
 else
     echo "OS probably not supported"
