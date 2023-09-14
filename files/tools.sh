@@ -3,11 +3,12 @@ TRUE=0
 FALSE=1
 MY_ENV="env"
 FRESH_ENV=$FALSE
-SYSTEM=$(uname --kernel-name)
+MY_SYSTEM="$(uname --kernel-name)"
+MAC_SYSTEM="$(uname -o)"
 
-if [ $SYSTEM == "Linux" ]; then
+if [ ${MY_SYSTEM,,} == "linux" ] || [ ${MAC_SYSTEM,,} == "linux" ]; then
     MY_ENV='lenv'
-elif [ $SYSTEM == "Darwin" ]; then
+elif [ ${MY_SYSTEM,,} == "darwin" ] || [ ${MAC_SYSTEM,,} == "darwin" ]; then
     MY_ENV='menv'
 else
     echo "OS probably not supported"
