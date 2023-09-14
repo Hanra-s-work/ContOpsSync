@@ -3,6 +3,19 @@ TRUE=0
 FALSE=1
 MY_ENV="env"
 FRESH_ENV=$FALSE
+SYSTEM=$(uname --kernel-name)
+
+if [ $SYSTEM == "Linux" ]; then
+    MY_ENV='lenv'
+elif [ $SYSTEM == "Darwin" ]; then
+    MY_ENV='menv'
+else
+    echo "OS probably not supported"
+    echo "This program has not been tested on your system"
+    echo "Use this program at your own risk"
+    MY_ENV="env"
+fi
+
 if [ ! -d $MY_ENV ]; then
     echo "Creating virtual environment"
     python3 -m venv $MY_ENV
@@ -18,6 +31,6 @@ if [ $FRESH_ENV -eq $TRUE ]; then
 fi
 echo "(c) Created by Henry Letellier"
 echo "Running launching tool"
-sudo python3 ./src/main.py
+python3 ./src/main.py
 echo "Deactivating virtual environment"
 deactivate

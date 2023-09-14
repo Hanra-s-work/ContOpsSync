@@ -50,6 +50,8 @@ def remove_if_exists(filepath: str = "") -> int:
 def create_environement(usr_system: str = "", environement_name: str = "") -> int:
     """ Create the python environement """
     print("Creating environment")
+    if os.path.isdir(f"{environement_name}") is True:
+        return SUCCESS
     if usr_system == "" or environement_name == "":
         return ERROR
     if usr_system == "Linux" or usr_system == "Java":
@@ -90,13 +92,15 @@ TTY_LINK = "https://github.com/Hanra-s-work/tty_ov/archive/refs/tags/v1.0.4.tar.
 ASK_QUESTION_LINK = "https://github.com/Hanra-s-work/ask_question/archive/refs/tags/v1.2.0.tar.gz"
 COLOURISE_OUTPUT_LINK = "https://github.com/Hanra-s-work/colourise_output/archive/refs/tags/v1.1.1.tar.gz"
 DISP_OUTPUT_LINK = "https://github.com/Hanra-s-work/disp/releases/download/pre-v1.0.0/rdisp-1.0.0.tar.gz"
-ENVIRONEMENT_NAME = "lenv"
+ENVIRONEMENT_NAME = "env"
 LOCATION_FOLDER = f"{os.getcwd()}/libs"
 TTY_OUTPUT_NAME = f"{LOCATION_FOLDER}/tty_ov.tar.gz"
 ASK_QUESTION_OUTPUT_NAME = f"{LOCATION_FOLDER}/ask_question.tar.gz"
 COLOURISE_OUTPUT_OUTPUT_NAME = f"{LOCATION_FOLDER}/colourise_output.tar.gz"
 DISP_OUTPUT_NAME = f"{LOCATION_FOLDER}/disp.tar.gz"
 
+if system() == "Linux":
+    ENVIRONEMENT_NAME = "lenv"
 if system() == "Windows":
     ENVIRONEMENT_NAME = "wenv"
 if system() == "Java":
