@@ -253,7 +253,6 @@ Please make sure the package was correctly installed:
 - please close the window in which this program was launched (this might involve exiting your ssh session)
 - please open a new window and try again
 """
-        target_variable = "PATH"
         path_updater = ""
         if "LOCALAPPDATA" in os.environ:
             path_updater = os.environ['LOCALAPPDATA']

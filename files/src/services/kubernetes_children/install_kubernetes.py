@@ -64,7 +64,7 @@ Output:
             return self.windows.main()
         if self.current_system == "Linux":
             return self.linux.main()
-        if self.current_system == "Java":
+        if self.current_system == "Darwin" or self.current_system == "Java":
             return self.mac.main()
         self.print_on_tty(
             self.tty.error_colour,
@@ -72,7 +72,7 @@ Output:
         )
         return self.error
 
-    def test_install_kubernetes(self, args:list) -> int:
+    def test_install_kubernetes(self, args: list) -> int:
         """ Test the kubernetes installation """
         function_name = "test_install_kubernetes"
         if self.tty.help_function_child_name == function_name:

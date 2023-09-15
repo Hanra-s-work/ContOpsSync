@@ -50,11 +50,14 @@ def remove_if_exists(filepath: str = "") -> int:
 def create_environement(usr_system: str = "", environement_name: str = "") -> int:
     """ Create the python environement """
     print("Creating environment")
-    if os.path.isdir(f"{environement_name}") is True:
+    print(
+        f"DEBUG: usr_system = {usr_system}, environement_name={environement_name}"
+    )
+    if os.path.exists(f"{environement_name}") is True:
         return SUCCESS
     if usr_system == "" or environement_name == "":
         return ERROR
-    if usr_system == "Linux" or usr_system == "Java":
+    if usr_system == "Linux" or usr_system == "Java" or usr_system == "Darwin":
         return os.system(f"python3 -m venv {environement_name}")
     if usr_system == "Windows":
         return os.system(f"py -m venv {environement_name}")
@@ -66,7 +69,7 @@ def activate_and_install_local_package(environement_name: str = "", package_path
     print(f"Installing local pip package '{package_path}'")
     if environement_name == "" or package_path == "":
         return ERROR
-    if system() == "Linux" or system() == "Java":
+    if system() == "Linux" or system() == "Java" or system() == "Darwin":
         return os.system(f". ./{environement_name}/bin/activate && pip install {package_path} && deactivate")
     if system() == "Windows":
         return os.system(f".\\{environement_name}\\Scripts\\activate && pip install {package_path} && deactivate")
@@ -80,7 +83,7 @@ def activate_and_install_requirement_package(environement_name: str = "") -> int
         return ERROR
     if os.path.isfile("requirements.txt") is False:
         return SUCCESS
-    if system() == "Linux" or system() == "Java":
+    if system() == "Linux" or system() == "Java" or system() == "Darwin":
         return os.system(f". ./{environement_name}/bin/activate && pip install -r requirements.txt && deactivate")
     if system() == "Windows":
         return os.system(f".\\{environement_name}\\Scripts\\activate && pip install -r requirements.txt && deactivate")
@@ -103,7 +106,7 @@ if system() == "Linux":
     ENVIRONEMENT_NAME = "lenv"
 if system() == "Windows":
     ENVIRONEMENT_NAME = "wenv"
-if system() == "Java":
+if system() == "Java" or system() == "Darwin":
     ENVIRONEMENT_NAME = "menv"
 
 if create_environement(CURRENT_SYSTEM, ENVIRONEMENT_NAME) != SUCCESS:

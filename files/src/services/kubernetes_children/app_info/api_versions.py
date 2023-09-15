@@ -20,6 +20,17 @@ class ApiVersionsAppInfoKubernetes:
         self.run = self.tty.run_command
         self.function_help = self.tty.function_help
 
+    def __no_args(self, function_prototype: str, to_many: bool = False) -> None:
+        """ Display an error message when there is not enough arguments """
+        message = f"Not enough arguments\nRequired arguments: {function_prototype}"
+        if to_many is True:
+            message = f"To many arguments\nRequired arguments: {function_prototype}"
+        self.print_on_tty(
+            self.tty.error_colour,
+            message
+        )
+        self.tty.current_tty_status = self.tty.error
+
     def api_versions(self, args: list) -> int:
         """ Display the api-versions of kubectl """
         func_name = "kube_api_versions"

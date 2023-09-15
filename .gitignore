@@ -1,6 +1,8 @@
 # temporary files
 *.tmp
 tmp.*
+*.useless
+useless.*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

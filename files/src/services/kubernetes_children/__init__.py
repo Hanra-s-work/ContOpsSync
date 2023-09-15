@@ -31,7 +31,7 @@ class KubeChildren:
             "This is a test message from the KubChildren class\n"
         )
         self.install.test_class_install()
-        self.install_kubernetes.test_install_kubernetes()
+        self.install_kubernetes.test_install_kubernetes([])
         return self.success
 
     def inject_child_ressources(self, parent_options: list[dict]) -> int:
