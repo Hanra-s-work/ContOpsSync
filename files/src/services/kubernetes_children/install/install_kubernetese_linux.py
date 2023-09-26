@@ -4,7 +4,7 @@ File in charge of containing the class that will install kubernetes for linux di
 
 import os
 from platform import machine, platform
-import disp
+import display_tty
 import requests
 from tqdm import tqdm
 from tty_ov import TTY
@@ -32,7 +32,7 @@ class InstallKubernetesLinux:
             # "manual":False
         }
         # ---- The Disp option ----
-        self.disp = disp.IDISP
+        self.disp = display_tty.IDISP
         self.disp.toml_content["PRETTIFY_OUTPUT"] = False
         self.disp.toml_content["PRETTY_OUTPUT_IN_BLOCS"] = False
         # ---- links for manual installation ----

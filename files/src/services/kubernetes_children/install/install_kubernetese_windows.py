@@ -4,7 +4,7 @@ File in charge of downloading kubernetes for windows
 
 import os
 import requests
-import disp
+import display_tty
 from tqdm import tqdm
 from tty_ov import TTY
 
@@ -29,7 +29,7 @@ class InstallKubernetesWindows:
             # "manual":False
         }
         # ---- The Disp option ----
-        self.disp = disp.IDISP
+        self.disp = display_tty.IDISP
         self.disp.toml_content["PRETTIFY_OUTPUT"] = False
         self.disp.toml_content["PRETTY_OUTPUT_IN_BLOCS"] = False
         # ---- links for manual installation ----

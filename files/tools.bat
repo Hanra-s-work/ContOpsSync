@@ -4,6 +4,7 @@ color 0A
 set ERR=84
 set SUCCESS=0
 set PYTHON_VERSION=""
+set ENV_NAME=wenv
 
 echo "(c) Created by Henry Letellier"
 
@@ -26,7 +27,11 @@ IF %ERRORLEVEL% EQU 0 (
 )
 
 IF NOT EXIST "wenv" (
-    %PYTHON_VERSION% install_ressources\install_libs.py
+    @REM %PYTHON_VERSION% install_ressources\install_libs.py
+    echo "Creating environement"
+    %PYTHON_VERSION% -m venv %ENV_NAME%
+    echo "Activating environement"
+    cmd /c "wenv\Scripts\activate & echo Updating the pip module & python -m pip install --upgrade pip & echo Installing the dependencies & pip3 install -r requirements.txt & deactivate"
 )
 
 IF %ERRORLEVEL% EQU 84 (

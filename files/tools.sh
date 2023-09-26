@@ -31,7 +31,8 @@ if [ $FRESH_ENV -eq $TRUE ]; then
     echo "Updating pip"
     python3 -m pip install --upgrade pip
     echo "Updating dependencies"
-    python3 ./install_ressources/install_libs.py
+    # python3 ./install_ressources/install_libs.py
+    python3 -m pip install -r ./requirements.txt
 fi
 echo "(c) Created by Henry Letellier"
 echo "Running launching tool"

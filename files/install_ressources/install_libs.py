@@ -91,7 +91,7 @@ def activate_and_install_requirement_package(environement_name: str = "") -> int
 
 
 CURRENT_SYSTEM = system()
-TTY_LINK = "https://github.com/Hanra-s-work/tty_ov/archive/refs/tags/v1.0.4.tar.gz"
+TTY_LINK = "https://github.com/Hanra-s-work/tty_ov/archive/refs/tags/v1.0.6.tar.gz"
 ASK_QUESTION_LINK = "https://github.com/Hanra-s-work/ask_question/archive/refs/tags/v1.2.0.tar.gz"
 COLOURISE_OUTPUT_LINK = "https://github.com/Hanra-s-work/colourise_output/archive/refs/tags/v1.1.1.tar.gz"
 DISP_OUTPUT_LINK = "https://github.com/Hanra-s-work/disp/releases/download/pre-v1.0.0/rdisp-1.0.0.tar.gz"
@@ -156,20 +156,24 @@ if activate_and_install_local_package(ENVIRONEMENT_NAME, DISP_OUTPUT_NAME) != SU
 print("Cleaning install packages")
 if remove_if_exists(TTY_OUTPUT_NAME) != SUCCESS:
     print(
-        f"Failed to delete the file: {TTY_OUTPUT_NAME}\nThe program will still work without any problem.")
+        f"Failed to delete the file: {TTY_OUTPUT_NAME}\nThe program will still work without any problem."
+    )
     sys.exit(ERROR)
 if remove_if_exists(ASK_QUESTION_OUTPUT_NAME) != SUCCESS:
     print(
-        f"Failed to delete the file: {ASK_QUESTION_OUTPUT_NAME}\nThe program will still work without any problem.")
+        f"Failed to delete the file: {ASK_QUESTION_OUTPUT_NAME}\nThe program will still work without any problem."
+    )
     sys.exit(ERROR)
 if remove_if_exists(COLOURISE_OUTPUT_OUTPUT_NAME) != SUCCESS:
     print(
-        f"Failed to delete the file: {COLOURISE_OUTPUT_OUTPUT_NAME}\nThe program will still work without any problem.")
+        f"Failed to delete the file: {COLOURISE_OUTPUT_OUTPUT_NAME}\nThe program will still work without any problem."
+    )
     sys.exit(ERROR)
 
 if remove_if_exists(DISP_OUTPUT_NAME) != SUCCESS:
     print(
-        f"Failed to delete the file: {DISP_OUTPUT_NAME}\nThe program will still work without any problem.")
+        f"Failed to delete the file: {DISP_OUTPUT_NAME}\nThe program will still work without any problem."
+    )
     sys.exit(ERROR)
 
 print("Requirements, successfully installed, this script is not required anymore.")
