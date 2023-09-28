@@ -3,11 +3,14 @@ File in charge of containing the class that will install kubernetes for linux di
 """
 
 import os
-from platform import machine, platform
 import display_tty
 import requests
 from tqdm import tqdm
 from tty_ov import TTY
+from .k3d import InstallK3d
+from .kind import InstallKind
+from .kubectl import InstallKubectl
+from .minikube import InstallMinikube
 
 
 class InstallKubernetesLinux:
@@ -20,6 +23,10 @@ class InstallKubernetesLinux:
         self.error = error
         # ---- Parent classes ----
         self.tty = tty
+        self.k3d = InstallK3d(tty, success, err, error)
+        self.kind = InstallKind(tty, success, err, error)
+        self.kubectl = InstallKubectl(tty, success, err, error)
+        self.minikube = InstallMinikube(tty, success, err, error)
         # ---- TTY rebinds ----
         self.print_on_tty = self.tty.print_on_tty
         self.run = self.tty.run_command
@@ -28,25 +35,18 @@ class InstallKubernetesLinux:
         self.download_options = {
             "choco": False,
             "scoop": False,
-            "winget": False  # ,
-            # "manual":False
+            "winget": False
         }
         # ---- The Disp option ----
         self.disp = display_tty.IDISP
         self.disp.toml_content["PRETTIFY_OUTPUT"] = False
         self.disp.toml_content["PRETTY_OUTPUT_IN_BLOCS"] = False
-        # ---- links for manual installation ----
-        self.release_file = "https://cdn.dl.k8s.io/release/stable.txt"
-        self.install_file_link_chunk1 = "https://dl.k8s.io/release/"
-        self.install_file_link_chunk2 = "/bin/linux/"
-        self.install_file_link_chunk3 = "/kubectl"
-        self.installer_name = "kubectl"
-        self.installer_folder = ".kubectl"
-        self.hardware_platform = ""
-        self.home = ""
-        # ---- Testing installation ----
-        self.kube_folder = ".kube"
-        self.config_file = "config"
+        # ---- k3s installation script ----
+        self.k3s_link = "https://get.k3s.io"
+        self.k3s_file_name = "/tmp/k3s_install.sh"
+        # ---- k8s installation script ----
+        self.k8s_link = "https://get.k8s.io"
+        self.k8s_file_name = "/tmp/k8s_install.sh"
 
     def download_file(self, url: str, filepath: str) -> int:
         """ Download a file from a url """
@@ -86,319 +86,73 @@ class InstallKubernetesLinux:
             self.tty.current_tty_status = self.tty.error
             return self.tty.current_tty_status
 
-    def get_file_content(self, file_path: str) -> str or int:
-        """ Get the content of a file """
-        if os.path.isfile(file_path) is False:
-            self.print_on_tty(
-                self.tty.error_colour,
-                f"Error getting file content: {file_path} is not a file\n"
-            )
-            self.tty.current_tty_status = self.tty.error
-            return self.tty.current_tty_status
-        try:
-            with open(file_path, "r", encoding="utf-8", newline="\n") as file:
-                content = file.read()
-            self.tty.current_tty_status = self.tty.success
-            return content
-        except OSError as err:
-            self.print_on_tty(
-                self.tty.error_colour,
-                f"Error getting file content: {err}\n"
-            )
-            self.tty.current_tty_status = self.tty.error
-            return self.tty.current_tty_status
-
-    def get_latest_version(self) -> int:
-        """ Get the latest version of the program """
-        self.tty.current_tty_status = self.tty.success
-        self.print_on_tty(
-            self.tty.info_colour,
-            "Getting the latest version of Kubernetes for Linux\n"
-        )
-        version_name = "version.useless"
-        status = self.download_file(
-            self.release_file,
-            version_name
-        )
-        if status != self.tty.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "Error getting the latest release of Kubernetes for Linux\n"
-            )
-            self.tty.current_tty_status = status
-            return self.tty.current_tty_status
-        file_content = self.get_file_content(version_name)
-        if file_content == self.tty.error:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "Error getting the latest release of Kubernetes for Linux\n"
-            )
-            self.tty.current_tty_status = self.tty.error
-            return self.tty.current_tty_status
-        download_link = f"{self.install_file_link_chunk1}{file_content}{self.install_file_link_chunk2}{self.hardware_platform}{self.install_file_link_chunk3}"
-        self.installer_name = f"/tmp/{self.installer_name}"
-        status = self.download_file(
-            download_link,
-            self.installer_name
-        )
-        if self.tty.current_tty_status != self.tty.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "Error downloading the latest release of Kubernetes for Linux\n"
-            )
-            return self.tty.current_tty_status
-        self.print_on_tty(
-            self.tty.success_colour,
-            "Downloaded Kubernetes for Linux\n"
-        )
-        self.tty.current_tty_status = self.tty.success
-        return self.tty.current_tty_status
-
     def install_kubectl(self) -> int:
-        """ Install the kubectl file in the system """
-        self.print_on_tty(
-            self.tty.info_colour,
-            ""
-        )
-        self.disp.sub_sub_title("Installing Kubernetes")
-        status = self.run(
-            [
-                "sudo",
-                "install",
-                "-o root",
-                "-g root",
-                "-m 0755",
-                self.installer_name,
-                "/usr/local/bin/kubectl"
-            ]
-        )
-        if status != self.tty.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "Error installing Kubernetes for Linux\n"
-            )
-            self.tty.current_tty_status = self.tty.err
-            return self.tty.current_tty_status
-        self.tty.current_tty_status = status
-        return self.tty.current_tty_status
+        """ Install kubectl for linux """
+        return self.kubectl.install_linux.main()
 
-    def get_hardware_platform(self) -> str:
-        """ Get the hardware platform of the current system """
-        system_architecture = machine()
-        if system_architecture in ("AMD64", "x86_64"):
-            return "amd64"
-        if system_architecture in ("ARM64", "ARM"):
-            return "arm64"
-        if system_architecture in "i386":
-            if "x64" in platform():
-                return "amd64"
-        return ""
+    def install_minikube(self) -> int:
+        """ Install the minikube software """
+        return self.minikube.install_linux.main()
 
-    def test_installation(self) -> int:
-        """ Make sure that the kubectl is installed and operational """
-        self.print_on_tty(
-            self.tty.info_colour,
-            "Testing the installation of Kubernetes for Windows\n"
-        )
-        self.tty.current_tty_status = self.run(
-            [
-                "kubectl",
-                "version",
-                "--output=yaml"
-            ]
-        )
-        if self.tty.current_tty_status != self.tty.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "Error testing the installation of Kubernetes for Windows\n"
-            )
-            return self.tty.current_tty_status
-        self.tty.current_tty_status = self.tty.success
-        return self.tty.current_tty_status
+    def install_kind(self) -> int:
+        """ Install the kind software """
+        return self.kind.install_linux.main()
 
-    def has_snap(self) -> bool:
-        """ Returns true if the user has snap [package manager] installed """
-        self.print_on_tty(
-            self.tty.info_colour,
-            "Checking if the user has snap installed:"
-        )
-        self.tty.current_tty_status = self.run(
-            [
-                "snap",
-                "--version",
-                ">/dev/null",
-                "2>/dev/null"
-            ]
-        )
-        if self.tty.current_tty_status != self.tty.success:
+    def install_k3s(self) -> int:
+        """ Install the k3s software """
+        self.disp.sub_sub_title("Installing k3s")
+        status = self.download_file(self.k3s_link, self.k3s_file_name)
+        if status != self.success:
             self.print_on_tty(
                 self.tty.error_colour,
-                "[KO]\n"
+                "Error downloading the k3s install script\n"
             )
-            return False
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
-        self.tty.current_tty_status = self.tty.success
-        return True
+            return self.err
+        status = self.run(["chmod", "+x", self.k3s_file_name])
+        if status != self.success:
+            self.print_on_tty(
+                self.tty.error_colour,
+                "Error granting execution permissions to the k3s install script\n"
+            )
+            return self.err
+        return self.run(["bash", "-c", self.k3s_file_name])
 
-    def has_brew(self) -> bool:
-        """ Returns true if the user has brew [package manager] installed """
-        self.print_on_tty(
-            self.tty.info_colour,
-            "Checking if the user has brew installed:"
-        )
-        self.tty.current_tty_status = self.run(
-            [
-                "brew",
-                "--version",
-                ">/dev/null",
-                "2>/dev/null"
-            ]
-        )
-        if self.tty.current_tty_status != self.tty.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "[KO]\n"
-            )
-            return False
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
-        self.tty.current_tty_status = self.tty.success
-        return True
+    def install_k3d(self) -> int:
+        """ Install the k3d software """
+        return self.k3d.install_linux.main()
 
-    def install_for_snap(self) -> int:
-        """ Install Kubectl using snap """
-        self.disp.sub_sub_title("Installing Kubectl via Snap")
-        status = self.run(
-            [
-                "snap",
-                "install",
-                "kubectl",
-                "--classic"
-            ]
-        )
-        if status != self.tty.success:
+    def install_k8s(self) -> int:
+        """ Install the k8s software """
+        self.disp.sub_sub_title("Installing k8s")
+        status = self.download_file(self.k8s_link, self.k8s_file_name)
+        if status != self.success:
             self.print_on_tty(
                 self.tty.error_colour,
-                "Error installing Kubernetes for Linux, reverting to manual install\n"
+                "Error downloading the k8s install script\n"
             )
-            self.tty.current_tty_status = self.tty.err
-            return self.tty.current_tty_status
-        status = self.run(
-            [
-                "kubectl",
-                "version",
-                "--output=yaml"
-            ]
-        )
-        if status != self.tty.success:
+            return self.err
+        status = self.run(["chmod", "+x", self.k8s_file_name])
+        if status != self.success:
             self.print_on_tty(
                 self.tty.error_colour,
-                "Error testing the installation of Kubernetes for Linux\n"
+                "Error granting execution permissions to the k8s install script\n"
             )
-            self.tty.current_tty_status = self.tty.err
-            return self.tty.current_tty_status
-        self.print_on_tty(
-            self.tty.success_colour,
-            ""
-        )
-        self.disp.success_message("Installed Kubectl using snap ;-)")
-        self.tty.current_tty_status = self.tty.success
-        return self.tty.current_tty_status
+            return self.err
+        return self.run(["bash", "-c", self.k8s_file_name])
 
-    def install_for_brew(self) -> int:
-        """ Install Kubectl using brew """
-        self.disp.sub_sub_title("Installing Kubectl via Brew")
-        status = self.run(
-            [
-                "brew",
-                "install",
-                "kubectl"
-            ]
-        )
-        if status != self.tty.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "Error installing Kubernetes for Linux, reverting to manual install\n"
-            )
-            self.tty.current_tty_status = self.tty.err
-            return self.tty.current_tty_status
-        status = self.run(
-            [
-                "kubectl",
-                "version",
-                "--output=yaml"
-            ]
-        )
-        if status != self.tty.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "Error testing the installation of Kubernetes for Linux\n"
-            )
-            self.tty.current_tty_status = self.tty.err
-            return self.tty.current_tty_status
-        self.print_on_tty(
-            self.tty.success_colour,
-            ""
-        )
-        self.disp.success_message("Installed Kubectl using brew ;-)")
-        self.tty.current_tty_status = self.tty.success
-        return self.tty.current_tty_status
+    def install_kubeadm(self) -> int:
+        """ Install the kubeadm software """
 
     def main(self) -> int:
-        """ Install kubernetes for linux """
-        self.print_on_tty(self.tty.help_title_colour, "")
-        self.disp.title("Downloading Kubernetes for Linux")
-        if self.has_snap() is True:
-            if self.install_for_snap() == self.success:
-                return self.success
-        elif self.has_brew() is True:
-            if self.install_for_brew() == self.success:
-                return self.success
-        self.hardware_platform = self.get_hardware_platform()
-        if self.hardware_platform == "":
-            self.print_on_tty(
-                self.tty.error_colour,
-                "Error getting the architecture of your system\n"
-            )
-            self.tty.current_tty_status = self.tty.error
-            return self.err
-        status = self.get_latest_version()
-        if status != self.tty.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "Error downloading the latest release of Kubernetes for Linux\n"
-            )
-            self.tty.current_tty_status = self.tty.error
-            return self.tty.current_tty_status
-        status = self.install_kubectl()
-        if status != self.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "Error installing Kubernetes for Linux\n"
-            )
-            self.tty.current_tty_status = self.tty.error
-            return self.tty.current_tty_status
-        status = self.test_installation()
-        if status != self.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "Error testing the installation of Kubernetes for Linux\n"
-            )
-            self.tty.current_tty_status = self.tty.error
-            return self.tty.current_tty_status
-        self.print_on_tty(
-            self.tty.success_colour,
-            "Downloaded Kubernetes for Linux\n"
-        )
-        self.tty.current_tty_status = self.tty.success
-        return self.tty.current_tty_status
+        """ The main function of the program """
 
     def test_class_install_kubernetes_linux(self) -> int:
         """ Test the class install kubernetes linux """
-        print("This is a test message from the install kubernetes linux class")
-        return 0
+        self.print_on_tty(
+            self.tty.info_colour,
+            "This is a test message from the install kubernetes linux class"
+        )
+        self.kind.test_kind_installation_class()
+        self.kubectl.test_kubectl_installation_class()
+        self.minikube.test_minikube_installation_class()
+        return self.success

@@ -4,12 +4,9 @@ File in charge of containing the code that will install kubernetes on a mac.
 
 from tty_ov import TTY
 import display_tty
-from .kind import InstallKind
-from .kubectl import InstallKubectl
-from .minikube import InstallMinikube
 
 
-class InstallKubernetesMac:
+class InstallKubectlMac:
     """ Install the kubernetes on Mac """
 
     def __init__(self, tty: TTY, success: int = 0, err: int = 84, error: int = 84) -> None:
@@ -19,17 +16,13 @@ class InstallKubernetesMac:
         self.error = error
         # ---- Parent classes ----
         self.tty = tty
-        self.kind = InstallKind(tty, success, err, error)
-        self.kubectl = InstallKubectl(tty, success, err, error)
-        self.minikube = InstallMinikube(tty, success, err, error)
         # ---- TTY rebinds ----
         self.print_on_tty = self.tty.print_on_tty
         # ---- Download options ----
         self.download_options = {
             "choco": False,
             "scoop": False,
-            "winget": False  # ,
-            # "manual":False
+            "winget": False
         }
         # ---- The Disp option ----
         self.disp = display_tty.IDISP
@@ -47,39 +40,19 @@ class InstallKubernetesMac:
         self.kube_folder = ".kube"
         self.config_file = "config"
 
-    def install_kubectl(self) -> None:
+    def install_kubectl(self) -> int:
         """ install the kubectl software """
-        return self.kubectl.install_mac.install_kubectl()
-
-    def install_minikube(self) -> int:
-        """ Install the minikube software """
-
-    def install_kind(self) -> int:
-        """ Install the kind software """
-
-    def install_k3s(self) -> int:
-        """ Install the k3s software """
-
-    def install_k3d(self) -> int:
-        """ Install the k3s software """
-
-    def install_k8s(self) -> int:
-        """ Install the k8s software """
-
-    def install_kubeadm(self) -> int:
-        """ Install the kubeadm software """
-
-    def main(self) -> None:
-        """ Install kubernetes on Mac """
         print("Install kubernetes on Mac - Not created yet")
+        return self.success
 
-    def test_class_install_kubernetes_mac(self) -> int:
-        """ Test the class install kubernetes mac """
+    def main(self) -> int:
+        """ Install kubernetes on Mac """
+        return self.install_kubectl()
+
+    def test_class_install_kubectl_mac(self) -> int:
+        """ Test the class install kubectl mac """
         self.print_on_tty(
             self.tty.info_colour,
-            "This is a test message from the install kubernetes mac class"
+            "This is a test message from the install kubectl mac class"
         )
-        self.kind.test_kind_installation_class()
-        self.kubectl.test_kubectl_installation_class()
-        self.minikube.test_minikube_installation_class()
         return self.success

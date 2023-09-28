@@ -63,9 +63,207 @@ Output:
         if self.current_system == "Windows":
             return self.windows.main()
         if self.current_system == "Linux":
-            return self.linux.main()
+            return self.linux.install_kubectl()
         if self.current_system == "Darwin" or self.current_system == "Java":
             return self.mac.main()
+        self.print_on_tty(
+            self.tty.error_colour,
+            f"System {self.current_system} not supported\n"
+        )
+        return self.error
+
+    def install_minikube(self, args: list) -> int:
+        """ Install kubectl on the host system """
+        function_name = "install_minikube"
+        if self.tty.help_function_child_name == function_name:
+            help_description = f"""
+Install minikube on the host system
+Usage Example:
+Input:
+    {function_name}
+Output:
+    Install process of minikube for the current system
+"""
+            self.tty.function_help(function_name, help_description)
+            self.tty.current_tty_status = self.tty.success
+            return self.success
+        if self.current_system == "Windows":
+            return self.windows.install_minikube()
+        if self.current_system == "Linux":
+            return self.linux.install_minikube()
+        if self.current_system == "Darwin" or self.current_system == "Java":
+            return self.mac.install_minikube()
+        self.print_on_tty(
+            self.tty.error_colour,
+            f"System {self.current_system} not supported\n"
+        )
+        return self.error
+
+    def install_kind(self, args: list) -> int:
+        """ Install kubectl on the host system """
+        function_name = "install_kind"
+        if self.tty.help_function_child_name == function_name:
+            help_description = f"""
+Install kind on the host system
+Usage Example:
+Input:
+    {function_name}
+Output:
+    Install process of kind for the current system
+"""
+            self.tty.function_help(function_name, help_description)
+            self.tty.current_tty_status = self.tty.success
+            return self.success
+        if self.current_system == "Windows":
+            return self.windows.install_kind()
+        if self.current_system == "Linux":
+            return self.linux.install_kind()
+        if self.current_system == "Darwin" or self.current_system == "Java":
+            return self.mac.install_kind()
+        self.print_on_tty(
+            self.tty.error_colour,
+            f"System {self.current_system} not supported\n"
+        )
+        return self.error
+
+    def install_k3s(self, args: list) -> int:
+        """ Install kubectl on the host system """
+        function_name = "install_k3s"
+        if self.tty.help_function_child_name == function_name:
+            help_description = f"""
+Install k3s on the host system
+Usage Example:
+Input:
+    {function_name}
+Output:
+    Install process of k3s for the current system
+"""
+            self.tty.function_help(function_name, help_description)
+            self.tty.current_tty_status = self.tty.success
+            return self.success
+        if self.current_system == "Windows":
+            return self.windows.install_k3s()
+        if self.current_system == "Linux":
+            return self.linux.install_k3s()
+        if self.current_system == "Darwin" or self.current_system == "Java":
+            return self.mac.install_k3s()
+        self.print_on_tty(
+            self.tty.error_colour,
+            f"System {self.current_system} not supported\n"
+        )
+        return self.error
+
+    def install_k3d(self, args: list) -> int:
+        """ Install kubectl on the host system """
+        function_name = "install_k3d"
+        if self.tty.help_function_child_name == function_name:
+            help_description = f"""
+Install k3d on the host system
+Usage Example:
+Input:
+    {function_name}
+Output:
+    Install process of k3d for the current system
+"""
+            self.tty.function_help(function_name, help_description)
+            self.tty.current_tty_status = self.tty.success
+            return self.success
+        if self.current_system == "Windows":
+            return self.windows.install_k3d()
+        if self.current_system == "Linux":
+            return self.linux.install_k3d()
+        if self.current_system == "Darwin" or self.current_system == "Java":
+            return self.mac.install_k3d()
+        self.print_on_tty(
+            self.tty.error_colour,
+            f"System {self.current_system} not supported\n"
+        )
+        return self.error
+
+    def install_k8s(self, args: list) -> int:
+        """ Install kubectl on the host system """
+        function_name = "install_k8s"
+        if self.tty.help_function_child_name == function_name:
+            help_description = f"""
+Install k8s on the host system
+Usage Example:
+Input:
+    {function_name}
+Output:
+    Install process of k8s for the current system
+"""
+            self.tty.function_help(function_name, help_description)
+            self.tty.current_tty_status = self.tty.success
+            return self.success
+        if self.current_system == "Windows":
+            return self.windows.install_k8s()
+        if self.current_system == "Linux":
+            return self.linux.install_k8s()
+        if self.current_system == "Darwin" or self.current_system == "Java":
+            return self.mac.install_k8s()
+        self.print_on_tty(
+            self.tty.error_colour,
+            f"System {self.current_system} not supported\n"
+        )
+        return self.error
+
+    def install_kubeadm(self, args: list) -> int:
+        """ Install kubectl on the host system """
+        function_name = "install_kubeadm"
+        if self.tty.help_function_child_name == function_name:
+            help_description = f"""
+Install kubeadm on the host system
+Usage Example:
+Input:
+    {function_name}
+Output:
+    Install process of kubeadm for the current system
+"""
+            self.tty.function_help(function_name, help_description)
+            self.tty.current_tty_status = self.tty.success
+            return self.success
+        if self.current_system == "Windows":
+            return self.windows.install_kubeadm()
+        if self.current_system == "Linux":
+            return self.linux.install_kubeadm()
+        if self.current_system == "Darwin" or self.current_system == "Java":
+            return self.mac.install_kubeadm()
+        self.print_on_tty(
+            self.tty.error_colour,
+            f"System {self.current_system} not supported\n"
+        )
+        return self.error
+
+    def _install_options_windows(self) -> int:
+        """ Install kubectl on the host system """
+
+    def _install_options_linux(self) -> int:
+        """ Install kubectl on the host system """
+
+    def _install_options_mac(self) -> int:
+        """ Install kubectl on the host system """
+
+    def install_options(self, args: list) -> int:
+        """ Install kubectl on the host system """
+        function_name = "install_options"
+        if self.tty.help_function_child_name == function_name:
+            help_description = f"""
+View the installation options for the host system
+Usage Example:
+Input:
+    {function_name}
+Output:
+    A list of program options that can be installed
+"""
+            self.tty.function_help(function_name, help_description)
+            self.tty.current_tty_status = self.tty.success
+            return self.success
+        if self.current_system == "Windows":
+            return self._install_options_windows()
+        if self.current_system == "Linux":
+            return self._install_options_linux()
+        if self.current_system == "Darwin" or self.current_system == "Java":
+            return self._install_options_mac()
         self.print_on_tty(
             self.tty.error_colour,
             f"System {self.current_system} not supported\n"
@@ -102,6 +300,34 @@ Output:
             {
                 "install_kubectl":  self.install_kubectl,
                 "desc": "Install kubectl on the host system"
+            },
+            {
+                "install_minikube": self.install_minikube,
+                "desc": "Install minikube on the host system"
+            },
+            {
+                "install_kind": self.install_kind,
+                "desc": "Install kind on the host system"
+            },
+            {
+                "install_k3s": self.install_k3s,
+                "desc": "Install k3s on the host system"
+            },
+            {
+                "install_k3d": self.install_k3d,
+                "desc": "Install k3d on the host system"
+            },
+            {
+                "install_k8s": self.install_k8s,
+                "desc": "Install k8s on the host system"
+            },
+            {
+                "install_kubeadm": self.install_kubeadm,
+                "desc": "Install kubeadm on the host system"
+            },
+            {
+                "install_options": self.install_options,
+                "desc": "View the installation options for the host system"
             },
             {
                 "test_install_kubernetes": self.test_install_kubernetes,
