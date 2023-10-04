@@ -14,6 +14,8 @@ sudo systemctl status vsftpd
 # sudo ufw allow 21/tcp
 echo "Configuring vftpd"
 CONFIG_FILE=/etc/vsftpd.conf
+echo "creating a backup of the config file"
+sudo cp $CONFIG_FILE $CONFIG_FILE.bak
 echo "Enabeling write to the config file"
 sudo chmod 777 $CONFIG_FILE
 echo "Owning the file"
