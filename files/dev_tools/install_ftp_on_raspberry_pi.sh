@@ -19,13 +19,13 @@ sudo chmod 777 $CONFIG_FILE
 echo "Owning the file"
 sudo chown $USER:$USER $CONFIG_FILE
 echo "Enabeling write"
-sed -i '/^write_enable=/ s/#*\(.*\)/\1/' $CONFIG_FILE
+sudo sed -i '/^write_enable=/ s/#*\(.*\)/\1/' $CONFIG_FILE
 echo "Exposing ftp on port 22"
-sed -i '/^local_umask=/ s/#*\(.*\)/\1/' $CONFIG_FILE
+sudo sed -i '/^local_umask=/ s/#*\(.*\)/\1/' $CONFIG_FILE
 echo "Setting the local user as the ftp root owner"
-sed -i '/^chroot_local_user=/ s/#*\(.*\)/\1/' $CONFIG_FILE
+sudo sed -i '/^chroot_local_user=/ s/#*\(.*\)/\1/' $CONFIG_FILE
 echo "Disabeling anonymous login"
-sed -i 's/^anonymous_enable=YES/anonymous_enable=NO/' $CONFIG_FILE
+sudo sed -i 's/^anonymous_enable=YES/anonymous_enable=NO/' $CONFIG_FILE
 echo "Creating user token"
 sudo echo "user_sub_token=\$USER" >>$CONFIG_FILE
 echo "Setting the users home/FTP as the root's home"
