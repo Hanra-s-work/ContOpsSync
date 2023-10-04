@@ -4,6 +4,7 @@ File in charge of installing kubernetes on all 3 systems
 
 import platform
 from tty_ov import TTY
+from display_tty import IDISP
 from .install import Install
 
 
@@ -19,8 +20,12 @@ class InstallKubernetes():
         self.current_system = platform.system()
         # ---- Parent classes ----
         self.tty = tty
+        self.disp = IDISP
         # ---- TTY rebinds ----
         self.print_on_tty = self.tty.print_on_tty
+        # ---- Disp re-configuration ----
+        self.disp.toml_content["PRETTIFY_OUTPUT"] = False
+        self.disp.toml_content["PRETTY_OUTPUT_IN_BLOCS"] = False
         # ---- Child classes ----
         self.install = Install()
         # ---- System install ----
@@ -61,11 +66,11 @@ Output:
             self.tty.current_tty_status = self.tty.success
             return self.success
         if self.current_system == "Windows":
-            return self.windows.main()
+            return self.windows.install_kubectl()
         if self.current_system == "Linux":
             return self.linux.install_kubectl()
         if self.current_system == "Darwin" or self.current_system == "Java":
-            return self.mac.main()
+            return self.mac.install_kubectl()
         self.print_on_tty(
             self.tty.error_colour,
             f"System {self.current_system} not supported\n"
@@ -87,6 +92,20 @@ Output:
             self.tty.function_help(function_name, help_description)
             self.tty.current_tty_status = self.tty.success
             return self.success
+        self.print_on_tty(
+            self.tty.info_colour,
+            ""
+        )
+        self.disp.inform_message(
+            "Installing kubectl (required for using minikube)"
+        )
+        status = self.install_kubectl([])
+        if status != self.success:
+            self.print_on_tty(
+                self.tty.error_colour,
+                "Error installing kubectl\n"
+            )
+            return self.tty.error
         if self.current_system == "Windows":
             return self.windows.install_minikube()
         if self.current_system == "Linux":
@@ -180,6 +199,33 @@ Output:
         )
         return self.error
 
+    def install_microk8s(self, args: list) -> int:
+        """ Install kubectl on the host system """
+        function_name = "install_microk8s"
+        if self.tty.help_function_child_name == function_name:
+            help_description = f"""
+Install microk8s on the host system
+Usage Example:
+Input:
+    {function_name}
+Output:
+    Install process of microk8s for the current system
+"""
+            self.tty.function_help(function_name, help_description)
+            self.tty.current_tty_status = self.tty.success
+            return self.success
+        if self.current_system == "Windows":
+            return self.windows.install_microk8s()
+        if self.current_system == "Linux":
+            return self.linux.install_microk8s()
+        if self.current_system == "Darwin" or self.current_system == "Java":
+            return self.mac.install_microk8s()
+        self.print_on_tty(
+            self.tty.error_colour,
+            f"System {self.current_system} not supported\n"
+        )
+        return self.error
+
     def install_k8s(self, args: list) -> int:
         """ Install kubectl on the host system """
         function_name = "install_k8s"
@@ -206,6 +252,13 @@ Output:
             f"System {self.current_system} not supported\n"
         )
         return self.error
+
+    def install_kubernetes(self, args: list) -> int:
+        """ Install k8s because this is the other name of kubernetes """
+        self.print_on_tty(self.tty.info_colour, "")
+        info_message = "Info: Kubernetes is also known as k8s, thus, this function will run the k8s installation."
+        self.disp.inform_message(info_message)
+        return self.install_k8s(args)
 
     def install_kubeadm(self, args: list) -> int:
         """ Install kubectl on the host system """
@@ -298,6 +351,10 @@ Output:
         """ The function in charge of saving the commands to the options list """
         self.options = [
             {
+                "install_kubernetes": self.install_kubernetes,
+                "desc": "Install Kubernetes (k8s) on the host system"
+            },
+            {
                 "install_kubectl":  self.install_kubectl,
                 "desc": "Install kubectl on the host system"
             },
@@ -318,13 +375,17 @@ Output:
                 "desc": "Install k3d on the host system"
             },
             {
+                "install_microk8s": self.install_microk8s,
+                "desc": "Install microk8s on the host system"
+            },
+            {
                 "install_k8s": self.install_k8s,
                 "desc": "Install k8s on the host system"
             },
-            {
-                "install_kubeadm": self.install_kubeadm,
-                "desc": "Install kubeadm on the host system"
-            },
+            # {
+            #     "install_kubeadm": self.install_kubeadm,
+            #     "desc": "Install kubeadm on the host system"
+            # },
             {
                 "install_options": self.install_options,
                 "desc": "View the installation options for the host system"
