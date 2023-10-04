@@ -9,13 +9,25 @@ MY_SYSTEM="$(uname --kernel-name)"
 MY_SYSTEM=$(echo "$MY_SYSTEM" | tr "ABCDEFGHIJKLMNOPQRSTUVWXYZ" "abcdefghijklmnopqrstuvwxyz")
 MAC_SYSTEM=$(echo "$MAC_SYSTEM" | tr "ABCDEFGHIJKLMNOPQRSTUVWXYZ" "abcdefghijklmnopqrstuvwxyz")
 
+python3 --version >/dev/null 2>&1
+STATUS_PYTHON3=$?
+python --version >/dev/null 2>&1
+STATUS_PYTHON=$?
+py --version >/dev/null 2>&1
+STATUS_PY=$?
+if [ $STATUS_PYTHON3 -ne 0 ] && [ $STATUS_PYTHON -ne 0 ] && [ $STATUS_PY -ne 0 ]; then
+    echo "You do not have python installed, please install Python and relaunch this script"
+    echo "Aborting program"
+    exit 84
+fi
+
 pip3 --version >/dev/null 2>&1
 STATUS_PIP3=$?
 pip --version >/dev/null 2>&1
 STATUS_PIP=$?
 python3 -m pip --version >/dev/null 2>&1
 STATUS_PYTHON_PIP=$?
-if [ $STATUS_PIP -ne 0 ] || [ $STATUS_PIP3 -ne 0 ] || [ $STATUS_PYTHON_PIP -ne 0 ]; then
+if [ $STATUS_PIP -ne 0 ] && [ $STATUS_PIP3 -ne 0 ] && [ $STATUS_PYTHON_PIP -ne 0 ]; then
     echo "You do not have pip installed, please install pip and relaunch this script"
     echo "Aborting program"
     exit 84
