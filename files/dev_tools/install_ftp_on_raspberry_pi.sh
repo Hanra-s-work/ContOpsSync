@@ -16,6 +16,8 @@ echo "Configuring vftpd"
 CONFIG_FILE=/etc/vsftpd.conf
 echo "Enabeling write to the config file"
 sudo chmod 777 $CONFIG_FILE
+echo "Owning the file"
+sudo chown $USER:$USER $CONFIG_FILE
 echo "Enabeling write"
 sed -i '/^write_enable=/ s/#*\(.*\)/\1/' $CONFIG_FILE
 echo "Exposing ftp on port 22"
@@ -30,6 +32,8 @@ echo "Setting the users home/FTP as the root's home"
 sudo echo "local_root=/home/\$USER/FTP" >>$CONFIG_FILE
 echo "Setting the file rights back to before"
 sudo chmod 644 $CONFIG_FILE
+echo "Setting the root as the owner of the file"
+sudo chown root:root $CONFIG_FILE
 echo "Creating FTP/my_files folder"
 mkdir -p $HOME/FTP/my_files
 echo "Setting the user as the owner of the FTP folder"
