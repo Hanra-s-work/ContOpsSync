@@ -14,6 +14,8 @@ sudo systemctl status vsftpd
 # sudo ufw allow 21/tcp
 echo "Configuring vftpd"
 CONFIG_FILE=/etc/vsftpd.conf
+echo "Enabeling write to the config file"
+sudo chmod 777 $CONFIG_FILE
 echo "Enabeling write"
 sed -i '/^write_enable=/ s/#*\(.*\)/\1/' $CONFIG_FILE
 echo "Exposing ftp on port 22"
@@ -23,9 +25,11 @@ sed -i '/^chroot_local_user=/ s/#*\(.*\)/\1/' $CONFIG_FILE
 echo "Disabeling anonymous login"
 sed -i 's/^anonymous_enable=YES/anonymous_enable=NO/' $CONFIG_FILE
 echo "Creating user token"
-echo "user_sub_token=\$USER" >>$CONFIG_FILE
+sudo echo "user_sub_token=\$USER" >>$CONFIG_FILE
 echo "Setting the users home/FTP as the root's home"
-echo "local_root=/home/\$USER/FTP" >>$CONFIG_FILE
+sudo echo "local_root=/home/\$USER/FTP" >>$CONFIG_FILE
+echo "Setting the file rights back to before"
+sudo chmod 644 $CONFIG_FILE
 echo "Creating FTP/my_files folder"
 mkdir -p $HOME/FTP/my_files
 echo "Setting the user as the owner of the FTP folder"
