@@ -7,8 +7,11 @@ import requests
 import display_tty
 from tqdm import tqdm
 from tty_ov import TTY
+from .k3d import InstallK3d
+from .k3s import InstallK3s
 from .kind import InstallKind
 from .kubectl import InstallKubectl
+from .microk8s import InstallMicroK8s
 from .minikube import InstallMinikube
 
 
@@ -22,6 +25,8 @@ class InstallKubernetesWindows:
         self.error = error
         # ---- Parent classes ----
         self.tty = tty
+        self.k3d = InstallK3d(tty, success, err, error)
+        self.microk8s = InstallMicroK8s(tty, success, err, error)
         self.kind = InstallKind(tty, success, err, error)
         self.kubectl = InstallKubectl(tty, success, err, error)
         self.minikube = InstallMinikube(tty, success, err, error)
@@ -106,6 +111,9 @@ class InstallKubernetesWindows:
 
     def install_k8s(self) -> int:
         """ Install the k8s software """
+
+    def install_microk8s(self) -> int:
+        """ Install the microk8s software """
 
     def install_kubeadm(self) -> int:
         """ Install the kubeadm software """

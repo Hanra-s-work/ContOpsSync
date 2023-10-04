@@ -8,8 +8,11 @@ import requests
 from tqdm import tqdm
 from tty_ov import TTY
 from .k3d import InstallK3d
+from .k3s import InstallK3s
+from .k8s import InstallK8s
 from .kind import InstallKind
 from .kubectl import InstallKubectl
+from .microk8s import InstallMicroK8s
 from .minikube import InstallMinikube
 
 
@@ -24,8 +27,11 @@ class InstallKubernetesLinux:
         # ---- Parent classes ----
         self.tty = tty
         self.k3d = InstallK3d(tty, success, err, error)
+        self.k3s = InstallK3s(tty, success, err, error)
+        self.k8s = InstallK8s(tty, success, err, error)
         self.kind = InstallKind(tty, success, err, error)
         self.kubectl = InstallKubectl(tty, success, err, error)
+        self.microk8s = InstallMicroK8s(tty, success, err, error)
         self.minikube = InstallMinikube(tty, success, err, error)
         # ---- TTY rebinds ----
         self.print_on_tty = self.tty.print_on_tty
@@ -48,7 +54,7 @@ class InstallKubernetesLinux:
         self.k8s_link = "https://get.k8s.io"
         self.k8s_file_name = "/tmp/k8s_install.sh"
 
-    def download_file(self, url: str, filepath: str) -> int:
+    def _download_file(self, url: str, filepath: str) -> int:
         """ Download a file from a url """
         self.print_on_tty(
             self.tty.info_colour,
@@ -100,22 +106,9 @@ class InstallKubernetesLinux:
 
     def install_k3s(self) -> int:
         """ Install the k3s software """
-        self.disp.sub_sub_title("Installing k3s")
-        status = self.download_file(self.k3s_link, self.k3s_file_name)
-        if status != self.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "Error downloading the k3s install script\n"
-            )
-            return self.err
-        status = self.run(["chmod", "+x", self.k3s_file_name])
-        if status != self.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "Error granting execution permissions to the k3s install script\n"
-            )
-            return self.err
-        return self.run(["bash", "-c", self.k3s_file_name])
+        if self.k3s.install_raspberrypi.is_raspberrypi() is True:
+            return self.k3s.install_raspberrypi.main()
+        return self.k3s.install_linux.main()
 
     def install_k3d(self) -> int:
         """ Install the k3d software """
@@ -123,25 +116,18 @@ class InstallKubernetesLinux:
 
     def install_k8s(self) -> int:
         """ Install the k8s software """
-        self.disp.sub_sub_title("Installing k8s")
-        status = self.download_file(self.k8s_link, self.k8s_file_name)
-        if status != self.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "Error downloading the k8s install script\n"
-            )
-            return self.err
-        status = self.run(["chmod", "+x", self.k8s_file_name])
-        if status != self.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "Error granting execution permissions to the k8s install script\n"
-            )
-            return self.err
-        return self.run(["bash", "-c", self.k8s_file_name])
+        return self.k8s.install_linux.main()
+
+    def install_microk8s(self) -> int:
+        """ Install the microk8s software """
+        return self.microk8s.install_linux.main()
 
     def install_kubeadm(self) -> int:
         """ Install the kubeadm software """
+        return self.print_on_tty(
+            self.tty.info_colour,
+            "This option is not yet available due to system requirements that would be long and difficult to verify for each linux distribution"
+        )
 
     def main(self) -> int:
         """ The main function of the program """

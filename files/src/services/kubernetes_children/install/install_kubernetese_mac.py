@@ -4,8 +4,11 @@ File in charge of containing the code that will install kubernetes on a mac.
 
 from tty_ov import TTY
 import display_tty
+from .k3d import InstallK3d
+from .k3s import InstallK3s
 from .kind import InstallKind
 from .kubectl import InstallKubectl
+from .microk8s import InstallMicroK8s
 from .minikube import InstallMinikube
 
 
@@ -19,6 +22,8 @@ class InstallKubernetesMac:
         self.error = error
         # ---- Parent classes ----
         self.tty = tty
+        self.k3d = InstallK3d(tty, success, err, error)
+        self.microk8s = InstallMicroK8s(tty, success, err, error)
         self.kind = InstallKind(tty, success, err, error)
         self.kubectl = InstallKubectl(tty, success, err, error)
         self.minikube = InstallMinikube(tty, success, err, error)
@@ -53,25 +58,64 @@ class InstallKubernetesMac:
 
     def install_minikube(self) -> int:
         """ Install the minikube software """
+        self.print_on_tty(
+            self.tty.info_colour,
+            "The installation script is yet to come for macs."
+        )
+        return self.success
 
     def install_kind(self) -> int:
         """ Install the kind software """
+        self.print_on_tty(
+            self.tty.info_colour,
+            "The installation script is yet to come for macs."
+        )
+        return self.success
 
     def install_k3s(self) -> int:
         """ Install the k3s software """
+        self.print_on_tty(
+            self.tty.info_colour,
+            "The installation script is yet to come for macs."
+        )
+        return self.success
 
     def install_k3d(self) -> int:
         """ Install the k3s software """
+        self.print_on_tty(
+            self.tty.info_colour,
+            "The installation script is yet to come for macs."
+        )
+        return self.success
 
     def install_k8s(self) -> int:
         """ Install the k8s software """
+        self.print_on_tty(
+            self.tty.info_colour,
+            "The installation script is yet to come for macs."
+        )
+        return self.success
+
+    def install_microk8s(self) -> int:
+        """ Install the k8s software """
+        self.print_on_tty(
+            self.tty.info_colour,
+            "The installation script is yet to come for macs."
+        )
+        return self.success
 
     def install_kubeadm(self) -> int:
         """ Install the kubeadm software """
+        self.print_on_tty(
+            self.tty.info_colour,
+            "The installation script is yet to come for macs."
+        )
+        return self.success
 
     def main(self) -> None:
         """ Install kubernetes on Mac """
         print("Install kubernetes on Mac - Not created yet")
+        return self.success
 
     def test_class_install_kubernetes_mac(self) -> int:
         """ Test the class install kubernetes mac """
