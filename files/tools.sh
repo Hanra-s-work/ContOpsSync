@@ -9,6 +9,18 @@ MY_SYSTEM="$(uname --kernel-name)"
 MY_SYSTEM=$(echo "$MY_SYSTEM" | tr "ABCDEFGHIJKLMNOPQRSTUVWXYZ" "abcdefghijklmnopqrstuvwxyz")
 MAC_SYSTEM=$(echo "$MAC_SYSTEM" | tr "ABCDEFGHIJKLMNOPQRSTUVWXYZ" "abcdefghijklmnopqrstuvwxyz")
 
+pip3 --version >/dev/null 2>&1
+STATUS_PIP3=$?
+pip --version >/dev/null 2>&1
+STATUS_PIP=$?
+python3 -m pip --version >/dev/null 2>&1
+STATUS_PYTHON_PIP=$?
+if [ $STATUS_PIP -ne 0 ] || [ $STATUS_PIP3 -ne 0 ] || [ $STATUS_PYTHON_PIP -ne 0 ]; then
+    echo "You do not have pip installed, please install pip and relaunch this script"
+    echo "Aborting program"
+    exit 84
+fi
+
 if [ "$MY_SYSTEM" == "linux" ] || [ "$MAC_SYSTEM" == "linux" ]; then
     MY_ENV='lenv'
 elif [ "$MAC_SYSTEM" == "darwin" ]; then
