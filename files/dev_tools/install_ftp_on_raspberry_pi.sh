@@ -44,3 +44,12 @@ echo "Restating vsftpd service"
 sudo service vsftpd restart
 sudo systemctl status vsftpd
 echo "Script created by (c) Henry Letellier"
+echo "Your FTP connection is available at:"
+echo "ftp://$USER@$(hostname -I | awk '{print $1}')"
+echo "Your connection password is your account's pasword"
+echo "You can access your FTP folder at:"
+echo "$HOME/FTP/my_files"
+echo "You can access your FTP config file at:"
+echo "$CONFIG_FILE"
+echo "You can access your FTP logs at:"
+echo "/var/log/vsftpd.log"
