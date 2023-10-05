@@ -147,6 +147,12 @@ function string_to_list() {
     echo $listed_string
 }
 
+function remove_spaces() {
+    local string=$1
+    local string_without_spaces=${string// /}
+    echo $string_without_spaces
+}
+
 function display_as_table() {
     local a="$(echo "${1//$'\n'/' '}" | cut -d " " -f 1-)"
     local b="$(echo "${2//$'\n'/' '}" | cut -d " " -f 1-)"
@@ -179,21 +185,30 @@ function credits() {
     echo "This program was created by (c) Henry Letellier"
 }
 
+function reboot_system() {
+    yes_no "Do you wish to reboot your system?"
+    if [ $? -eq $my_true ]; then
+        echo "Rebooting the system"
+        sudo reboot
+    fi
+}
+
 function apply_configuration() {
     echo "Applying the static IP configuration"
     echo "Running: sudo echo 'interface $default_network_interface' >>$file_config"
     sudo echo "interface $default_network_interface" >>$file_config
-    echo "Running: sudo echo 'static_routers=$router_ip' >>$file_config"
-    sudo echo "static_routers=$router_ip" >>$file_config
-    echo "Running: sudo echo 'static domain_name=$dns_ip' >>$file_config"
-    sudo echo "static domain_name=$dns_ip" >>$file_config
     echo "Running: sudo echo 'static ip_address=$ip_address/24' >>$file_config"
     sudo echo "static ip_address=$ip_address/24" >>$file_config
+    echo "Running: sudo echo 'static routers=$router_ip' >>$file_config"
+    sudo echo "static routers=$router_ip" >>$file_config
+    echo "Running: sudo echo 'static domain_name_servers=$dns_ip' >>$file_config"
+    sudo echo "static domain_name_servers=$dns_ip" >>$file_config
     echo "Restarting the service"
     sudo service networking restart
     sudo systemctl restart networking
     echo "Done"
     echo "It is recommended to reboot the system when possible"
+    reboot_system
     credits
 }
 
@@ -348,5 +363,10 @@ else
     echo "The current Network interface will be used"
 fi
 credits
+
+# removing spaces from the stored variables
+ip_address=$(remove_spaces $ip_address)
+router_ip=$(remove_spaces $router_ip)
+dns_ip=$(remove_spaces $dns_ip)
 
 apply_configuration
