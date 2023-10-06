@@ -95,7 +95,7 @@ function set_up_environement() {
 function start_program() {
     chmod +x src/main.py
     echo "Starting program"
-    python3 ./src/main.py
+    python3 ./src/main.py $@
     return $?
 }
 
@@ -111,6 +111,8 @@ function main() {
     has_python_pip
     create_environement
     set_up_environement
-    start_program
+    start_program "$@"
     end_of_script $?
 }
+
+main "$@"

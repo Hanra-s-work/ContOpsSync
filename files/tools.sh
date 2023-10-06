@@ -60,6 +60,6 @@ if [ $FRESH_ENV -eq $TRUE ]; then
 fi
 echo "(c) Created by Henry Letellier"
 echo "Running launching tool"
-python3 ./src/main.py
+python3 ./src/main.py $@
 echo "Deactivating virtual environment"
 deactivate
