@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/env bash
 TRUE=0
 FALSE=1
 MY_ENV="env"
