@@ -43,6 +43,15 @@ function welcome_message() {
 function update_system() {
     echo "Updating system"
     sudo apt-get update
+    sudo apt install -y \
+        git \
+        curl \
+        wget \
+        unzip \
+        jq \
+        software-properties-common \
+        sudo
+    sudo apt-get install -y build-essential
     sudo apt-get upgrade --with-new-pkgs -y
 }
 
@@ -64,13 +73,19 @@ function install_python_pip() {
         libc6-dev \
         openssl \
         git
+    echo "Downloading pip installer"
+    curl -O https://bootstrap.pypa.io/get-pip.py
+    echo "Installing pip"
+    sudo python3 get-pip.py
+    echo "Removing pip installer"
+    rm get-pip.py
 }
 
 function has_python_pip() {
-    python3 -m pip --version >/dev/null 2>&1
+    pip3 --version >/dev/null 2>&1
     status_python_pip=$?
     if [ $status_python_pip -ne 0 ]; then
-
+        install_python_pip
     fi
 }
 
@@ -87,9 +102,12 @@ function set_up_environement() {
     if [ $fresh_env -eq $my_true ]; then
         echo "Updating pip"
         python3 -m pip install --upgrade pip
-        echo "Updating dependencies"
-        python3 -m pip install -r ./requirements.txt
     fi
+}
+
+function update_pip_dependencies() {
+    echo "Updating dependencies"
+    pip3 install -r ./requirements.txt
 }
 
 function start_program() {
@@ -111,6 +129,7 @@ function main() {
     has_python_pip
     create_environement
     set_up_environement
+    update_pip_dependencies
     start_program "$@"
     end_of_script $?
 }
