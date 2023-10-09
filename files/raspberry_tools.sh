@@ -6,6 +6,7 @@ fresh_env=$hl_false
 env_present=$hl_false
 colour_a='\033[1;32m'
 colour_r='\033[0m'
+no_update="--pi-tools-no-update"
 no_intro="--pi-tools-bash-skip-intro"
 no_prank="--pi-tools-bash-no-prank"
 no_env="--pi-tools-no-env"
@@ -14,6 +15,7 @@ no_launch="--pi-tools-no-launch"
 new_env="--pi-tools-recreate-environement"
 
 #it is not recommended to edit these variables
+update_system=$hl_true
 show_intro=$hl_true
 add_prank=$hl_true
 create_env=$hl_true
@@ -87,9 +89,11 @@ function has_environement() {
 }
 
 function update_system() {
-    cecho "Updating system"
-    sudo apt-get update
-    sudo apt-get upgrade --with-new-pkgs -y
+    if [ $update_system -eq $hl_true ]; then
+        cecho "Updating system"
+        sudo apt-get update
+        sudo apt-get upgrade --with-new-pkgs -y
+    fi
 }
 
 function ensure_basic_dependencies() {
@@ -245,6 +249,8 @@ function process_input() {
             re_env=$hl_true
             fresh_env=$hl_true
             env_present=$hl_false
+        elif [ "$1" == "$no_update" ]; then
+            update_system=$hl_false
         fi
         shift
         let "index_tracker=index_tracker+1"
