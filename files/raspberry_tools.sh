@@ -202,12 +202,42 @@ function update_pip_dependencies() {
     fi
 }
 
+function extract_non_launch_arguments() {
+    local arg_length=$#
+    local new_args=()
+    local index_tracker=0
+    echo "input_args = $@" >&2
+    echo "input_args_length = ${#@}" >&2
+    while [ $index_tracker -lt $arg_length ]; do
+        if [ "$1" == "$no_intro" ] || [ "$1" == "$no_prank" ] || [ "$1" == "$no_env" ] || [ "$1" == "$no_check" ] || [ "$1" == "$no_launch" ] || [ "$1" == "$new_env" ] || [ "$1" == "$no_update" ]; then
+            shift
+            continue
+        fi
+        new_args+=("$1")
+        shift
+        let "index_tracker=index_tracker+1"
+    done
+    echo ${new_args[*]}
+}
+
 function start_program() {
     local status=0
+    local non_launch_arguments=()
     if [ $can_launch -eq $hl_true ]; then
         chmod +x src/main.py
         cecho "Starting program"
-        python3 ./src/main.py $@
+        echo "Input_args = $@"
+        echo "Input_args_length = ${#@}"
+        non_launch_arguments=$(extract_non_launch_arguments "$@")
+        echo "Non_launch_arguments = $non_launch_arguments"
+        echo "len(non_launch_arguments) = ${#non_launch_arguments[*]}"
+        if [ ${#non_launch_arguments} -gt 0 ]; then
+            echo "Launching with arguments"
+            python3 ./src/main.py ${non_launch_arguments[*]}
+        else
+            echo "Launching without arguments"
+            python3 ./src/main.py
+        fi
         status=$?
     fi
     return $status
@@ -257,22 +287,6 @@ function process_input() {
     done
 }
 
-function extract_non_launch_arguments() {
-    local arg_length=$#
-    local new_args=()
-    local index_tracker=0
-    while [ $index_tracker -lt $arg_length ]; do
-        if [ "$1" == "$no_intro" ] || [ "$1" == "$no_prank" ] || [ "$1" == "$no_env" ] || [ "$1" == "$no_check" ] || [ "$1" == "$no_launch" ] || [ "$1" == "$new_env" ] || [ "$1" == "$no_update" ]; then
-            shift
-            continue
-        fi
-        new_args+=("$1")
-        shift
-        let "index_tracker=index_tracker+1"
-    done
-    echo $new_args
-}
-
 function remove_env() {
     if [ $re_env -eq $hl_true ]; then
         cecho "Removing environement"
@@ -283,7 +297,6 @@ function remove_env() {
 function main() {
     local skip_index=0
     local arg_copy=("$@")
-    local non_launch_arguments=()
     beginning_of_script
     process_input "$@"
     if [ $show_intro -eq $hl_true ]; then
@@ -314,12 +327,7 @@ function main() {
     if [ $skip_index -gt 0 ]; then
         shift $skip_index
     fi
-    non_launch_arguments=$(extract_non_launch_arguments "$arg_copy")
-    if [ ${#non_launch_arguments} -gt 0 ]; then
-        start_program "$non_launch_arguments"
-    else
-        start_program
-    fi
+    start_program ${arg_copy[*]}
     deactivate_environement
     end_of_script $?
 }
