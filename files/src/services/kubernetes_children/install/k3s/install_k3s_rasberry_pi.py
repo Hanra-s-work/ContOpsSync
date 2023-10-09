@@ -5,6 +5,7 @@ File in charge of installing k3s on a rasberry pi
 import os
 import display_tty
 import requests
+from datetime import datetime
 from tqdm import tqdm
 from tty_ov import TTY
 
@@ -39,9 +40,17 @@ class InstallK3sRaspberryPi:
 
     def _set_file_content(self, file_path: str, content: str, mode: str = "w", encoding: str = "utf-8", newline: str = "\n") -> int:
         """ Set the content of a file """
-        with open(file_path, mode, encoding=encoding, newline=newline) as file:
-            file.write(content)
-        return self.success
+        self.tty.run_as_admin(
+            [
+                "echo",
+                f"'{content}'",
+                f">{file_path}",
+            ]
+        )
+        return self.tty.current_tty_status
+        # with open(file_path, mode, encoding=encoding, newline=newline) as file:
+        #     file.write(content)
+        # return self.success
 
     def _update_variable_in_string(self, variable: str, value: str, string: str) -> str:
         """ Update a variable in a string """
@@ -163,8 +172,183 @@ class InstallK3sRaspberryPi:
         self.tty.current_tty_status = self.tty.success
         return True
 
+    def _get_usr_ip(self) -> str:
+        """ Get the ip of the machine in order to create a static ip """
+        ip_file = "/tmp/your_current_ip.txt"
+        self.print_on_tty(
+            self.tty.info_colour,
+            "Getting the ip of the machine:"
+        )
+        self.tty.current_tty_status = self.run(
+            [
+                "hostname",
+                "-I",
+                f">{ip_file}",
+                "2>/dev/null"
+            ]
+        )
+        if self.tty.current_tty_status != self.tty.success:
+            self.print_on_tty(
+                self.tty.error_colour,
+                "[KO]\n"
+            )
+            return ""
+        self.print_on_tty(
+            self.tty.success_colour,
+            "[OK]\n"
+        )
+        self.tty.current_tty_status = self.tty.success
+        usr_ip = self._get_file_content(ip_file, "utf-8")
+        usr_ip = usr_ip.split(" ")[0]
+        return usr_ip
+
+    def _get_dns_ip(self) -> str:
+        """ Get the ip of the dns for the static ip """
+        dns_file = "/tmp/your_current_dns_address.txt"
+        self.print_on_tty(
+            self.tty.info_colour,
+            "Getting the dns of the machine:"
+        )
+        self.tty.current_tty_status = self.run(
+            [
+                "cat",
+                "/etc/resolv.conf",
+                "|",
+                "grep",
+                "nameserver",
+                f">{dns_file}",
+                "2>/dev/null"
+            ]
+        )
+        if self.tty.current_tty_status != self.tty.success:
+            self.print_on_tty(
+                self.tty.error_colour,
+                "[KO]\n"
+            )
+            return ""
+        self.print_on_tty(
+            self.tty.success_colour,
+            "[OK]\n"
+        )
+        self.tty.current_tty_status = self.tty.success
+        dns_ip = self._get_file_content(dns_file, "utf-8")
+        dns_ip = dns_ip.split(" ")[1]
+        return dns_ip
+
+    def _get_user_name(self) -> str:
+        """ Get the username of the user """
+        username = os.getlogin()
+        return username
+
+    def _get_computer_name(self) -> str:
+        """ Get the computer name of the machine """
+        computer_name = os.uname()[1]
+        return computer_name
+
+    def _get_date(self) -> str:
+        """ Get the date of the machine """
+        date = datetime.now()
+        compiled_date = ""
+        compiled_date += f"{date.day}-"
+        compiled_date += f"{date.month}-"
+        compiled_date += f"{date.year}-"
+        compiled_date += f"{date.hour}h"
+        compiled_date += f"{date.minute}m"
+        compiled_date += f"{date.second}s"
+        return compiled_date
+
+    def _create_hostname(self) -> str:
+        """ Create the hostname for the machine """
+        hostname = ""
+        hostname += f"{self._get_user_name()}-"
+        hostname += f"{self._get_computer_name()}-"
+        hostname += f"{self._get_date()}"
+        return hostname
+
+    def _get_router_name(self) -> str:
+        """ Get the name of the current connection form that is used by the system """
+        self.print_on_tty(
+            self.tty.info_colour,
+            "Getting your router name"
+        )
+        router_name = ""
+        router_file_name = "/tmp/your_router_name.txt"
+        ip = self._get_usr_ip()
+        router_name_status = self.run(
+            [
+                "ifconfig",
+                "|",
+                "grep",
+                "-B1",
+                f"'{ip}'",
+                "|",
+                "cut",
+                "-d",
+                "\":\"",
+                "-f",
+                "1",
+                "|",
+                "cut",
+                "-d",
+                "\" \"",
+                "-f",
+                "1",
+                f">{router_file_name}",
+                "2>/dev/null"
+            ]
+        )
+        if router_name_status == self.tty.error:
+            self.print_on_tty(
+                self.tty.error_colour,
+                "[KO]\n"
+            )
+            return ""
+        self.print_on_tty(
+            self.tty.success_colour,
+            "[OK]\n"
+        )
+        router_name = self._get_file_content(router_file_name, "utf-8")
+        return router_name
+
+    def _compile_static_ip(self) -> str:
+        """ compile the required data for the static ip """
+        self.print_on_tty(
+            self.tty.info_colour,
+            "Compiling the static ip:\n"
+        )
+        usr_ip = self._get_usr_ip()
+        dns_ip = self._get_dns_ip()
+        network_mask = "255.255.255.0"
+        hostname = self._create_hostname()
+        router_name = self._get_router_name()
+        auto_dhcpcd = "off"
+        if usr_ip == "" or dns_ip == "" or hostname == "" or auto_dhcpcd == "":
+            self.print_on_tty(
+                self.tty.info_colour,
+                "static ip compilation status: "
+            )
+            self.print_on_tty(
+                self.tty.error_colour,
+                "[KO]\n"
+            )
+            return ""
+        static_ip = f"ip={usr_ip}::{dns_ip}:{network_mask}:{hostname}:{router_name}:{auto_dhcpcd}"
+        self.print_on_tty(
+            self.tty.info_colour,
+            "static ip compilation status: "
+        )
+        self.print_on_tty(
+            self.tty.success_colour,
+            "[OK]\n"
+        )
+        return static_ip
+
     def enable_cgroups_if_not(self) -> int:
         """ Enable the cgroups module for the raspberry pi """
+        self.print_on_tty(
+            self.tty.info_colour,
+            "Enabling CGroups:"
+        )
         var1 = "cgroup_memory"
         val1 = "1"
         var2 = "cgroup_enable"
@@ -182,14 +366,44 @@ class InstallK3sRaspberryPi:
                 val2,
                 file_content
             )
-        # self._set_file_content(
-        #     self.cmdline_file,
-        #     file_content,
-        #     self.edit_mode,
-        #     self.encoding,
-        #     self.newline
-        # )
-        print(f"result={file_content}")
+        self._set_file_content(
+            self.cmdline_file,
+            file_content,
+            self.edit_mode,
+            self.encoding,
+            self.newline
+        )
+        self.print_on_tty(
+            self.tty.success_colour,
+            "[OK]"
+        )
+        static_ip = self._compile_static_ip()
+        if static_ip == "":
+            self.tty.current_tty_status = self.tty.error
+            return self.err
+        self.print_on_tty(
+            self.tty.info_colour,
+            "Enabling static ip:"
+        )
+        file_content = self._get_file_content(self.cmdline_file, self.encoding)
+        if static_ip not in file_content:
+            file_content = self._update_variable_in_string(
+                "ip",
+                static_ip,
+                file_content
+            )
+        self._set_file_content(
+            self.cmdline_file,
+            file_content,
+            self.edit_mode,
+            self.encoding,
+            self.newline
+        )
+        self.print_on_tty(
+            self.tty.success_colour,
+            "[OK]"
+        )
+        return self.success
 
     def main(self) -> int:
         """ Install k3s on RaspberryPi """
