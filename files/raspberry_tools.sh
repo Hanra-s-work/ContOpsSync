@@ -257,6 +257,22 @@ function process_input() {
     done
 }
 
+function extract_non_launch_arguments() {
+    local arg_length=$#
+    local new_args=()
+    local index_tracker=0
+    while [ $index_tracker -lt $arg_length ]; do
+        if [ "$1" == "$no_intro" ] || [ "$1" == "$no_prank" ] || [ "$1" == "$no_env" ] || [ "$1" == "$no_check" ] || [ "$1" == "$no_launch" ] || [ "$1" == "$new_env" ] || [ "$1" == "$no_update" ]; then
+            shift
+            continue
+        fi
+        new_args+=("$1")
+        shift
+        let "index_tracker=index_tracker+1"
+    done
+    echo $new_args
+}
+
 function remove_env() {
     if [ $re_env -eq $hl_true ]; then
         cecho "Removing environement"
@@ -267,6 +283,7 @@ function remove_env() {
 function main() {
     local skip_index=0
     local arg_copy=("$@")
+    local non_launch_arguments=()
     beginning_of_script
     process_input "$@"
     if [ $show_intro -eq $hl_true ]; then
@@ -297,7 +314,12 @@ function main() {
     if [ $skip_index -gt 0 ]; then
         shift $skip_index
     fi
-    start_program "$arg_copy"
+    non_launch_arguments=$(extract_non_launch_arguments "$arg_copy")
+    if [ ${#non_launch_arguments} -gt 0 ]; then
+        start_program "$non_launch_arguments"
+    else
+        start_program
+    fi
     deactivate_environement
     end_of_script $?
 }
