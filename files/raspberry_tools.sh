@@ -11,6 +11,7 @@ no_prank="--pi-tools-bash-no-prank"
 no_env="--pi-tools-no-env"
 no_check="--pi-tools-no-check"
 no_launch="--pi-tools-no-launch"
+new_env="--pi-tools-recreate-environement"
 
 #it is not recommended to edit these variables
 show_intro=$hl_true
@@ -18,6 +19,7 @@ add_prank=$hl_true
 create_env=$hl_true
 check_env=$hl_true
 can_launch=$hl_true
+re_env=$hl_false
 
 function cecho() {
     echo -e "$colour_a$1$colour_r"
@@ -239,10 +241,21 @@ function process_input() {
             check_env=$hl_false
         elif [ "$1" == "$no_launch" ]; then
             can_launch=$hl_false
+        elif [ "$1" == "$new_env" ]; then
+            re_env=$hl_true
+            fresh_env=$hl_true
+            env_present=$hl_false
         fi
         shift
         let "index_tracker=index_tracker+1"
     done
+}
+
+function remove_env() {
+    if [ $re_env -eq $hl_true ]; then
+        cecho "Removing environement"
+        sudo rm -rf $my_env
+    fi
 }
 
 function main() {
@@ -253,6 +266,7 @@ function main() {
     if [ $show_intro -eq $hl_true ]; then
         welcome_message
     fi
+    remove_env
     has_environement
     if [ $? -eq $hl_false ] && [ $create_env -eq $hl_true ]; then
         is_admin
