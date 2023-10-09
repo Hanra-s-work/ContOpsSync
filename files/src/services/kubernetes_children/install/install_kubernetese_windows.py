@@ -26,6 +26,7 @@ class InstallKubernetesWindows:
         # ---- Parent classes ----
         self.tty = tty
         self.k3d = InstallK3d(tty, success, err, error)
+        self.k3s = InstallK3s(tty, success, err, error)
         self.microk8s = InstallMicroK8s(tty, success, err, error)
         self.kind = InstallKind(tty, success, err, error)
         self.kubectl = InstallKubectl(tty, success, err, error)
@@ -117,6 +118,10 @@ class InstallKubernetesWindows:
 
     def install_kubeadm(self) -> int:
         """ Install the kubeadm software """
+
+    def is_k3s_installed(self) -> bool:
+        """ Check if k3s is installed """
+        return self.k3s.install_windows.is_k3s_installed()
 
     def main(self) -> int:
         """ The main function of the class """

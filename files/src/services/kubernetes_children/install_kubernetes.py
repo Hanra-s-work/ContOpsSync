@@ -323,6 +323,33 @@ Output:
         )
         return self.error
 
+    def is_k3s_installed(self, args: list) -> int:
+        """ Returns true if k3s is installed """
+        function_name = "is_k3s_installed"
+        if self.tty.help_function_child_name == function_name:
+            help_description = f"""
+Returns true if k3s is installed
+Usage Example:
+Input:
+    {function_name}
+Output:
+    [OK] if k3s is installed
+"""
+            self.tty.function_help(function_name, help_description)
+            self.tty.current_tty_status = self.tty.success
+            return self.tty.success
+        if self.current_system == "Windows":
+            status = self.windows.is_k3s_installed()
+        if self.current_system == "Linux":
+            status = self.linux.is_k3s_installed()
+        if self.current_system == "Darwin" or self.current_system == "Java":
+            status = self.mac.is_k3s_installed()
+        if status is False:
+            self.tty.current_tty_status = self.tty.error
+            return self.tty.error
+        self.tty.current_tty_status = self.tty.success
+        return self.tty.success
+
     def test_install_kubernetes(self, args: list) -> int:
         """ Test the kubernetes installation """
         function_name = "test_install_kubernetes"
@@ -389,6 +416,10 @@ Output:
             {
                 "install_options": self.install_options,
                 "desc": "View the installation options for the host system"
+            },
+            {
+                "is_k3s_installed": self.is_k3s_installed,
+                "desc": "Check if k3s is installed on your system"
             },
             {
                 "test_install_kubernetes": self.test_install_kubernetes,

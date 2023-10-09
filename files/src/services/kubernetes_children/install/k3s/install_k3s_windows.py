@@ -123,6 +123,33 @@ class InstallK3sWindows:
         )
         return self.success
 
+    def is_k3s_installed(self) -> bool:
+        """ Returns true if k3s is installed """
+        self.print_on_tty(
+            self.tty.info_colour,
+            "Checking if k3s is installed:"
+        )
+        self.tty.current_tty_status = self.run(
+            [
+                "k3s",
+                "--version",
+                ">/dev/nul",
+                "2>/dev/nul"
+            ]
+        )
+        if self.tty.current_tty_status != self.tty.success:
+            self.print_on_tty(
+                self.tty.error_colour,
+                "[KO]\n"
+            )
+            return False
+        self.print_on_tty(
+            self.tty.success_colour,
+            "[OK]\n"
+        )
+        self.tty.current_tty_status = self.tty.success
+        return True
+
     def main(self) -> int:
         """ The main function of the class """
         if not self._has_chocolatey():

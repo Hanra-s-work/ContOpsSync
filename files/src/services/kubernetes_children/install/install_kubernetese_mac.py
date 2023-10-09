@@ -23,6 +23,7 @@ class InstallKubernetesMac:
         # ---- Parent classes ----
         self.tty = tty
         self.k3d = InstallK3d(tty, success, err, error)
+        self.k3s = InstallK3s(tty, success, err, error)
         self.microk8s = InstallMicroK8s(tty, success, err, error)
         self.kind = InstallKind(tty, success, err, error)
         self.kubectl = InstallKubectl(tty, success, err, error)
@@ -111,6 +112,10 @@ class InstallKubernetesMac:
             "The installation script is yet to come for macs."
         )
         return self.success
+
+    def is_k3s_installed(self) -> bool:
+        """ Check if k3s is installed """
+        return self.k3s.install_mac.is_k3s_installed()
 
     def main(self) -> None:
         """ Install kubernetes on Mac """

@@ -46,9 +46,11 @@ class InstallK3sRaspberryPi:
     def _update_variable_in_string(self, variable: str, value: str, string: str) -> str:
         """ Update a variable in a string """
         variable_value = f"{variable}={value}"
+        string = string[:-1]
         if variable not in string:
             string += variable_value
             string += " "
+            string += "\n"
             return string
         if variable_value not in string:
             string1, string2 = string.split(variable)
@@ -61,6 +63,7 @@ class InstallK3sRaspberryPi:
                     buffer_index += 1
                 string2 = string2[buffer_index:]
             string = f"{string1} {variable_value} {string2}"
+        string += "\n"
         return string
 
     def _download_file(self, url: str, filepath: str) -> int:
@@ -101,6 +104,33 @@ class InstallK3sRaspberryPi:
             self.tty.current_tty_status = self.tty.error
             return self.tty.current_tty_status
 
+    def is_k3s_installed(self) -> bool:
+        """ Returns true if k3s is installed """
+        self.print_on_tty(
+            self.tty.info_colour,
+            "Checking if k3s is installed:"
+        )
+        self.tty.current_tty_status = self.run(
+            [
+                "k3s",
+                "--version",
+                ">/dev/null",
+                "2>/dev/null"
+            ]
+        )
+        if self.tty.current_tty_status != self.tty.success:
+            self.print_on_tty(
+                self.tty.error_colour,
+                "[KO]\n"
+            )
+            return False
+        self.print_on_tty(
+            self.tty.success_colour,
+            "[OK]\n"
+        )
+        self.tty.current_tty_status = self.tty.success
+        return True
+
     def is_raspberrypi(self) -> bool:
         """ Check the system to see if we are on a raspberrypi """
         self.print_on_tty(
@@ -112,10 +142,6 @@ class InstallK3sRaspberryPi:
                 "uname",
                 "-m",
                 "|",
-                "grep",
-                "-q",
-                "aarch64",
-                "&&",
                 "uname",
                 "-n",
                 "|",

@@ -129,6 +129,12 @@ class InstallKubernetesLinux:
             "This option is not yet available due to system requirements that would be long and difficult to verify for each linux distribution"
         )
 
+    def is_k3s_installed(self) -> bool:
+        """ Check if k3s is installed """
+        if self.k3s.install_raspberrypi.is_raspberrypi() is True:
+            return self.k3s.install_raspberrypi.is_k3s_installed()
+        return self.k3s.install_linux.is_k3s_installed()
+
     def main(self) -> int:
         """ The main function of the program """
 
