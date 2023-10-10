@@ -150,7 +150,7 @@ Output:
         function_name = "install_k3s"
         if self.tty.help_function_child_name == function_name:
             help_description = f"""
-Install k3s on the host system
+Install k3s on the host system (kubernetes combined with containerd)
 Usage Example:
 Input:
     {function_name}
@@ -177,7 +177,7 @@ Output:
         function_name = "install_k3d"
         if self.tty.help_function_child_name == function_name:
             help_description = f"""
-Install k3d on the host system
+Install k3d on the host system (kubernetes combined with docker)
 Usage Example:
 Input:
     {function_name}

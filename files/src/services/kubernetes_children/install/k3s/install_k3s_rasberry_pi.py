@@ -38,8 +38,9 @@ class InstallK3sRaspberryPi:
         with open(file_path, "r", encoding=encoding) as file:
             return file.read()
 
-    def _set_file_content(self, file_path: str, content: str, mode: str = "w", encoding: str = "utf-8", newline: str = "\n") -> int:
+    def _set_file_content(self, file_path: str, content: str, newline: str = "\n") -> int:
         """ Set the content of a file """
+        content = content.replace("\r\n", newline)
         self.tty.run_as_admin(
             [
                 "echo",
@@ -48,9 +49,6 @@ class InstallK3sRaspberryPi:
             ]
         )
         return self.tty.current_tty_status
-        # with open(file_path, mode, encoding=encoding, newline=newline) as file:
-        #     file.write(content)
-        # return self.success
 
     def _update_variable_in_string(self, variable: str, value: str, string: str) -> str:
         """ Update a variable in a string """
@@ -369,8 +367,6 @@ class InstallK3sRaspberryPi:
         self._set_file_content(
             self.cmdline_file,
             file_content,
-            self.edit_mode,
-            self.encoding,
             self.newline
         )
         self.print_on_tty(
@@ -395,8 +391,6 @@ class InstallK3sRaspberryPi:
         self._set_file_content(
             self.cmdline_file,
             file_content,
-            self.edit_mode,
-            self.encoding,
             self.newline
         )
         self.print_on_tty(
