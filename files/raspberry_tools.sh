@@ -206,8 +206,6 @@ function extract_non_launch_arguments() {
     local arg_length=$#
     local new_args=()
     local index_tracker=0
-    echo "input_args = $@" >&2
-    echo "input_args_length = ${#@}" >&2
     while [ $index_tracker -lt $arg_length ]; do
         if [ "$1" == "$no_intro" ] || [ "$1" == "$no_prank" ] || [ "$1" == "$no_env" ] || [ "$1" == "$no_check" ] || [ "$1" == "$no_launch" ] || [ "$1" == "$new_env" ] || [ "$1" == "$no_update" ]; then
             shift
@@ -226,11 +224,7 @@ function start_program() {
     if [ $can_launch -eq $hl_true ]; then
         chmod +x src/main.py
         cecho "Starting program"
-        echo "Input_args = $@"
-        echo "Input_args_length = ${#@}"
         non_launch_arguments=$(extract_non_launch_arguments "$@")
-        echo "Non_launch_arguments = $non_launch_arguments"
-        echo "len(non_launch_arguments) = ${#non_launch_arguments[*]}"
         if [ ${#non_launch_arguments} -gt 0 ]; then
             echo "Launching with arguments"
             python3 ./src/main.py ${non_launch_arguments[*]}

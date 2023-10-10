@@ -9,6 +9,7 @@ display-tty == 1.0.1
 tty-ov == 1.0.15
 asciimatics == 1.14.0
 psutil == 5.9.5
+uuid == 1.30
 # urwid does not natively run on windows
 # urwid == 2.2.1
 # Not Powerfull enougth
