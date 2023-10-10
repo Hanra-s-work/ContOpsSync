@@ -78,7 +78,6 @@ class InstallK3sRaspberryPi:
                 string2 = string2[buffer_index:]
             string = f"{string1} {variable_value} {string2}"
         string += "\n"
-        print(f"Updated string: {string}")
         return string
 
     def _download_file(self, url: str, filepath: str) -> int:
@@ -117,6 +116,22 @@ class InstallK3sRaspberryPi:
                 f"Error downloading file: {err}\n"
             )
             self.tty.current_tty_status = self.tty.error
+            return self.tty.current_tty_status
+        except Exception:
+            self.run(
+                [
+                    "wget",
+                    "--progress=bar:force",
+                    "-O",
+                    filepath,
+                    url
+                ]
+            )
+            self.print_on_tty(
+                self.tty.success_colour,
+                f"File downloaded to: {filepath}\n"
+            )
+            self.tty.current_tty_status = self.tty.success
             return self.tty.current_tty_status
 
     def is_k3s_installed(self) -> bool:
@@ -294,7 +309,7 @@ class InstallK3sRaspberryPi:
         hostname += f"{self._get_user_name()}-"
         hostname += f"{self._get_computer_name()}-"
         hostname += f"{self._get_date()}-"
-        hostname += f"{self._create_short_uuid()}-"
+        hostname += f"{self._create_short_uuid()}"
         return hostname
 
     def _get_router_name(self) -> str:
@@ -764,7 +779,7 @@ class InstallK3sRaspberryPi:
             "Installation status status: "
         )
         self.print_on_tty(
-            self.tty.error_colour,
+            self.tty.success_colour,
             "[OK]\n"
         )
         return self.success
