@@ -33,11 +33,24 @@ class InstallK3sRaspberryPi:
         # ---- File locations ----
         self.cmdline_file = "/boot/cmdline.txt"
         self.config_file_path = "/boot/config.txt"
+        self.release_file = "/etc/os-release"
+        self.k3s_token_file = "/var/lib/rancher/k3s/server/node-token"
+        self.dns_file = "/etc/resolv.conf"
         self.installer_file = "./k3s_installer.sh"
         # ---- File rights ----
         self.edit_mode = "w"
         self.encoding = "utf-8"
         self.newline = "\n"
+        # ---- Token file ----
+        self.token_save_file = "~/your_master_token.txt"
+        # ---- K3s Host name file ----
+        self.k3s_hostname_file = "/etc/your_k3s_hostname.txt"
+        # ---- Dns file ----
+        self.dns_save_file = "/tmp/your_current_dns_address.txt"
+        # ---- IP file ----
+        self.ip_save_file = "/tmp/your_current_ip.txt"
+        # ---- Router file ----
+        self.router_save_file = "/tmp/your_router_name.txt"
 
     def _get_file_content(self, file_path: str, encoding: str = "utf-8") -> str:
         """ Get the content of a file """
@@ -201,7 +214,6 @@ class InstallK3sRaspberryPi:
 
     def _get_usr_ip(self) -> str:
         """ Get the ip of the machine in order to create a static ip """
-        ip_file = "/tmp/your_current_ip.txt"
         self.print_on_tty(
             self.tty.info_colour,
             "Getting the IP of the machine:\n"
@@ -210,7 +222,7 @@ class InstallK3sRaspberryPi:
             [
                 "hostname",
                 "-I",
-                f">{ip_file}",
+                f">{self.ip_save_file}",
                 "2>/dev/null"
             ]
         )
@@ -230,14 +242,13 @@ class InstallK3sRaspberryPi:
             "[OK]\n"
         )
         self.tty.current_tty_status = self.tty.success
-        usr_ip = self._get_file_content(ip_file, "utf-8")
+        usr_ip = self._get_file_content(self.ip_save_file, "utf-8")
         usr_ip = usr_ip.replace("\n", " ")
         usr_ip = usr_ip.split(" ")[0]
         return usr_ip
 
     def _get_dns_ip(self) -> str:
         """ Get the ip of the dns for the static ip """
-        dns_file = "/tmp/your_current_dns_address.txt"
         self.print_on_tty(
             self.tty.info_colour,
             "Getting the dns of the machine:\n"
@@ -245,11 +256,11 @@ class InstallK3sRaspberryPi:
         self.tty.current_tty_status = self.run(
             [
                 "cat",
-                "/etc/resolv.conf",
+                self.dns_file,
                 "|",
                 "grep",
                 "nameserver",
-                f">{dns_file}",
+                f">{self.dns_save_file}",
                 "2>/dev/null"
             ]
         )
@@ -268,7 +279,7 @@ class InstallK3sRaspberryPi:
             "[OK]\n"
         )
         self.tty.current_tty_status = self.tty.success
-        dns_ip = self._get_file_content(dns_file, "utf-8")
+        dns_ip = self._get_file_content(self.dns_save_file, "utf-8")
         dns_ip = dns_ip.replace("\n", " ")
         dns_ip = dns_ip.split(" ")[1]
         return dns_ip
@@ -305,11 +316,55 @@ class InstallK3sRaspberryPi:
 
     def _create_hostname(self) -> str:
         """ Create the hostname for the machine """
+        self.print_on_tty(
+            self.tty.info_colour,
+            "Creating the k3s hostname for the system:"
+        )
         hostname = ""
         hostname += f"{self._get_user_name()}-"
         hostname += f"{self._get_computer_name()}-"
         hostname += f"{self._get_date()}-"
         hostname += f"{self._create_short_uuid()}"
+        self.print_on_tty(
+            self.tty.info_colour,
+            "Hostname status: "
+        )
+        if hostname == "":
+            self.print_on_tty(
+                self.tty.error_colour,
+                "[KO]\n"
+            )
+            return ""
+        self.print_on_tty(
+            self.tty.success_colour,
+            "[OK]\n"
+        )
+        self.print_on_tty(
+            self.tty.info_colour,
+            f"Saving hostname to {self.k3s_hostname_file}"
+        )
+        status = self.super_run(
+            [
+                "echo",
+                f"\"{hostname}\"",
+                f">{self.k3s_hostname_file}",
+                "2>/dev/null"
+            ]
+        )
+        self.print_on_tty(
+            self.tty.info_colour,
+            "Hostname save status: "
+        )
+        if status != self.success:
+            self.print_on_tty(
+                self.tty.error_colour,
+                "[KO]\n"
+            )
+            return hostname
+        self.print_on_tty(
+            self.tty.success_colour,
+            "[OK]\n"
+        )
         return hostname
 
     def _get_router_name(self) -> str:
@@ -319,7 +374,6 @@ class InstallK3sRaspberryPi:
             "Getting your router name: \n"
         )
         router_name = ""
-        router_file_name = "/tmp/your_router_name.txt"
         ip = self._get_usr_ip()
         router_name_status = self.run(
             [
@@ -340,7 +394,7 @@ class InstallK3sRaspberryPi:
                 "\" \"",
                 "-f",
                 "1",
-                f">{router_file_name}",
+                f">{self.router_save_file}",
                 "2>/dev/null"
             ]
         )
@@ -358,7 +412,7 @@ class InstallK3sRaspberryPi:
             self.tty.success_colour,
             "[OK]\n"
         )
-        router_name = self._get_file_content(router_file_name, "utf-8")
+        router_name = self._get_file_content(self.router_save_file, "utf-8")
         router_name = router_name.replace("\n", " ")
         router_name = router_name.split(" ")[0]
         return router_name
@@ -535,7 +589,7 @@ class InstallK3sRaspberryPi:
         self.tty.current_tty_status = self.run(
             [
                 "cat",
-                "/etc/os-release",
+                self.release_file,
                 "|",
                 "grep",
                 "-q",
@@ -555,7 +609,7 @@ class InstallK3sRaspberryPi:
         self.tty.current_tty_status = self.run(
             [
                 "cat",
-                "/etc/os-release",
+                self.release_file,
                 "|",
                 "grep",
                 "-q",
@@ -738,7 +792,7 @@ class InstallK3sRaspberryPi:
             [
                 "sudo",
                 "cat",
-                "/var/lib/rancher/k3s/server/node-token"
+                self.k3s_token_file
             ]
         )
         self.print_on_tty(
@@ -746,6 +800,34 @@ class InstallK3sRaspberryPi:
             "K3s master token status: "
         )
         if self.tty.current_tty_status != self.tty.success:
+            self.print_on_tty(
+                self.tty.error_colour,
+                "[KO]\n"
+            )
+            return self.error
+        self.print_on_tty(
+            self.tty.info_colour,
+            ""
+        )
+        self.disp.inform_message(
+            [
+                f"Saving the token to : {self.token_save_file}"
+            ]
+        )
+        status = self.run(
+            [
+                "sudo",
+                "cat",
+                self.k3s_token_file,
+                f">{self.token_save_file}",
+                "2>/dev/null"
+            ]
+        )
+        self.print_on_tty(
+            self.tty.info_colour,
+            "Saving the token status: "
+        )
+        if status != self.success:
             self.print_on_tty(
                 self.tty.error_colour,
                 "[KO]\n"
@@ -773,9 +855,33 @@ class InstallK3sRaspberryPi:
         self.get_k3s_token()
         return self.tty.success
 
-    def _install_slave_k3s(self) -> int:
+    def _install_slave_k3s(self, master_token: str = "", master_ip: str = "") -> int:
         """ Install the k3s version for the slave, the one being managed by the masters """
-
+        if master_token == "" or master_ip == "":
+            self.print_on_tty(
+                self.tty.error_colour,
+                "Master token or master ip is empty\n"
+            )
+            self.tty.current_tty_status = self.tty.error
+            return self.error
+        self.tty.setenv(["K3S_TOKEN", f"{master_token}"])
+        self.tty.setenv(["K3S_URL", f"https://{master_ip}:6443"])
+        self.tty.setenv(
+            [
+                "K3S_NODE_NAME",
+                self._get_file_content(self.k3s_hostname_file, self.encoding)
+            ]
+        )
+        self.run(
+            [
+                "chmod",
+                "+x",
+                self.installer_file,
+                "&&",
+                "sudo",
+                self.installer_file
+            ]
+        )
         return self.tty.success
 
     def main(self, install_as_slave: bool = False, ) -> int:
