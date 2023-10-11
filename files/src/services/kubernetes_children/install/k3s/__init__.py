@@ -6,7 +6,7 @@ from tty_ov import TTY
 from .install_k3s_linux import InstallK3sLinux
 from .install_k3s_mac import InstallK3sMac
 from .install_k3s_windows import InstallK3sWindows
-from .install_k3s_rasberry_pi import InstallK3sRaspberryPi
+from .install_k3s_raspberry_pi import InstallK3sRaspberryPi
 
 
 class InstallK3s:
