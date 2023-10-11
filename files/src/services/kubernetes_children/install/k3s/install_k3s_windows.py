@@ -2,10 +2,7 @@
 File in charge of containing the class that will install k3s for Windows distributions.
 """
 
-import os
 import display_tty
-import requests
-from tqdm import tqdm
 from tty_ov import TTY
 
 
@@ -25,109 +22,11 @@ class InstallK3sWindows:
         self.disp.toml_content["PRETTIFY_OUTPUT"] = False
         self.disp.toml_content["PRETTY_OUTPUT_IN_BLOCS"] = False
 
-    def _has_chocolatey(self) -> bool:
-        """ Check if chocolatey is installed """
-        self.print_on_tty(
-            self.tty.info_colour,
-            "Checking if the user has chocolatey installed:"
-        )
-        self.tty.current_tty_status = self.run(
-            [
-                "choco",
-                "--version",
-                ">/dev/null",
-                "2>/dev/null"
-            ]
-        )
-        if self.tty.current_tty_status != self.tty.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "[KO]\n"
-            )
-            return False
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
-        self.tty.current_tty_status = self.tty.success
-        return True
-
-    def _install_chocolatey(self) -> int:
-        """ Attempt to install chocolatey """
-        self.print_on_tty(
-            self.tty.info_colour,
-            "Attempting to install chocolatey:"
-        )
-        status = self.super_run(
-            [
-                "Set-ExecutionPolicy",
-                "Bypass",
-                "-Scope",
-                "Process",
-                "-Force;",
-                "[System.Net.ServicePointManager]::SecurityProtocol",
-                "=",
-                "[System.Net.ServicePointManager]::SecurityProtocol",
-                "-bor",
-                "3072;",
-                "iex",
-                "((New-Object",
-                "System.Net.WebClient).DownloadString('",
-                "https://community.chocolatey.org/install.ps1",
-                "'))"
-            ]
-        )
-        self.print_on_tty(
-            self.tty.info_colour,
-            "Installation status (Chocolatey):"
-        )
-        if status != self.tty.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "[KO]\n"
-            )
-            return self.err
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
-        return self.success
-
-    def _install_k3s_via_chocolatey(self) -> int:
-        """ Install the k3s package on windows using chocolatey """
-        self.print_on_tty(
-            self.tty.info_colour,
-            "Installing k3s via chocolatey:"
-        )
-        status = self.super_run(
-            [
-                "choco",
-                "install",
-                "k3s",
-                "-y"
-            ]
-        )
-        self.print_on_tty(
-            self.tty.info_colour,
-            "Installation status (k3s):"
-        )
-        if status != self.tty.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "[KO]\n"
-            )
-            return self.err
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
-        return self.success
-
     def is_k3s_installed(self) -> bool:
         """ Returns true if k3s is installed """
         self.print_on_tty(
             self.tty.info_colour,
-            "Checking if k3s is installed:"
+            "Checking if k3s is installed (Windows):"
         )
         self.tty.current_tty_status = self.run(
             [
@@ -150,27 +49,29 @@ class InstallK3sWindows:
         self.tty.current_tty_status = self.tty.success
         return True
 
-    def main(self) -> int:
-        """ The main function of the class """
-        if not self._has_chocolatey():
-            self.print_on_tty(
-                self.tty.info_colour,
-                "Chocolatey is not installed on your system, attempting to install it"
-            )
-            status = self._install_chocolatey()
-            if status != self.success:
-                self.print_on_tty(
-                    self.tty.error_colour,
-                    "Error installing chocolatey, please install it before continuing"
-                )
-                return self.err
+    def get_k3s_token(self) -> int:
+        """ Get the master token for k3s """
         self.print_on_tty(
-            self.tty.success_colour,
+            self.tty.info_colour,
             ""
         )
-        self.disp.sub_sub_title("Installing k3s")
-        status = self._install_k3s_via_chocolatey()
-        return status
+        self.disp.warning_message(
+            "At the time of writing this program, k3s is not natively supported on Windows"
+        )
+        self.tty.current_tty_status = self.tty.error
+        return self.error
+
+    def main(self) -> int:
+        """ The main function of the class """
+        self.print_on_tty(
+            self.tty.info_colour,
+            ""
+        )
+        self.disp.warning_message(
+            "At the time of writing this program, k3s is not natively supported on Windows"
+        )
+        self.tty.current_tty_status = self.tty.error
+        return self.error
 
     def test_class_install_k3s_windows(self) -> None:
         """ Test the class install k3s windows """

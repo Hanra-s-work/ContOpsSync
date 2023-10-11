@@ -864,6 +864,7 @@ class InstallK3sRaspberryPi:
             )
             self.tty.current_tty_status = self.tty.error
             return self.error
+        self.tty.setenv(["K3S_KUBECONFIG_MODE", '"644"'])
         self.tty.setenv(["K3S_TOKEN", f"{master_token}"])
         self.tty.setenv(["K3S_URL", f"https://{master_ip}:6443"])
         self.tty.setenv(

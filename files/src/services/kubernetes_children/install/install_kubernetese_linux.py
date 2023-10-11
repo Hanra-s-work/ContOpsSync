@@ -135,8 +135,22 @@ class InstallKubernetesLinux:
             return self.k3s.install_raspberrypi.is_k3s_installed()
         return self.k3s.install_linux.is_k3s_installed()
 
+    def get_master_token(self) -> int:
+        """ Get the master token """
+        if self.k3s.install_raspberrypi.is_raspberrypi() is True:
+            return self.k3s.install_raspberrypi.get_k3s_token()
+        return self.k3s.install_linux.get_k3s_token()
+
     def main(self) -> int:
         """ The main function of the program """
+        self.print_on_tty(
+            self.tty.info_colour,
+            ""
+        )
+        self.disp.inform_message([
+            "Nothing to see here."
+            "This is just a regular empty main function"
+        ])
 
     def test_class_install_kubernetes_linux(self) -> int:
         """ Test the class install kubernetes linux """

@@ -2,7 +2,6 @@
 File in charge of downloading kubernetes for windows
 """
 
-import os
 import requests
 import display_tty
 from tqdm import tqdm
@@ -122,6 +121,10 @@ class InstallKubernetesWindows:
     def is_k3s_installed(self) -> bool:
         """ Check if k3s is installed """
         return self.k3s.install_windows.is_k3s_installed()
+
+    def get_master_token(self) -> int:
+        """ Get the master token """
+        return self.k3s.install_windows.get_k3s_token()
 
     def main(self) -> int:
         """ The main function of the class """

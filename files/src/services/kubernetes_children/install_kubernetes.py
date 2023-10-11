@@ -350,6 +350,33 @@ Output:
         self.tty.current_tty_status = self.tty.success
         return self.tty.success
 
+    def get_master_token(self, args: list) -> int:
+        """ Get the token of the master node """
+        function_name = "get_master_token"
+        if self.tty.help_function_child_name == function_name:
+            help_description = f"""
+Get the token of the master node
+Usage Example:
+Input:
+    {function_name}
+Output:
+    The token of the master node
+"""
+            self.tty.function_help(function_name, help_description)
+            self.tty.current_tty_status = self.tty.success
+            return self.tty.success
+        if self.current_system == "Windows":
+            return self.windows.get_master_token()
+        if self.current_system == "Linux":
+            return self.linux.get_master_token()
+        if self.current_system == "Darwin" or self.current_system == "Java":
+            return self.mac.get_master_token()
+        self.print_on_tty(
+            self.tty.error_colour,
+            f"System {self.current_system} not supported\n"
+        )
+        return self.error
+
     def test_install_kubernetes(self, args: list) -> int:
         """ Test the kubernetes installation """
         function_name = "test_install_kubernetes"
@@ -420,6 +447,10 @@ Output:
             {
                 "is_k3s_installed": self.is_k3s_installed,
                 "desc": "Check if k3s is installed on your system"
+            },
+            {
+                "get_master_token": self.get_master_token,
+                "desc": "Get the token of the master node"
             },
             {
                 "test_install_kubernetes": self.test_install_kubernetes,
