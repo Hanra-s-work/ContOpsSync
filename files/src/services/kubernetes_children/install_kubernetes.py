@@ -153,17 +153,34 @@ Output:
 Install k3s on the host system (kubernetes combined with containerd)
 Usage Example:
 Input:
-    {function_name}
+    {function_name} as_slave:boolean master_token:string master_ip:string
 Output:
-    Install process of k3s for the current system
+    Installation process of k3s for the current system
+Example 1 (Installing as master node):
+    {function_name} true
+Example 2 (Installing as slave node):
+    {function_name} false <your_master_token> <your_master_ip>
 """
             self.tty.function_help(function_name, help_description)
             self.tty.current_tty_status = self.tty.success
             return self.success
+        arg_length = len(args)
+        as_master = True
+        master_token = ""
+        master_ip = ""
+        if arg_length >= 1:
+            if args[0].lower() == "true":
+                as_master = False
+            else:
+                as_master = True
+        if arg_length >= 2:
+            master_token = args[1]
+        if arg_length >= 3:
+            master_ip = args[2]
         if self.current_system == "Windows":
             return self.windows.install_k3s()
         if self.current_system == "Linux":
-            return self.linux.install_k3s()
+            return self.linux.install_k3s(as_master, master_token, master_ip)
         if self.current_system == "Darwin" or self.current_system == "Java":
             return self.mac.install_k3s()
         self.print_on_tty(
@@ -180,17 +197,34 @@ Output:
 Install k3d on the host system (kubernetes combined with docker)
 Usage Example:
 Input:
-    {function_name}
+    {function_name} as_slave:boolean master_token:string master_ip:string
 Output:
-    Install process of k3d for the current system
+    Installation process of k3d for the current system
+Example 1 (Installing as master node):
+    {function_name} true
+Example 2 (Installing as slave node):
+    {function_name} false <your_master_token> <your_master_ip>
 """
             self.tty.function_help(function_name, help_description)
             self.tty.current_tty_status = self.tty.success
             return self.success
+        arg_length = len(args)
+        as_master = True
+        master_token = ""
+        master_ip = ""
+        if arg_length >= 1:
+            if args[0].lower() == "true":
+                as_master = False
+            else:
+                as_master = True
+        if arg_length >= 2:
+            master_token = args[1]
+        if arg_length >= 3:
+            master_ip = args[2]
         if self.current_system == "Windows":
             return self.windows.install_k3d()
         if self.current_system == "Linux":
-            return self.linux.install_k3d()
+            return self.linux.install_k3d(as_master, master_token, master_ip)
         if self.current_system == "Darwin" or self.current_system == "Java":
             return self.mac.install_k3d()
         self.print_on_tty(
@@ -350,6 +384,33 @@ Output:
         self.tty.current_tty_status = self.tty.success
         return self.tty.success
 
+    def is_k3d_installed(self, args: list) -> int:
+        """ Returns true if k3d is installed """
+        function_name = "is_k3d_installed"
+        if self.tty.help_function_child_name == function_name:
+            help_description = f"""
+Returns true if k3d is installed
+Usage Example:
+Input:
+    {function_name}
+Output:
+    [OK] if k3d is installed
+"""
+            self.tty.function_help(function_name, help_description)
+            self.tty.current_tty_status = self.tty.success
+            return self.tty.success
+        if self.current_system == "Windows":
+            status = self.windows.is_k3d_installed()
+        if self.current_system == "Linux":
+            status = self.linux.is_k3d_installed()
+        if self.current_system == "Darwin" or self.current_system == "Java":
+            status = self.mac.is_k3d_installed()
+        if status is False:
+            self.tty.current_tty_status = self.tty.error
+            return self.tty.error
+        self.tty.current_tty_status = self.tty.success
+        return self.tty.success
+
     def get_master_token(self, args: list) -> int:
         """ Get the token of the master node """
         function_name = "get_master_token"
@@ -447,6 +508,10 @@ Output:
             {
                 "is_k3s_installed": self.is_k3s_installed,
                 "desc": "Check if k3s is installed on your system"
+            },
+            {
+                "is_k3d_installed": self.is_k3d_installed,
+                "desc": "Check if k3d is installed on your system"
             },
             {
                 "get_master_token": self.get_master_token,
