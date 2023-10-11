@@ -1,5 +1,5 @@
 """
-File in charge of installing k3s on a rasberry pi
+File in charge of installing k3d on a rasberry pi
 """
 
 import os
@@ -11,8 +11,8 @@ from tqdm import tqdm
 from tty_ov import TTY
 
 
-class InstallK3sRaspberryPi:
-    """ The class in charge of installing k3s on a Raspberry Pi """
+class InstallK3dRaspberryPi:
+    """ The class in charge of installing k3d on a Raspberry Pi """
 
     def __init__(self, tty: TTY, success: int = 0, err: int = 84, error: int = 84) -> None:
         # ---- The status codes ----
@@ -29,22 +29,22 @@ class InstallK3sRaspberryPi:
         self.disp.toml_content["PRETTIFY_OUTPUT"] = False
         self.disp.toml_content["PRETTY_OUTPUT_IN_BLOCS"] = False
         # ---- Installed path ----
-        self.installer_path = "https://get.k3s.io/"
+        self.installer_path = "https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh"
         # ---- File locations ----
         self.cmdline_file = "/boot/cmdline.txt"
         self.config_file_path = "/boot/config.txt"
         self.release_file = "/etc/os-release"
-        self.k3s_token_file = "/var/lib/rancher/k3s/server/node-token"
+        self.k3d_token_file = "/var/lib/rancher/k3d/server/node-token"
         self.dns_file = "/etc/resolv.conf"
-        self.installer_file = "./k3s_installer.sh"
+        self.installer_file = "./k3d_installer.sh"
         # ---- File rights ----
         self.edit_mode = "w"
         self.encoding = "utf-8"
         self.newline = "\n"
         # ---- Token file ----
         self.token_save_file = "~/your_master_token.txt"
-        # ---- K3s Host name file ----
-        self.k3s_hostname_file = "/etc/your_k3s_hostname.txt"
+        # ---- K3d Host name file ----
+        self.k3d_hostname_file = "/etc/your_k3d_hostname.txt"
         # ---- Dns file ----
         self.dns_save_file = "/tmp/your_current_dns_address.txt"
         # ---- IP file ----
@@ -147,15 +147,15 @@ class InstallK3sRaspberryPi:
             self.tty.current_tty_status = self.tty.success
             return self.tty.current_tty_status
 
-    def is_k3s_installed(self) -> bool:
-        """ Returns true if k3s is installed """
+    def is_k3d_installed(self) -> bool:
+        """ Returns true if k3d is installed """
         self.print_on_tty(
             self.tty.info_colour,
-            "Checking if k3s is installed:\n"
+            "Checking if k3d is installed:\n"
         )
         self.tty.current_tty_status = self.run(
             [
-                "k3s",
+                "k3d",
                 "--version",
                 ">/dev/null",
                 "2>/dev/null"
@@ -163,7 +163,7 @@ class InstallK3sRaspberryPi:
         )
         self.print_on_tty(
             self.tty.info_colour,
-            "K3s status: "
+            "K3d status: "
         )
 
         if self.tty.current_tty_status != self.tty.success:
@@ -318,7 +318,7 @@ class InstallK3sRaspberryPi:
         """ Create the hostname for the machine """
         self.print_on_tty(
             self.tty.info_colour,
-            "Creating the k3s hostname for the system:"
+            "Creating the k3d hostname for the system:"
         )
         hostname = ""
         hostname += f"{self._get_user_name()}-"
@@ -341,13 +341,13 @@ class InstallK3sRaspberryPi:
         )
         self.print_on_tty(
             self.tty.info_colour,
-            f"Saving hostname to {self.k3s_hostname_file}"
+            f"Saving hostname to {self.k3d_hostname_file}"
         )
         status = self.super_run(
             [
                 "echo",
                 f"\"{hostname}\"",
-                f">{self.k3s_hostname_file}",
+                f">{self.k3d_hostname_file}",
                 "2>/dev/null"
             ]
         )
@@ -553,7 +553,7 @@ class InstallK3sRaspberryPi:
         """ the message to display when the installation fails """
         self.print_on_tty(
             self.tty.info_colour,
-            "Installation status k3s: "
+            "Installation status k3d: "
         )
         self.print_on_tty(
             self.tty.error_colour,
@@ -722,13 +722,13 @@ class InstallK3sRaspberryPi:
         )
 
     def _prepare_board(self) -> int:
-        """ Prepare the files and all the required elements for a successefull k3s installation """
+        """ Prepare the files and all the required elements for a successefull k3d installation """
         self.print_on_tty(
             self.tty.info_colour,
             ""
         )
         self.disp.sub_sub_title(
-            "Preparing the board for the installation of k3s"
+            "Preparing the board for the installation of k3d"
         )
         status = self._enable_cgroups_if_not()
         if status == self.err:
@@ -759,16 +759,16 @@ class InstallK3sRaspberryPi:
         )
         return self.success
 
-    def get_k3s_installer(self) -> int:
-        """ Download the k3s installer """
+    def get_k3d_installer(self) -> int:
+        """ Download the k3d installer """
         self.print_on_tty(
             self.tty.info_colour,
-            "Downloading the k3s installer:\n"
+            "Downloading the k3d installer:\n"
         )
         status = self._download_file(self.installer_path, self.installer_file)
         self.print_on_tty(
             self.tty.info_colour,
-            "K3s installer status: "
+            "K3d installer status: "
         )
         if status != self.success:
             self.print_on_tty(
@@ -782,22 +782,22 @@ class InstallK3sRaspberryPi:
         )
         return self.success
 
-    def get_k3s_token(self) -> int:
-        """ Get the master token for k3s """
+    def get_k3d_token(self) -> int:
+        """ Get the master token for k3d """
         self.print_on_tty(
             self.tty.info_colour,
-            "Getting the k3s master token:\n"
+            "Getting the k3d master token:\n"
         )
         self.tty.current_tty_status = self.run(
             [
                 "sudo",
                 "cat",
-                self.k3s_token_file
+                self.k3d_token_file
             ]
         )
         self.print_on_tty(
             self.tty.info_colour,
-            "K3s master token status: "
+            "K3d master token status: "
         )
         if self.tty.current_tty_status != self.tty.success:
             self.print_on_tty(
@@ -818,7 +818,7 @@ class InstallK3sRaspberryPi:
             [
                 "sudo",
                 "cat",
-                self.k3s_token_file,
+                self.k3d_token_file,
                 f">{self.token_save_file}",
                 "2>/dev/null"
             ]
@@ -839,9 +839,9 @@ class InstallK3sRaspberryPi:
         )
         return self.success
 
-    def _install_master_k3s(self) -> int:
-        """ Install the k3s version for the master node (the one managing the others) """
-        self.tty.setenv(["K3S_KUBECONFIG_MODE", '"644"'])
+    def _install_master_k3d(self) -> int:
+        """ Install the k3d version for the master node (the one managing the others) """
+        self.tty.setenv(["K3d_KUBECONFIG_MODE", '"644"'])
         self.run(
             [
                 "chmod",
@@ -852,11 +852,11 @@ class InstallK3sRaspberryPi:
                 self.installer_file
             ]
         )
-        self.get_k3s_token()
+        self.get_k3d_token()
         return self.tty.success
 
-    def _install_slave_k3s(self, master_token: str = "", master_ip: str = "") -> int:
-        """ Install the k3s version for the slave, the one being managed by the masters """
+    def _install_slave_k3d(self, master_token: str = "", master_ip: str = "") -> int:
+        """ Install the k3d version for the slave, the one being managed by the masters """
         if master_token == "" or master_ip == "":
             self.print_on_tty(
                 self.tty.error_colour,
@@ -864,13 +864,13 @@ class InstallK3sRaspberryPi:
             )
             self.tty.current_tty_status = self.tty.error
             return self.error
-        self.tty.setenv(["K3S_KUBECONFIG_MODE", '"644"'])
-        self.tty.setenv(["K3S_TOKEN", f"{master_token}"])
-        self.tty.setenv(["K3S_URL", f"https://{master_ip}:6443"])
+        self.tty.setenv(["K3d_KUBECONFIG_MODE", '"644"'])
+        self.tty.setenv(["K3d_TOKEN", f"{master_token}"])
+        self.tty.setenv(["K3d_URL", f"https://{master_ip}:6443"])
         self.tty.setenv(
             [
-                "K3S_NODE_NAME",
-                self._get_file_content(self.k3s_hostname_file, self.encoding)
+                "K3d_NODE_NAME",
+                self._get_file_content(self.k3d_hostname_file, self.encoding)
             ]
         )
         self.run(
@@ -885,13 +885,13 @@ class InstallK3sRaspberryPi:
         )
         return self.tty.success
 
-    def main(self, install_as_slave: bool = False, ) -> int:
-        """ Install k3s on RaspberryPi """
+    def main(self, install_as_slave: bool = False, master_token:str="", master_ip:str="") -> int:
+        """ Install k3d on RaspberryPi """
         self.print_on_tty(
             self.tty.info_colour,
             ""
         )
-        self.disp.sub_title("Installing k3s on RaspberryPi:")
+        self.disp.sub_title("Installing k3d on RaspberryPi:")
         if not self.is_raspberrypi():
             self.print_on_tty(
                 self.tty.info_colour,
@@ -909,17 +909,17 @@ class InstallK3sRaspberryPi:
         if status != self.success:
             self._installation_failed_message()
             return self.error
-        status = self.get_k3s_installer()
+        status = self.get_k3d_installer()
         if status != self.success:
             self._installation_failed_message()
             return self.error
         if install_as_slave is True:
-            status = self._install_slave_k3s()
+            status = self._install_slave_k3d(master_token, master_ip)
             if status != self.success:
                 self._installation_failed_message()
                 return self.error
         else:
-            status = self._install_master_k3s()
+            status = self._install_master_k3d()
             if status != self.success:
                 self._installation_failed_message()
                 return self.error
@@ -933,9 +933,9 @@ class InstallK3sRaspberryPi:
         )
         return self.success
 
-    def test_class_install_k3s_raspberry_pi(self) -> None:
-        """ Test the class install k3s raspberry pi """
+    def test_class_install_k3d_raspberry_pi(self) -> None:
+        """ Test the class install k3d raspberry pi """
         self.print_on_tty(
             self.tty.info_colour,
-            "This is a test message from the install k3s raspberry pi class"
+            "This is a test message from the install k3d raspberry pi class"
         )
