@@ -728,12 +728,54 @@ class InstallK3sRaspberryPi:
         )
         return self.success
 
+    def get_k3s_token(self) -> int:
+        """ Get the master token for k3s """
+        self.print_on_tty(
+            self.tty.info_colour,
+            "Getting the k3s master token:\n"
+        )
+        self.tty.current_tty_status = self.run(
+            [
+                "sudo",
+                "cat",
+                "/var/lib/rancher/k3s/server/node-token"
+            ]
+        )
+        self.print_on_tty(
+            self.tty.info_colour,
+            "K3s master token status: "
+        )
+        if self.tty.current_tty_status != self.tty.success:
+            self.print_on_tty(
+                self.tty.error_colour,
+                "[KO]\n"
+            )
+            return self.error
+        self.print_on_tty(
+            self.tty.success_colour,
+            "[OK]\n"
+        )
+        return self.success
+
     def _install_master_k3s(self) -> int:
         """ Install the k3s version for the master node (the one managing the others) """
+        self.tty.setenv(["K3S_KUBECONFIG_MODE", '"644"'])
+        self.run(
+            [
+                "chmod",
+                "+x",
+                self.installer_file,
+                "&&",
+                "sudo",
+                self.installer_file
+            ]
+        )
+        self.get_k3s_token()
         return self.tty.success
 
     def _install_slave_k3s(self) -> int:
         """ Install the k3s version for the slave, the one being managed by the masters """
+
         return self.tty.success
 
     def main(self, install_as_slave: bool = False, ) -> int:
