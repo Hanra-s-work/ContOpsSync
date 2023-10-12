@@ -557,7 +557,7 @@ class InstallK3sRaspberryPi:
         )
         self.print_on_tty(
             self.tty.error_colour,
-            "[KO]"
+            "[KO]\n"
         )
 
     def _enabeling_iptables(self) -> int:

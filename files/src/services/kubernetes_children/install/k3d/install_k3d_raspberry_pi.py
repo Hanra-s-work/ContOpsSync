@@ -557,7 +557,7 @@ class InstallK3dRaspberryPi:
         )
         self.print_on_tty(
             self.tty.error_colour,
-            "[KO]"
+            "[KO]\n"
         )
 
     def _enabeling_iptables(self) -> int:
@@ -885,7 +885,7 @@ class InstallK3dRaspberryPi:
         )
         return self.tty.success
 
-    def main(self, install_as_slave: bool = False, master_token:str="", master_ip:str="") -> int:
+    def main(self, install_as_slave: bool = False, master_token: str = "", master_ip: str = "") -> int:
         """ Install k3d on RaspberryPi """
         self.print_on_tty(
             self.tty.info_colour,
