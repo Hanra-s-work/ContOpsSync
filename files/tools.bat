@@ -31,7 +31,7 @@ IF NOT EXIST "wenv" (
     echo "Creating environement"
     %PYTHON_VERSION% -m venv %ENV_NAME%
     echo "Activating environement"
-    cmd /c "wenv\Scripts\activate & echo Updating the pip module & python -m pip install --upgrade pip & echo Installing the dependencies & pip3 install -r requirements.txt & deactivate"
+    cmd /c "wenv\Scripts\activate & echo Updating the pip module & python -m pip install --upgrade pip & deactivate"
 )
 
 IF %ERRORLEVEL% EQU 84 (
@@ -44,8 +44,9 @@ IF NOT EXIST "wenv" (
     exit %ERR%
 )
 
-echo "Starting program"
 wenv\Scripts\activate &^
+echo Installing the dependencies &^
+pip3 install -r requirements.txt &^
 echo Starting program &^
 src\main.py &^
 deactivate
