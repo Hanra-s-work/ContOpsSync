@@ -4,7 +4,7 @@ File in charge of loading the k3d installer classes
 
 from tty_ov import TTY
 from .install_k3d_linux import InstallK3dLinux
-from .install_k3s_raspberry_pi import InstallK3dRaspberryPi
+from .install_k3d_raspberry_pi import InstallK3dRaspberryPi
 from .install_k3d_mac import InstallK3dMac
 from .install_k3d_windows import InstallK3dWindows
 
