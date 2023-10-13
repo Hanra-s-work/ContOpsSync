@@ -3,6 +3,7 @@ File containing the Docker class in charge of managing the Docker services
 """
 
 from tty_ov import TTY
+from .docker_children import DockerChildren
 
 
 class Docker:
@@ -13,10 +14,12 @@ class Docker:
         self.err = err
         self.error = error
         self.tty = tty
+        # ---- Docker child components ----
+        self.docker_children = DockerChildren(tty, success, err, error)
         # ---- TTY Docker options ----
         self.options = []
 
-    def docker_class_test(self, args:list) -> int:
+    def docker_class_test(self, args: list) -> int:
         """ This is a test to check that the classe's function has correctly imported """
         self.tty.print_on_tty(
             self.tty.success_colour,
@@ -41,15 +44,12 @@ class Docker:
                 "desc": "A test function for the Docker class"
             }
         ]
+        self.docker_children.inject_child_ressources(self.options)
 
     def injector(self) -> int:
         """ The function in charge of injecting the kubernetes class into the main class """
         self.save_commands()
         return self.tty.import_functions_into_shell(self.options)
-
-    def build(self, path: str, tag: str) -> None:
-        """ Build a docker image """
-        pass
 
     def run(self, image: str, port: int) -> None:
         """ Run a docker image """
