@@ -2,7 +2,6 @@
 File in charge of containing the class that will install kubernetes for linux distributions.
 """
 
-import os
 import display_tty
 import requests
 from tqdm import tqdm
@@ -136,6 +135,12 @@ class InstallKubernetesLinux:
         if self.k3s.install_raspberrypi.is_raspberrypi() is True:
             return self.k3s.install_raspberrypi.is_k3s_installed()
         return self.k3s.install_linux.is_k3s_installed()
+
+    def is_k3d_installed(self) -> bool:
+        """ Check if k3d is installed """
+        if self.k3d.install_raspberrypi.is_raspberrypi() is True:
+            return self.k3d.install_raspberrypi.is_k3d_installed()
+        return self.k3d.install_linux.is_k3d_installed()
 
     def get_master_token(self) -> int:
         """ Get the master token """

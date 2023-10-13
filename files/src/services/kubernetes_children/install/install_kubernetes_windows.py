@@ -122,6 +122,10 @@ class InstallKubernetesWindows:
         """ Check if k3s is installed """
         return self.k3s.install_windows.is_k3s_installed()
 
+    def is_k3d_installed(self) -> bool:
+        """ Check if k3d is installed """
+        return self.k3d.install_windows.is_k3d_installed()
+
     def get_master_token(self) -> int:
         """ Get the master token """
         return self.k3s.install_windows.get_k3s_token()
