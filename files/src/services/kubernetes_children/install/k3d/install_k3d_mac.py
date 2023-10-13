@@ -23,6 +23,32 @@ class InstallK3dMac:
         """ The main function of the class """
         return self.success
 
+    def is_k3d_installed(self) -> bool:
+        """ Returns true if k3d is installed """
+        self.print_on_tty(
+            self.tty.info_colour,
+            "Checking if k3d is installed:\n"
+        )
+        self.tty.current_tty_status = self.run(
+            [
+                "k3d",
+                "--version",
+                ">/dev/null",
+                "2>/dev/null"
+            ]
+        )
+        self.print_on_tty(
+            self.tty.info_colour,
+            "K3d status: "
+        )
+
+        if self.tty.current_tty_status != self.tty.success:
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
+            return False
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
+        self.tty.current_tty_status = self.tty.success
+        return True
+
     def test_class_install_k3d_mac(self) -> None:
         """ Test the class install k3d MacOS """
         self.print_on_tty(

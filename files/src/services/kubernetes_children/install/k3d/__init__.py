@@ -33,3 +33,4 @@ class InstallK3d:
         self.install_mac.test_class_install_k3d_mac()
         self.install_linux.test_class_install_k3d_linux()
         self.install_windows.test_class_install_k3d_windows()
+        self.install_raspberrypi.test_class_install_k3d_raspberry_pi()

@@ -40,9 +40,9 @@ class InstallK3dWindows:
             ]
         )
         if self.tty.current_tty_status != self.tty.success:
-            self.print_on_tty(self.tty.error_colour,"[KO]\n")
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
             return False
-        self.print_on_tty(self.tty.success_colour,"[OK]\n")
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
         self.tty.current_tty_status = self.tty.success
         return True
 
@@ -76,9 +76,9 @@ class InstallK3dWindows:
             "Installation status (Chocolatey):"
         )
         if status != self.tty.success:
-            self.print_on_tty(self.tty.error_colour,"[KO]\n")
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
             return self.err
-        self.print_on_tty(self.tty.success_colour,"[OK]\n")
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
         return self.success
 
     def _install_k3d_via_chocolatey(self) -> int:
@@ -100,10 +100,36 @@ class InstallK3dWindows:
             "Installation status (k3d):"
         )
         if status != self.tty.success:
-            self.print_on_tty(self.tty.error_colour,"[KO]\n")
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
             return self.err
-        self.print_on_tty(self.tty.success_colour,"[OK]\n")
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
         return self.success
+
+    def is_k3d_installed(self) -> bool:
+        """ Returns true if k3d is installed """
+        self.print_on_tty(
+            self.tty.info_colour,
+            "Checking if k3d is installed:\n"
+        )
+        self.tty.current_tty_status = self.run(
+            [
+                "k3d",
+                "--version",
+                ">nul",
+                "2>nul"
+            ]
+        )
+        self.print_on_tty(
+            self.tty.info_colour,
+            "K3d status: "
+        )
+
+        if self.tty.current_tty_status != self.tty.success:
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
+            return False
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
+        self.tty.current_tty_status = self.tty.success
+        return True
 
     def main(self) -> int:
         """ The main function of the class """
