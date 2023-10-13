@@ -19,6 +19,10 @@ class InstallK3sMac:
         self.error = error
         self.print_on_tty = self.tty.print_on_tty
         self.run = self.tty.run_command
+        # ---- The Disp option ----
+        self.disp = display_tty.IDISP
+        self.disp.toml_content["PRETTIFY_OUTPUT"] = False
+        self.disp.toml_content["PRETTY_OUTPUT_IN_BLOCS"] = False
         # ---- k3s token file ----
         self.k3s_token_file = "/var/lib/rancher/k3s/server/node-token"
         # ---- k3s token save file ----
@@ -43,15 +47,9 @@ class InstallK3sMac:
             ]
         )
         if self.tty.current_tty_status != self.tty.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "[KO]\n"
-            )
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
             return False
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
         self.tty.current_tty_status = self.tty.success
         return True
 
@@ -73,15 +71,9 @@ class InstallK3sMac:
             "K3s master token status: "
         )
         if self.tty.current_tty_status != self.tty.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "[KO]\n"
-            )
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
             return self.error
-        self.print_on_tty(
-            self.tty.info_colour,
-            ""
-        )
+        self.print_on_tty(self.tty.info_colour, "")
         self.disp.inform_message(
             [
                 f"Saving the token to : {self.token_save_file}"
@@ -101,15 +93,9 @@ class InstallK3sMac:
             "Saving the token status: "
         )
         if status != self.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "[KO]\n"
-            )
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
             return self.error
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
         return self.success
 
     def test_class_install_k3s_mac(self) -> None:

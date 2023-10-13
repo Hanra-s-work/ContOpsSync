@@ -83,15 +83,9 @@ class InstallMicroK8sLinux:
             ]
         )
         if self.tty.current_tty_status != self.tty.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "[KO]\n"
-            )
+            self.print_on_tty(self.tty.error_colour,"[KO]\n")
             return False
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
+        self.print_on_tty(self.tty.success_colour,"[OK]\n")
         self.tty.current_tty_status = self.tty.success
         return True
 
@@ -110,15 +104,9 @@ class InstallMicroK8sLinux:
             ]
         )
         if self.tty.current_tty_status != self.tty.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "[KO]\n"
-            )
+            self.print_on_tty(self.tty.error_colour,"[KO]\n")
             return False
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
+        self.print_on_tty(self.tty.success_colour,"[OK]\n")
         self.tty.current_tty_status = self.tty.success
         return True
 
@@ -137,15 +125,9 @@ class InstallMicroK8sLinux:
             ]
         )
         if self.tty.current_tty_status != self.tty.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "[KO]\n"
-            )
+            self.print_on_tty(self.tty.error_colour,"[KO]\n")
             return False
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
+        self.print_on_tty(self.tty.success_colour,"[OK]\n")
         self.tty.current_tty_status = self.tty.success
         return True
 
@@ -165,19 +147,13 @@ class InstallMicroK8sLinux:
             "Installation status (k3d):"
         )
         if status != self.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "[KO]\n"
-            )
+            self.print_on_tty(self.tty.error_colour,"[KO]\n")
             self.print_on_tty(
                 self.tty.error_colour,
                 "Error granting execution permissions to the k3d install script\n"
             )
             return self.err
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
+        self.print_on_tty(self.tty.success_colour,"[OK]\n")
         return self.run(["bash", "-c", self.k3d_file_name])
 
     def _install_for_aur(self) -> int:
@@ -197,10 +173,7 @@ class InstallMicroK8sLinux:
             "Installation status (k3d):"
         )
         if status != self.tty.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "[KO]\n"
-            )
+            self.print_on_tty(self.tty.error_colour,"[KO]\n")
             self.print_on_tty(
                 self.tty.error_colour,
                 "Error installing k3d for Aur systems\n"
@@ -211,14 +184,8 @@ class InstallMicroK8sLinux:
             )
             self.tty.current_tty_status = self.tty.err
             return self.tty.current_tty_status
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
-        self.print_on_tty(
-            self.tty.success_colour,
-            ""
-        )
+        self.print_on_tty(self.tty.success_colour,"[OK]\n")
+        self.print_on_tty(self.tty.success_colour,"")
         self.disp.success_message("Installed k3d using yay ;-)")
         self.tty.current_tty_status = self.tty.success
         return status
@@ -259,21 +226,14 @@ class InstallMicroK8sLinux:
             self.tty.current_tty_status = self.tty.err
             return self.tty.current_tty_status
 
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
-        self.print_on_tty(
-            self.tty.success_colour,
-            ""
-        )
+        self.print_on_tty(self.tty.success_colour,"[OK]\n")
+        self.print_on_tty(self.tty.success_colour,"")
         self.disp.success_message("Installed k3s using brew ;-)")
         self.tty.current_tty_status = self.tty.success
         return self.tty.current_tty_status
 
     def _install_for_snap(self) -> int:
-        """ Install micro
-    Microk8s"""
+        """ Install micro Microk8s"""
 
     def main(self) -> int:
         """ The main function of the class """

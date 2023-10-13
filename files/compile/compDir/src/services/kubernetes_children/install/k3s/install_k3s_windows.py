@@ -40,15 +40,9 @@ class InstallK3sWindows:
             ]
         )
         if self.tty.current_tty_status != self.tty.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "[KO]\n"
-            )
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
             return False
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
         self.tty.current_tty_status = self.tty.success
         return True
 
@@ -82,15 +76,9 @@ class InstallK3sWindows:
             "Installation status (Chocolatey):"
         )
         if status != self.tty.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "[KO]\n"
-            )
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
             return self.err
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
         return self.success
 
     def _install_k3s_via_chocolatey(self) -> int:
@@ -112,15 +100,9 @@ class InstallK3sWindows:
             "Installation status (k3s):"
         )
         if status != self.tty.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "[KO]\n"
-            )
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
             return self.err
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
         return self.success
 
     def main(self) -> int:

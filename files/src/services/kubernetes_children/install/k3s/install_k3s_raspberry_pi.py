@@ -167,15 +167,9 @@ class InstallK3sRaspberryPi:
         )
 
         if self.tty.current_tty_status != self.tty.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "[KO]\n"
-            )
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
             return False
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
         self.tty.current_tty_status = self.tty.success
         return True
 
@@ -200,15 +194,9 @@ class InstallK3sRaspberryPi:
             "Is Rasberry Pi status: "
         )
         if self.tty.current_tty_status != self.tty.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "[KO]\n"
-            )
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
             return False
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
         self.tty.current_tty_status = self.tty.success
         return True
 
@@ -232,15 +220,9 @@ class InstallK3sRaspberryPi:
         )
 
         if self.tty.current_tty_status != self.tty.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "[KO]\n"
-            )
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
             return ""
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
         self.tty.current_tty_status = self.tty.success
         usr_ip = self._get_file_content(self.ip_save_file, "utf-8")
         usr_ip = usr_ip.replace("\n", " ")
@@ -269,15 +251,9 @@ class InstallK3sRaspberryPi:
             "DNS status: "
         )
         if self.tty.current_tty_status != self.tty.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "[KO]\n"
-            )
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
             return ""
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
         self.tty.current_tty_status = self.tty.success
         dns_ip = self._get_file_content(self.dns_save_file, "utf-8")
         dns_ip = dns_ip.replace("\n", " ")
@@ -330,15 +306,9 @@ class InstallK3sRaspberryPi:
             "Hostname status: "
         )
         if hostname == "":
-            self.print_on_tty(
-                self.tty.error_colour,
-                "[KO]\n"
-            )
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
             return ""
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
         self.print_on_tty(
             self.tty.info_colour,
             f"Saving hostname to {self.k3s_hostname_file}"
@@ -356,15 +326,9 @@ class InstallK3sRaspberryPi:
             "Hostname save status: "
         )
         if status != self.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "[KO]\n"
-            )
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
             return hostname
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
         return hostname
 
     def _get_router_name(self) -> str:
@@ -403,15 +367,9 @@ class InstallK3sRaspberryPi:
             "Router name status: "
         )
         if router_name_status == self.tty.error:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "[KO]\n"
-            )
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
             return ""
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
         router_name = self._get_file_content(self.router_save_file, "utf-8")
         router_name = router_name.replace("\n", " ")
         router_name = router_name.split(" ")[0]
@@ -434,16 +392,10 @@ class InstallK3sRaspberryPi:
             "static ip compilation status: "
         )
         if usr_ip == "" or dns_ip == "" or hostname == "" or auto_configuration_here_off == "":
-            self.print_on_tty(
-                self.tty.error_colour,
-                "[KO]\n"
-            )
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
             return ""
         static_ip = f"{usr_ip}::{dns_ip}:{network_mask}:{hostname}:{router_name}:{auto_configuration_here_off}"
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
         return static_ip
 
     def _enable_cgroups_if_not(self) -> int:
@@ -478,10 +430,7 @@ class InstallK3sRaspberryPi:
             self.tty.info_colour,
             "CGroup status: "
         )
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
         static_ip = self._compile_static_ip()
         if static_ip == "":
             self.tty.current_tty_status = self.tty.error
@@ -506,10 +455,7 @@ class InstallK3sRaspberryPi:
             self.tty.info_colour,
             "Ip status: "
         )
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
         return self.success
 
     def _force_64bit_boot(self) -> int:
@@ -534,19 +480,13 @@ class InstallK3sRaspberryPi:
                     self.tty.info_colour,
                     "Force 64 bit boot status: "
                 )
-                self.print_on_tty(
-                    self.tty.error_colour,
-                    "[KO]\n"
-                )
+                self.print_on_tty(self.tty.error_colour, "[KO]\n")
                 return self.err
         self.print_on_tty(
             self.tty.info_colour,
             "Force 64 bit boot status: "
         )
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
         return self.success
 
     def _installation_failed_message(self) -> None:
@@ -555,10 +495,7 @@ class InstallK3sRaspberryPi:
             self.tty.info_colour,
             "Installation status k3s: "
         )
-        self.print_on_tty(
-            self.tty.error_colour,
-            "[KO]\n"
-        )
+        self.print_on_tty(self.tty.error_colour, "[KO]\n")
 
     def _enabeling_iptables(self) -> int:
         """ Refresh the iptables to make sure they are up to date """
@@ -601,10 +538,7 @@ class InstallK3sRaspberryPi:
                 self.tty.info_colour,
                 "Raspberry pi base flavor status: "
             )
-            self.print_on_tty(
-                self.tty.success_colour,
-                "[OK]\n"
-            )
+            self.print_on_tty(self.tty.success_colour, "[OK]\n")
             return "ubuntu"
         self.tty.current_tty_status = self.run(
             [
@@ -621,15 +555,9 @@ class InstallK3sRaspberryPi:
             "Raspberry pi base flavor status: "
         )
         if self.tty.current_tty_status == self.tty.success:
-            self.print_on_tty(
-                self.tty.success_colour,
-                "[OK]\n"
-            )
+            self.print_on_tty(self.tty.success_colour, "[OK]\n")
             return "debian"
-        self.print_on_tty(
-            self.tty.error_colour,
-            "[KO]\n"
-        )
+        self.print_on_tty(self.tty.error_colour, "[KO]\n")
         return ""
 
     def _install_extra_ubuntu_dependencies(self) -> int:
@@ -654,19 +582,13 @@ class InstallK3sRaspberryPi:
                 self.tty.info_colour,
                 "Extra ubuntu dependencies status: "
             )
-            self.print_on_tty(
-                self.tty.success_colour,
-                "[KO]\n"
-            )
+            self.print_on_tty(self.tty.success_colour, "[KO]\n")
             return self.err
         self.print_on_tty(
             self.tty.info_colour,
             "Extra ubuntu dependencies status: "
         )
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
 
     def _install_extra_debian_dependencies(self) -> int:
         """ Install extra debian dependencies for vxlan support """
@@ -696,19 +618,13 @@ class InstallK3sRaspberryPi:
                 self.tty.info_colour,
                 "Extra debian dependencies status: "
             )
-            self.print_on_tty(
-                self.tty.success_colour,
-                "[KO]\n"
-            )
+            self.print_on_tty(self.tty.success_colour, "[KO]\n")
             return self.err
         self.print_on_tty(
             self.tty.info_colour,
             "Extra debian dependencies status: "
         )
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
 
     def _prepping_failed_message(self) -> None:
         """ The message to display when the prepping fails """
@@ -716,17 +632,11 @@ class InstallK3sRaspberryPi:
             self.tty.info_colour,
             "Prepping status: "
         )
-        self.print_on_tty(
-            self.tty.error_colour,
-            "[KO]\n"
-        )
+        self.print_on_tty(self.tty.error_colour, "[KO]\n")
 
     def _prepare_board(self) -> int:
         """ Prepare the files and all the required elements for a successefull k3s installation """
-        self.print_on_tty(
-            self.tty.info_colour,
-            ""
-        )
+        self.print_on_tty(self.tty.info_colour, "")
         self.disp.sub_sub_title(
             "Preparing the board for the installation of k3s"
         )
@@ -753,10 +663,7 @@ class InstallK3sRaspberryPi:
             self.tty.info_colour,
             "Prepping status: "
         )
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
         return self.success
 
     def get_k3s_installer(self) -> int:
@@ -771,15 +678,9 @@ class InstallK3sRaspberryPi:
             "K3s installer status: "
         )
         if status != self.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "[KO]\n"
-            )
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
             return self.error
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
         return self.success
 
     def get_k3s_token(self) -> int:
@@ -800,10 +701,7 @@ class InstallK3sRaspberryPi:
             "K3s master token status: "
         )
         if self.tty.current_tty_status != self.tty.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "[KO]\n"
-            )
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
             return self.error
         self.print_on_tty(
             self.tty.info_colour,
@@ -828,15 +726,9 @@ class InstallK3sRaspberryPi:
             "Saving the token status: "
         )
         if status != self.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "[KO]\n"
-            )
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
             return self.error
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
         return self.success
 
     def _install_master_k3s(self) -> int:
@@ -927,10 +819,7 @@ class InstallK3sRaspberryPi:
             self.tty.info_colour,
             "Installation status status: "
         )
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
         return self.success
 
     def test_class_install_k3s_raspberry_pi(self) -> None:

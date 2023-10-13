@@ -37,24 +37,15 @@ class InstallK3sWindows:
             ]
         )
         if self.tty.current_tty_status != self.tty.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "[KO]\n"
-            )
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
             return False
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
         self.tty.current_tty_status = self.tty.success
         return True
 
     def get_k3s_token(self) -> int:
         """ Get the master token for k3s """
-        self.print_on_tty(
-            self.tty.info_colour,
-            ""
-        )
+        self.print_on_tty(self.tty.info_colour, "")
         self.disp.warning_message(
             "At the time of writing this program, k3s is not natively supported on Windows"
         )
@@ -63,10 +54,7 @@ class InstallK3sWindows:
 
     def main(self) -> int:
         """ The main function of the class """
-        self.print_on_tty(
-            self.tty.info_colour,
-            ""
-        )
+        self.print_on_tty(self.tty.info_colour, "")
         self.disp.warning_message(
             "At the time of writing this program, k3s is not natively supported on Windows"
         )

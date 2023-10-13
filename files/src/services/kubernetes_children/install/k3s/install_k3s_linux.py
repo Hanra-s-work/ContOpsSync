@@ -87,15 +87,9 @@ class InstallK3sLinux:
             ]
         )
         if self.tty.current_tty_status != self.tty.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "[KO]\n"
-            )
+            self.print_on_tty(self.tty.error_colour,"[KO]\n")
             return False
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
+        self.print_on_tty(self.tty.success_colour,"[OK]\n")
         self.tty.current_tty_status = self.tty.success
         return True
 
@@ -114,15 +108,9 @@ class InstallK3sLinux:
             ]
         )
         if self.tty.current_tty_status != self.tty.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "[KO]\n"
-            )
+            self.print_on_tty(self.tty.error_colour,"[KO]\n")
             return False
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
+        self.print_on_tty(self.tty.success_colour,"[OK]\n")
         self.tty.current_tty_status = self.tty.success
         return True
 
@@ -142,19 +130,13 @@ class InstallK3sLinux:
             "Installation status (k3s):"
         )
         if status != self.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "[KO]\n"
-            )
+            self.print_on_tty(self.tty.error_colour,"[KO]\n")
             self.print_on_tty(
                 self.tty.error_colour,
                 "Error granting execution permissions to the k3s install script\n"
             )
             return self.err
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
+        self.print_on_tty(self.tty.success_colour,"[OK]\n")
         self.tty.setenv(["K3S_KUBECONFIG_MODE", '"644"'])
         return self.run(["bash", "-c", self.k3s_file_name])
 
@@ -175,10 +157,7 @@ class InstallK3sLinux:
             "Installation status (k3s):"
         )
         if status != self.tty.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "[KO]\n"
-            )
+            self.print_on_tty(self.tty.error_colour,"[KO]\n")
             self.print_on_tty(
                 self.tty.error_colour,
                 "Error installing k3s for Aur systems\n"
@@ -189,14 +168,8 @@ class InstallK3sLinux:
             )
             self.tty.current_tty_status = self.tty.err
             return self.tty.current_tty_status
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
-        self.print_on_tty(
-            self.tty.success_colour,
-            ""
-        )
+        self.print_on_tty(self.tty.success_colour,"[OK]\n")
+        self.print_on_tty(self.tty.success_colour,"")
         self.disp.success_message("Installed k3s using yay ;-)")
         self.tty.current_tty_status = self.tty.success
         return status
@@ -237,14 +210,8 @@ class InstallK3sLinux:
             self.tty.current_tty_status = self.tty.err
             return self.tty.current_tty_status
 
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
-        self.print_on_tty(
-            self.tty.success_colour,
-            ""
-        )
+        self.print_on_tty(self.tty.success_colour,"[OK]\n")
+        self.print_on_tty(self.tty.success_colour,"")
         self.disp.success_message("Installed k3s using brew ;-)")
         self.tty.current_tty_status = self.tty.success
         return self.tty.current_tty_status
@@ -264,15 +231,9 @@ class InstallK3sLinux:
             ]
         )
         if self.tty.current_tty_status != self.tty.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "[KO]\n"
-            )
+            self.print_on_tty(self.tty.error_colour,"[KO]\n")
             return False
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
+        self.print_on_tty(self.tty.success_colour,"[OK]\n")
         self.tty.current_tty_status = self.tty.success
         return True
 
@@ -294,15 +255,9 @@ class InstallK3sLinux:
             "K3s master token status: "
         )
         if self.tty.current_tty_status != self.tty.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "[KO]\n"
-            )
+            self.print_on_tty(self.tty.error_colour,"[KO]\n")
             return self.error
-        self.print_on_tty(
-            self.tty.info_colour,
-            ""
-        )
+        self.print_on_tty(self.tty.info_colour,"")
         self.disp.inform_message(
             [
                 f"Saving the token to : {self.token_save_file}"
@@ -322,15 +277,9 @@ class InstallK3sLinux:
             "Saving the token status: "
         )
         if status != self.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "[KO]\n"
-            )
+            self.print_on_tty(self.tty.error_colour,"[KO]\n")
             return self.error
-        self.print_on_tty(
-            self.tty.success_colour,
-            "[OK]\n"
-        )
+        self.print_on_tty(self.tty.success_colour,"[OK]\n")
         return self.success
 
     def main(self) -> int:
