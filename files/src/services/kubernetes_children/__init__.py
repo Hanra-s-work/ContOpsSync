@@ -1,5 +1,5 @@
 """
-File containing the Kubernetes class in charge of managin kubenetes service
+File containing the Kubernetes class in charge of managin kubernetes service
 """
 
 import os
