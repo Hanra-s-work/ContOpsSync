@@ -315,12 +315,10 @@ class InstallK3sLinux:
                 return self.error
         self.print_on_tty(
             self.tty.info_colour,
-            "Installation status status: "
+            "Installation status: "
         )
-        self.print_on_tty(self.tty.success_colour, "[OK]\n")
-
-        self.tty.setenv(["K3S_KUBECONFIG_MODE", '"644"'])
-        return self.run(["bash", "-c", self.k3s_file_name])
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")*
+        return self.success
 
     def _install_for_aur(self) -> int:
         """ Install k3s for Aur systems """
