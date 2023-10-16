@@ -6,7 +6,7 @@ import display_tty
 from tty_ov import TTY
 
 
-class InstallK3sWindows:
+class UninstallK3sWindows:
     """ The class in charge of installing k3s for Windows """
 
     def __init__(self, tty: TTY, success: int = 0, err: int = 84, error: int = 84) -> None:
@@ -43,15 +43,6 @@ class InstallK3sWindows:
         self.tty.current_tty_status = self.tty.success
         return True
 
-    def get_k3s_token(self) -> int:
-        """ Get the master token for k3s """
-        self.print_on_tty(self.tty.info_colour, "")
-        self.disp.warning_message(
-            "At the time of writing this program, k3s is not natively supported on Windows"
-        )
-        self.tty.current_tty_status = self.tty.error
-        return self.error
-
     def main(self) -> int:
         """ The main function of the class """
         self.print_on_tty(self.tty.info_colour, "")
@@ -61,9 +52,9 @@ class InstallK3sWindows:
         self.tty.current_tty_status = self.tty.error
         return self.error
 
-    def test_class_install_k3s_windows(self) -> None:
-        """ Test the class install k3s windows """
+    def test_class_uninstall_k3s_windows(self) -> None:
+        """ Test the class uninstall k3s windows """
         self.print_on_tty(
             self.tty.info_colour,
-            "This is a test message from the install k3s Windows class"
+            "This is a test message from the uninstall k3s Windows class"
         )
