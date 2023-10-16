@@ -104,7 +104,7 @@ class InstallKubernetesWindows:
         """ Install the kind software """
 
     def install_k3s(self) -> int:
-        """ Install the k3s software """
+        """ Install the k3s software (needs to be written)"""
 
     def install_k3d(self) -> int:
         """ Install the k3s software """

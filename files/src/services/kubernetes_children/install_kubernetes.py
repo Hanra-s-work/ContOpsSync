@@ -153,19 +153,24 @@ Output:
 Install k3s on the host system (kubernetes combined with containerd)
 Usage Example:
 Input:
-    {function_name} as_slave:boolean master_token:string master_ip:string
+    {function_name} as_slave:boolean force_docker:boolean<default: False> master_token:string master_ip:string
 Output:
     Installation process of k3s for the current system
 Example 1 (Installing as master node):
     {function_name} true
 Example 2 (Installing as slave node):
     {function_name} false <your_master_token> <your_master_ip>
+Example 3 (Installing as master node with docker set as default):
+    {function_name} true true
+Example 2 (Installing as slave node with docker set as default):
+    {function_name} false true <your_master_token> <your_master_ip>
 """
             self.tty.function_help(function_name, help_description)
             self.tty.current_tty_status = self.tty.success
             return self.success
         arg_length = len(args)
         as_master = True
+        force_docker = False
         master_token = ""
         master_ip = ""
         if arg_length >= 1:
@@ -174,13 +179,18 @@ Example 2 (Installing as slave node):
             else:
                 as_master = True
         if arg_length >= 2:
-            master_token = args[1]
+            if args[1].lower() == "true":
+                force_docker = True
+            else:
+                force_docker = False
         if arg_length >= 3:
-            master_ip = args[2]
+            master_token = args[2]
+        if arg_length >= 4:
+            master_ip = args[3]
         if self.current_system == "Windows":
             return self.windows.install_k3s()
         if self.current_system == "Linux":
-            return self.linux.install_k3s(as_master, master_token, master_ip)
+            return self.linux.install_k3s(as_master, force_docker, master_token, master_ip)
         if self.current_system == "Darwin" or self.current_system == "Java":
             return self.mac.install_k3s()
         self.print_on_tty(

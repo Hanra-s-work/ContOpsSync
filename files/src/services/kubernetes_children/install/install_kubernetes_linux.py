@@ -103,11 +103,11 @@ class InstallKubernetesLinux:
         """ Install the kind software """
         return self.kind.install_linux.main()
 
-    def install_k3s(self, install_as_slave: bool = False, master_token: str = "", master_ip: str = "") -> int:
+    def install_k3s(self, install_as_slave: bool = False, force_docker: bool = False, master_token: str = "", master_ip: str = "") -> int:
         """ Install the k3s software """
         if self.k3s.install_raspberrypi.is_raspberrypi() is True:
-            return self.k3s.install_raspberrypi.main(install_as_slave, master_token, master_ip)
-        return self.k3s.install_linux.main()
+            return self.k3s.install_raspberrypi.main(install_as_slave, force_docker, master_token, master_ip)
+        return self.k3s.install_linux.main(install_as_slave, force_docker, master_token, master_ip)
 
     def install_k3d(self, install_as_slave: bool = False, master_token: str = "", master_ip: str = "") -> int:
         """ Install the k3d software """

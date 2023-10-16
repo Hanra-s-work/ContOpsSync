@@ -74,7 +74,7 @@ class InstallKubernetesMac:
         return self.success
 
     def install_k3s(self) -> int:
-        """ Install the k3s software """
+        """ Install the k3s software (needs to be written)"""
         self.print_on_tty(
             self.tty.info_colour,
             "The installation script is yet to come for macs."

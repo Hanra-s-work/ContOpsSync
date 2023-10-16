@@ -4,9 +4,10 @@ File in charge of installing k3s on a rasberry pi
 
 import os
 import uuid
-import display_tty
-import requests
 from datetime import datetime
+
+import requests
+import display_tty
 from tqdm import tqdm
 from tty_ov import TTY
 
@@ -731,23 +732,26 @@ class InstallK3sRaspberryPi:
         self.print_on_tty(self.tty.success_colour, "[OK]\n")
         return self.success
 
-    def _install_master_k3s(self) -> int:
+    def _install_master_k3s(self, force_docker: bool = False) -> int:
         """ Install the k3s version for the master node (the one managing the others) """
         self.tty.setenv(["K3S_KUBECONFIG_MODE", '"644"'])
-        self.run(
-            [
-                "chmod",
-                "+x",
-                self.installer_file,
-                "&&",
-                "sudo",
-                self.installer_file
-            ]
-        )
+        install_line = [
+            "chmod",
+            "+x",
+            self.installer_file,
+            "&&",
+            "sudo",
+            self.installer_file
+        ]
+        if force_docker is True:
+            self.tty.setenv(["K3S_FORCE_INSTALL_DOCKER", "1"])
+            install_line.append("--docker")
+
+        self.run(install_line)
         self.get_k3s_token()
         return self.tty.success
 
-    def _install_slave_k3s(self, master_token: str = "", master_ip: str = "") -> int:
+    def _install_slave_k3s(self, force_docker: bool = False, master_token: str = "", master_ip: str = "") -> int:
         """ Install the k3s version for the slave, the one being managed by the masters """
         if master_token == "" or master_ip == "":
             self.print_on_tty(
@@ -765,19 +769,21 @@ class InstallK3sRaspberryPi:
                 self._get_file_content(self.k3s_hostname_file, self.encoding)
             ]
         )
-        self.run(
-            [
-                "chmod",
-                "+x",
-                self.installer_file,
-                "&&",
-                "sudo",
-                self.installer_file
-            ]
-        )
+        install_line = [
+            "chmod",
+            "+x",
+            self.installer_file,
+            "&&",
+            "sudo",
+            self.installer_file
+        ]
+        if force_docker is True:
+            self.tty.setenv(["K3S_FORCE_INSTALL_DOCKER", "1"])
+            install_line.append("--docker")
+        self.run(install_line)
         return self.tty.success
 
-    def main(self, install_as_slave: bool = False, master_token: str = "", master_ip: str = "") -> int:
+    def main(self, install_as_slave: bool = False, force_docker: bool = False, master_token: str = "", master_ip: str = "") -> int:
         """ Install k3s on RaspberryPi """
         self.print_on_tty(
             self.tty.info_colour,
@@ -806,12 +812,16 @@ class InstallK3sRaspberryPi:
             self._installation_failed_message()
             return self.error
         if install_as_slave is True:
-            status = self._install_slave_k3s(master_token, master_ip)
+            status = self._install_slave_k3s(
+                force_docker,
+                master_token,
+                master_ip
+            )
             if status != self.success:
                 self._installation_failed_message()
                 return self.error
         else:
-            status = self._install_master_k3s()
+            status = self._install_master_k3s(force_docker)
             if status != self.success:
                 self._installation_failed_message()
                 return self.error
