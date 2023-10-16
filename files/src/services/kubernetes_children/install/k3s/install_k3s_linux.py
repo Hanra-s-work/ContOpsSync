@@ -82,6 +82,22 @@ class InstallK3sLinux:
             )
             self.tty.current_tty_status = self.tty.error
             return self.tty.current_tty_status
+        except Exception:
+            self.run(
+                [
+                    "wget",
+                    "--progress=bar:force",
+                    "-O",
+                    filepath,
+                    url
+                ]
+            )
+            self.print_on_tty(
+                self.tty.success_colour,
+                f"File downloaded to: {filepath}\n"
+            )
+            self.tty.current_tty_status = self.tty.success
+            return self.tty.current_tty_status
 
     def _get_file_content(self, file_path: str, encoding: str = "utf-8") -> str:
         """ Get the content of a file """
