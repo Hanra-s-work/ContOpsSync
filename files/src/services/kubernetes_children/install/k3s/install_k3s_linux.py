@@ -278,6 +278,7 @@ class InstallK3sLinux:
 
     def _manual_installation(self, install_as_slave: bool = False, force_docker: bool = False, master_token: str = "", master_ip: str = "") -> int:
         """ Install k3s manually """
+        self.print_on_tty(self.tty.info_colour, "")
         self.disp.sub_sub_title("Installing k3s")
         status = self._download_file(self.k3s_link, self.k3s_file_name)
         if status != self.success:
@@ -437,6 +438,7 @@ class InstallK3sLinux:
         if self.tty.current_tty_status != self.tty.success:
             self.print_on_tty(self.tty.error_colour, "[KO]\n")
             return self.error
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
         self.print_on_tty(self.tty.info_colour, "")
         self.disp.inform_message(
             [

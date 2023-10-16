@@ -3,34 +3,26 @@ File in charge of loading the k3d installer classes
 """
 
 from tty_ov import TTY
-from .install_k3d_linux import InstallK3dLinux
-from .install_k3d_raspberry_pi import InstallK3dRaspberryPi
-from .install_k3d_mac import InstallK3dMac
-from .install_k3d_windows import InstallK3dWindows
+from .uninstall_k3d_linux import UninstallK3dLinux
+from .uninstall_k3d_mac import UninstallK3dMac
+from .uninstall_k3d_windows import UninstallK3dWindows
 
 
-class InstallK3d:
+class UninstallK3d:
     """ Install K3d on the correct device """
 
     def __init__(self, tty: TTY, success: int = 0, err: int = 84, error: int = 84) -> None:
-        self.install_mac = InstallK3dMac(tty, success, err, error)
-        self.install_linux = InstallK3dLinux(tty, success, err, error)
-        self.install_raspberrypi = InstallK3dRaspberryPi(
-            tty,
-            success,
-            err,
-            error
-        )
-        self.install_windows = InstallK3dWindows(
+        self.uninstall_mac = UninstallK3dMac(tty, success, err, error)
+        self.uninstall_linux = UninstallK3dLinux(tty, success, err, error)
+        self.uninstall_windows = UninstallK3dWindows(
             tty,
             success,
             err,
             error
         )
 
-    def test_k3d_installation_class(self) -> None:
+    def test_k3d_uninstallation_class(self) -> None:
         """ Test the k3d installation class """
-        self.install_mac.test_class_install_k3d_mac()
-        self.install_linux.test_class_install_k3d_linux()
-        self.install_windows.test_class_install_k3d_windows()
-        self.install_raspberrypi.test_class_install_k3d_raspberry_pi()
+        self.uninstall_mac.test_class_uninstall_k3d_mac()
+        self.uninstall_linux.test_class_uninstall_k3d_linux()
+        self.uninstall_windows.test_class_uninstall_k3d_windows()

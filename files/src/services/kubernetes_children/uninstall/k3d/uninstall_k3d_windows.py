@@ -9,7 +9,7 @@ from tqdm import tqdm
 from tty_ov import TTY
 
 
-class InstallK3dWindows:
+class UninstallK3dWindows:
     """ The class in charge of installing k3d for Windows """
 
     def __init__(self, tty: TTY, success: int = 0, err: int = 84, error: int = 84) -> None:
