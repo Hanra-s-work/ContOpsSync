@@ -46,58 +46,23 @@ class UninstallK3dWindows:
         self.tty.current_tty_status = self.tty.success
         return True
 
-    def _install_chocolatey(self) -> int:
-        """ Attempt to install chocolatey """
-        self.print_on_tty(
-            self.tty.info_colour,
-            "Attempting to install chocolatey:"
-        )
-        status = self.super_run(
-            [
-                "Set-ExecutionPolicy",
-                "Bypass",
-                "-Scope",
-                "Process",
-                "-Force;",
-                "[System.Net.ServicePointManager]::SecurityProtocol",
-                "=",
-                "[System.Net.ServicePointManager]::SecurityProtocol",
-                "-bor",
-                "3072;",
-                "iex",
-                "((New-Object",
-                "System.Net.WebClient).DownloadString('",
-                "https://community.chocolatey.org/install.ps1",
-                "'))"
-            ]
-        )
-        self.print_on_tty(
-            self.tty.info_colour,
-            "Installation status (Chocolatey):"
-        )
-        if status != self.tty.success:
-            self.print_on_tty(self.tty.error_colour, "[KO]\n")
-            return self.err
-        self.print_on_tty(self.tty.success_colour, "[OK]\n")
-        return self.success
-
-    def _install_k3d_via_chocolatey(self) -> int:
+    def _uninstall_k3d_via_chocolatey(self) -> int:
         """ Install the k3d package on windows using chocolatey """
         self.print_on_tty(
             self.tty.info_colour,
-            "Installing k3d via chocolatey:"
+            "UnInstalling k3d via chocolatey:"
         )
         status = self.super_run(
             [
                 "choco",
-                "install",
+                "uninstall",
                 "k3d",
                 "-y"
             ]
         )
         self.print_on_tty(
             self.tty.info_colour,
-            "Installation status (k3d):"
+            "Uninstallation status (k3d):"
         )
         if status != self.tty.success:
             self.print_on_tty(self.tty.error_colour, "[KO]\n")
@@ -105,7 +70,7 @@ class UninstallK3dWindows:
         self.print_on_tty(self.tty.success_colour, "[OK]\n")
         return self.success
 
-    def is_k3d_installed(self) -> bool:
+    def _is_k3d_installed(self) -> bool:
         """ Returns true if k3d is installed """
         self.print_on_tty(
             self.tty.info_colour,
@@ -138,19 +103,12 @@ class UninstallK3dWindows:
                 self.tty.info_colour,
                 "Chocolatey is not installed on your system, attempting to install it"
             )
-            status = self._install_chocolatey()
-            if status != self.success:
-                self.print_on_tty(
-                    self.tty.error_colour,
-                    "Error installing chocolatey, please install it before continuing"
-                )
-                return self.err
         self.print_on_tty(
             self.tty.success_colour,
             ""
         )
-        self.disp.sub_sub_title("Installing k3d")
-        status = self._install_k3d_via_chocolatey()
+        self.disp.sub_sub_title("Uninstalling k3d")
+        status = self._uninstall_k3d_via_chocolatey()
         return status
 
     def test_class_install_k3d_windows(self) -> None:
