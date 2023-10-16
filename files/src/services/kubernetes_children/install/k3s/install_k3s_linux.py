@@ -234,8 +234,6 @@ class InstallK3sLinux:
             self.k3s_file_name,
             "&&",
             "sudo",
-            "bash",
-            "-c",
             self.k3s_file_name
         ]
         if force_docker is True:
@@ -270,8 +268,6 @@ class InstallK3sLinux:
             self.k3s_file_name,
             "&&",
             "sudo",
-            "bash",
-            "-c",
             self.k3s_file_name
         ]
         if force_docker is True:
@@ -290,10 +286,10 @@ class InstallK3sLinux:
                 "Error downloading the k3s install script\n"
             )
             return self.err
-        status = self.run(["chmod", "+x", self.k3s_file_name])
+        status = self.run(["sudo ", "chmod", "+x", self.k3s_file_name])
         self.print_on_tty(
             self.tty.info_colour,
-            "Installation status (k3s):"
+            "Download status (k3s):"
         )
         if status != self.success:
             self.print_on_tty(self.tty.error_colour, "[KO]\n")
