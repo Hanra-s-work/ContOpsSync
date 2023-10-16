@@ -317,7 +317,7 @@ class InstallK3sLinux:
             self.tty.info_colour,
             "Installation status: "
         )
-        self.print_on_tty(self.tty.success_colour, "[OK]\n")*
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
         return self.success
 
     def _install_for_aur(self) -> int:
