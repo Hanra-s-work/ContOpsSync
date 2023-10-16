@@ -51,10 +51,6 @@ class Docker:
         self.save_commands()
         return self.tty.import_functions_into_shell(self.options)
 
-    def run(self, image: str, port: int) -> None:
-        """ Run a docker image """
-        pass
-
     def stop(self, image: str) -> None:
         """ Stop a docker image """
         pass

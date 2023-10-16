@@ -3,6 +3,8 @@
 tmp.*
 *.useless
 useless.*
+# tmporary folders
+**/tmp/**
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
