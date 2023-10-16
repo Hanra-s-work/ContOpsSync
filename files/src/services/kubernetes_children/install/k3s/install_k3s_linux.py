@@ -286,7 +286,7 @@ class InstallK3sLinux:
                 "Error downloading the k3s install script\n"
             )
             return self.err
-        status = self.run(["sudo ", "chmod", "+x", self.k3s_file_name])
+        status = self.run(["sudo", "chmod", "+x", self.k3s_file_name])
         self.print_on_tty(
             self.tty.info_colour,
             "Download status (k3s):"

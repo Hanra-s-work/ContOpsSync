@@ -169,15 +169,15 @@ Example 2 (Installing as slave node with docker set as default):
             self.tty.current_tty_status = self.tty.success
             return self.success
         arg_length = len(args)
-        as_master = True
+        as_slave = False
         force_docker = False
         master_token = ""
         master_ip = ""
         if arg_length >= 1:
             if args[0].lower() == "true":
-                as_master = False
+                as_slave = False
             else:
-                as_master = True
+                as_slave = True
         if arg_length >= 2:
             if args[1].lower() == "true":
                 force_docker = True
@@ -190,7 +190,7 @@ Example 2 (Installing as slave node with docker set as default):
         if self.current_system == "Windows":
             return self.windows.install_k3s()
         if self.current_system == "Linux":
-            return self.linux.install_k3s(as_master, force_docker, master_token, master_ip)
+            return self.linux.install_k3s(as_slave, force_docker, master_token, master_ip)
         if self.current_system == "Darwin" or self.current_system == "Java":
             return self.mac.install_k3s()
         self.print_on_tty(
