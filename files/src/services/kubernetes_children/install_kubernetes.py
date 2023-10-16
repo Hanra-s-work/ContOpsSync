@@ -150,7 +150,7 @@ Output:
         function_name = "install_k3s"
         if self.tty.help_function_child_name == function_name:
             help_description = f"""
-Install k3s on the host system (kubernetes combined with containerd)
+Install k3s on the host system (kubernetes combined with containerd  [or docker if specified])
 Usage Example:
 Input:
     {function_name} as_slave:boolean force_docker:boolean<default: False> master_token:string master_ip:string
@@ -453,7 +453,7 @@ Output:
         function_name = "test_install_kubernetes"
         if self.tty.help_function_child_name == function_name:
             help_description = f"""
-Make sure the install kubernetes classes are installed
+Make sure the install kubernetes classes are initialised
 Usage Example:
 Input:
     {function_name}
