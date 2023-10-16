@@ -1,13 +1,13 @@
 """
-File in charge of containing the class that will install kubernetes for linux distributions.
+File in charge of containing the code that will install kubernetes on a mac.
 """
 
 from tty_ov import TTY
-import disp
+import display_tty
 
 
-class UninstallKubernetesLinux:
-    """ The class in charge of installing kubernetes for linux """
+class InstallKubectlMac:
+    """ Install the kubernetes on Mac """
 
     def __init__(self, tty: TTY, success: int = 0, err: int = 84, error: int = 84) -> None:
         # ---- System Codes ----
@@ -22,11 +22,10 @@ class UninstallKubernetesLinux:
         self.download_options = {
             "choco": False,
             "scoop": False,
-            "winget": False  # ,
-            # "manual":False
+            "winget": False
         }
         # ---- The Disp option ----
-        self.disp = disp.IDISP
+        self.disp = display_tty.IDISP
         self.disp.toml_content["PRETTIFY_OUTPUT"] = False
         self.disp.toml_content["PRETTY_OUTPUT_IN_BLOCS"] = False
         # ---- links for manual installation ----
@@ -41,11 +40,19 @@ class UninstallKubernetesLinux:
         self.kube_folder = ".kube"
         self.config_file = "config"
 
-    def main(self) -> None:
-        """ Install kubernetes for linux """
-        print("Install kubernetes for linux - Not created yet")
+    def install_kubectl(self) -> int:
+        """ install the kubectl software """
+        print("Install kubernetes on Mac - Not created yet")
+        return self.success
 
-    def test_class_install_kubernetes_linux(self) -> int:
-        """ Test the class install kubernetes linux """
-        print("This is a test message from the install kubernetes linux class")
-        return 0
+    def main(self) -> int:
+        """ Install kubernetes on Mac """
+        return self.install_kubectl()
+
+    def test_class_install_kubectl_mac(self) -> int:
+        """ Test the class install kubectl mac """
+        self.print_on_tty(
+            self.tty.info_colour,
+            "This is a test message from the install kubectl mac class"
+        )
+        return self.success

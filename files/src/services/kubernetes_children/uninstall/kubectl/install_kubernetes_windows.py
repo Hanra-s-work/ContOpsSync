@@ -3,12 +3,13 @@ File in charge of downloading kubernetes for windows
 """
 
 import os
-import disp
+import requests
+import display_tty
+from tqdm import tqdm
 from tty_ov import TTY
-# from clint.textui import progress
 
 
-class UninstallKubernetesWindows:
+class InstallKubectlWindows:
     """ The script in charge of installing the kubernetes interpreter for windows """
 
     def __init__(self, tty: TTY, success: int = 0, err: int = 84, error: int = 84) -> None:
@@ -24,14 +25,16 @@ class UninstallKubernetesWindows:
         self.download_options = {
             "choco": False,
             "scoop": False,
-            "winget": False  # ,
-            # "manual":False
+            "winget": False
         }
         # ---- The Disp option ----
-        self.disp = disp.IDISP
+        self.disp = display_tty.IDISP
         self.disp.toml_content["PRETTIFY_OUTPUT"] = False
         self.disp.toml_content["PRETTY_OUTPUT_IN_BLOCS"] = False
         # ---- links for manual installation ----
+        self.release_file = "https://cdn.dl.k8s.io/release/stable.txt"
+        self.install_file_link_chunk1 = "https://dl.k8s.io/release/"
+        self.install_file_link_chunk2 = "/bin/windows/amd64/kubectl.exe"
         self.installer_name = "kubectl.exe"
         self.installer_folder = ".kubectl"
         self.home = ""
@@ -39,6 +42,44 @@ class UninstallKubernetesWindows:
         # ---- Testing installation ----
         self.kube_folder = ".kube"
         self.config_file = "config"
+
+    def download_file(self, url: str, filepath: str) -> int:
+        """ Download a file from a url """
+        self.print_on_tty(
+            self.tty.info_colour,
+            f"Downloading file from url: {url}\n"
+        )
+        try:
+            request = requests.get(
+                url,
+                allow_redirects=True,
+                timeout=10,
+                stream=True
+            )
+            with open(filepath, "wb") as file:
+                total_length = int(request.headers.get('content-length'))
+                chunk_size = 1024
+                for chunk in tqdm(
+                    request.iter_content(chunk_size=chunk_size),
+                    total=(total_length // chunk_size)+1,
+                    unit='KB'
+                ):
+                    if chunk:
+                        file.write(chunk)
+                        file.flush()
+            self.print_on_tty(
+                self.tty.success_colour,
+                f"File downloaded to: {filepath}\n"
+            )
+            self.tty.current_tty_status = self.tty.success
+            return self.tty.current_tty_status
+        except requests.RequestException as err:
+            self.print_on_tty(
+                self.tty.error_colour,
+                f"Error downloading file: {err}\n"
+            )
+            self.tty.current_tty_status = self.tty.error
+            return self.tty.current_tty_status
 
     def save_environement_variable(self, variable_name: str, variable_value: str) -> int:
         """ Permanently add or update an environment variable """
@@ -64,7 +105,7 @@ class UninstallKubernetesWindows:
             )
             return self.tty.error
 
-    def permanently_remove_from_path(self, path: str) -> int:
+    def save_permanently_to_path(self, path: str) -> int:
         """ Permanently add a variable to the path of the user """
         variable_name = "PATH"
         if variable_name not in os.environ:
@@ -77,13 +118,17 @@ class UninstallKubernetesWindows:
         old_path = os.environ[variable_name]
         if "/" in path:
             path = path.replace("/", "\\")
-        if path not in old_path:
+        if path in old_path:
             self.print_on_tty(
                 self.tty.success_colour,
-                f"'{path}' is not in the 'PATH' environement."
+                f"'{path}' is already present in the 'PATH' environement."
             )
             return self.tty.success
-        new_path = old_path.replace(f"{path};", "")
+        if path[-1] != ";":
+            path += ";"
+        if old_path[-1] != ";":
+            old_path += ";"
+        new_path = f"{path};{old_path}"
         status = self.save_environement_variable(variable_name, new_path)
         if status != self.tty.success:
             self.print_on_tty(
@@ -113,10 +158,10 @@ class UninstallKubernetesWindows:
             self.home = f"{self.full_path}"
         if self.installer_folder != "":
             self.full_path += f"\\{self.installer_folder}"
-            self.tty.remove_a_directory(self.full_path)
+            self.tty.create_directories(self.full_path, False)
         if self.full_path == "":
             self.full_path = os.getcwd()
-        return self.permanently_remove_from_path(self.full_path)
+        return self.save_permanently_to_path(self.full_path)
 
     def get_file_content(self, file_path: str) -> str or int:
         """ Get the content of a file """
@@ -156,7 +201,7 @@ class UninstallKubernetesWindows:
         """ Check if the file has an extension """
         for i in self.download_options:
             self.print_on_tty(self.tty.info_colour, f"{i}: ")
-            if self.run_command(f"{i} --version") == self.success:
+            if self.run_command(f"{i} --version  >nul 2>nul") == self.success:
                 self.download_options[i] = True
                 self.print_on_tty(self.tty.success_colour, "[OK]\n")
             else:
@@ -199,6 +244,47 @@ class UninstallKubernetesWindows:
         self.tty.current_tty_status = self.tty.success
         return self.tty.current_tty_status
 
+    def temporary_path(self) -> int:
+        """ Update the path of the loaded path """
+        error_message = """
+Failed to update the path.\n
+Please make sure the package was correctly installed:
+- please close the window in which this program was launched (this might involve exiting your ssh session)
+- please open a new window and try again
+"""
+        path_updater = ""
+        if "LOCALAPPDATA" in os.environ:
+            path_updater = os.environ['LOCALAPPDATA']
+        else:
+            if "HOMEDRIVE" in os.environ:
+                path_updater += os.environ['HOMEDRIVE']
+            if "HOMEPATH" in os.environ:
+                path_updater += os.environ['HOMEPATH']
+                self.home = f"{path_updater}"
+            if os.path.isdir(f"{path_updater}\\AppData\\Local") is True:
+                path_updater += "\\AppData\\Local"
+            else:
+                self.print_on_tty(
+                    self.tty.error_colour,
+                    error_message
+                )
+                return self.tty.err
+        if os.path.isdir(f"{path_updater}\\Microsoft\\WinGet\\Packages") is False:
+            self.print_on_tty(
+                self.tty.error_colour,
+                error_message
+            )
+            return self.tty.err
+        path_updater = f"{path_updater}\\Microsoft\\WinGet\\Packages"
+        dir_content = os.listdir(path_updater)
+        for i in dir_content:
+            if "kubectl" in i:
+                path_updater += f"\\{i}"
+                break
+        path_updater += ";"
+        self.save_permanently_to_path(path_updater)
+        return self.success
+
     def install_via_winget(self) -> int:
         """ Install Kubectl using the winget package manager """
         self.print_on_tty(
@@ -206,7 +292,7 @@ class UninstallKubernetesWindows:
             "Installing Kubernetes for Windows via winget\n"
         )
         self.tty.current_tty_status = self.run_command(
-            "winget uninstall Kubernetes.kubectl"
+            "winget install -e --id Kubernetes.kubectl"
         )
         if self.tty.current_tty_status != self.tty.success:
             self.print_on_tty(
@@ -214,6 +300,7 @@ class UninstallKubernetesWindows:
                 "Error installing Kubernetes for Windows via winget\n"
             )
             return self.tty.current_tty_status
+        self.temporary_path()
         self.tty.current_tty_status = self.tty.success
         return self.tty.current_tty_status
 
@@ -281,22 +368,12 @@ class UninstallKubernetesWindows:
         self.tty.current_tty_status = self.tty.success
         return self.tty.current_tty_status
 
-    def check_the_installation(self) -> int:
-        """ Make sure the kubectl version is the latest """
-        self.print_on_tty(
-            self.tty.info_colour,
-            "Checking the installation"
-        )
-        self.tty.current_tty_status = self.run_command(
-            "kubectl version --client"
-        )
-
     def use_available_method(self) -> int:
         """ Check which extension is installed """
         if self.download_options["winget"] is True:
             self.print_on_tty(
                 self.tty.info_colour,
-                "Using Chocolatey to install Kubernetes for Windows\n"
+                "Using Winget to install Kubernetes for Windows\n"
             )
             return self.install_via_winget()
         if self.download_options["choco"] is True:
@@ -308,7 +385,7 @@ class UninstallKubernetesWindows:
         if self.download_options["scoop"] is True:
             self.print_on_tty(
                 self.tty.info_colour,
-                "Using Chocolatey to install Kubernetes for Windows\n"
+                "Using Scoop to install Kubernetes for Windows\n"
             )
             return self.install_via_scoop()
         self.print_on_tty(
@@ -376,7 +453,7 @@ class UninstallKubernetesWindows:
             "Testing the installation of Kubernetes for Windows\n"
         )
         self.tty.current_tty_status = self.run_command(
-            "kubectl version --client"
+            "kubectl version --output=yaml"
         )
         if self.tty.current_tty_status != self.tty.success:
             self.print_on_tty(
@@ -387,38 +464,51 @@ class UninstallKubernetesWindows:
         self.tty.current_tty_status = self.tty.success
         return self.tty.current_tty_status
 
-    def main(self) -> int:
+    def install_kubectl(self) -> int:
         """ The main function in charge of installing kubernetes on windows """
         self.print_on_tty(self.tty.help_title_colour, "")
-        self.disp.title("Downloading Kubernetes for Windows")
+        self.disp.title("Downloading Kubectl for Windows")
         self.print_on_tty(
             self.tty.default_colour,
-            "Checking pre-installed package managers:"
+            "Checking pre-installed package managers:\n"
         )
         self.update_extension_availability()
         status = self.use_available_method()
         if status != self.tty.success:
             self.print_on_tty(
                 self.tty.error_colour,
-                "Error installing Kubernetes for Windows\n"
+                "Error installing Kubectl for Windows\n"
             )
             self.tty.current_tty_status = self.tty.error
             return self.tty.error
+        self.disp.success_message("Kubectl has successfully been installed.")
+        self.disp.sub_sub_title("Testing Kubectl installation")
         status = self.test_installation()
         if status != self.tty.success:
             self.print_on_tty(
                 self.tty.error_colour,
-                "Error installing Kubernetes for Windows\n"
+                "Error testing Kubectl for Windows\n"
             )
             self.tty.current_tty_status = self.tty.error
             return self.tty.error
+        self.print_on_tty(
+            self.tty.info_colour,
+            """
+The Path variable has been modified, it's effect has been applied in this program, and in any new instances that will be started.\n
+If you want to use kubectl outside of this instance, please restart all the terminals (this could be your ssh connection).\n
+"""
+        )
         self.tty.current_tty_status = self.tty.success
         return self.tty.success
 
-    def test_class_install_kubernetes_windows(self) -> int:
-        """ Test the class install kubernetes windows """
+    def main(self) -> int:
+        """ The main function of the class """
+        return self.install_kubectl()
+
+    def test_class_install_kubectl_windows(self) -> int:
+        """ Test the class install kubectl windows """
         self.print_on_tty(
             self.tty.info_colour,
-            "This is a test message from the install kubernetes windows class\n"
+            "This is a test message from the install kubectl windows class\n"
         )
         return self.tty.success
