@@ -38,5 +38,5 @@ class UninstallK8sWindows:
         """ Test the class install k8s windows """
         self.print_on_tty(
             self.tty.info_colour,
-            "This is a test message from the install k8s Windows class"
+            "This is a test message from the install k8s Windows class\n"
         )

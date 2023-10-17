@@ -230,5 +230,5 @@ class UninstallK3sMac:
         """ Test the class uninstall k3s mac """
         self.print_on_tty(
             self.tty.info_colour,
-            "This is a test message from the uninstall k3s Mac class"
+            "This is a test message from the uninstall k3s Mac class\n"
         )

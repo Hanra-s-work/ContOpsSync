@@ -230,9 +230,9 @@ class InstallKubectlLinux:
             ]
         )
         if self.tty.current_tty_status != self.tty.success:
-            self.print_on_tty(self.tty.error_colour,"[KO]\n")
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
             return False
-        self.print_on_tty(self.tty.success_colour,"[OK]\n")
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
         self.tty.current_tty_status = self.tty.success
         return True
 
@@ -251,9 +251,9 @@ class InstallKubectlLinux:
             ]
         )
         if self.tty.current_tty_status != self.tty.success:
-            self.print_on_tty(self.tty.error_colour,"[KO]\n")
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
             return False
-        self.print_on_tty(self.tty.success_colour,"[OK]\n")
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
         self.tty.current_tty_status = self.tty.success
         return True
 
@@ -399,6 +399,6 @@ class InstallKubectlLinux:
         """ Test the class install kubectl linux """
         self.print_on_tty(
             self.tty.info_colour,
-            "This is a test message from the install kubectl linux class"
+            "This is a test message from the install kubectl linux class\n"
         )
         return 0

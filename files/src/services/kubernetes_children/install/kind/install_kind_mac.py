@@ -14,6 +14,7 @@ class InstallKindMac:
 
     def __init__(self, tty: TTY, success: int = 0, err: int = 84, error: int = 84) -> None:
         self.tty = tty
+        self.print_on_tty = self.tty.print_on_tty
         self.success = success
         self.err = err
         self.error = error
@@ -24,4 +25,7 @@ class InstallKindMac:
 
     def test_class_install_kind_mac(self) -> None:
         """ Test the class install kind MacOS """
-        print("This is a test message from the install kind MacOS class")
+        self.print_on_tty(
+            self.tty.info_colour,
+            "This is a test message from the install kind MacOS class\n"
+        )

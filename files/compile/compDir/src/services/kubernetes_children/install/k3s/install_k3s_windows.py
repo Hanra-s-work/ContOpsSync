@@ -131,5 +131,5 @@ class InstallK3sWindows:
         """ Test the class install k3s windows """
         self.print_on_tty(
             self.tty.info_colour,
-            "This is a test message from the install k3s Windows class"
+            "This is a test message from the install k3s Windows class\n"
         )

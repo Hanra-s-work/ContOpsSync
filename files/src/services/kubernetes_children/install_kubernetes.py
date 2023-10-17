@@ -507,10 +507,6 @@ Output:
                 "install_k8s": self.install_k8s,
                 "desc": "Install k8s on the host system"
             },
-            # {
-            #     "install_kubeadm": self.install_kubeadm,
-            #     "desc": "Install kubeadm on the host system"
-            # },
             {
                 "install_options": self.install_options,
                 "desc": "View the installation options for the host system"

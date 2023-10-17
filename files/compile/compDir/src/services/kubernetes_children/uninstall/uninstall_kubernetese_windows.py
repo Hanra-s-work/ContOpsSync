@@ -3,7 +3,7 @@ File in charge of downloading kubernetes for windows
 """
 
 import os
-import disp
+from display_tty import IDISP
 from tty_ov import TTY
 # from clint.textui import progress
 
@@ -28,7 +28,7 @@ class UninstallKubernetesWindows:
             # "manual":False
         }
         # ---- The Disp option ----
-        self.disp = disp.IDISP
+        self.disp = IDISP
         self.disp.toml_content["PRETTIFY_OUTPUT"] = False
         self.disp.toml_content["PRETTY_OUTPUT_IN_BLOCS"] = False
         # ---- links for manual installation ----

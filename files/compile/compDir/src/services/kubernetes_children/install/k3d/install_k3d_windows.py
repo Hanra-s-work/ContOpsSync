@@ -40,9 +40,9 @@ class InstallK3dWindows:
             ]
         )
         if self.tty.current_tty_status != self.tty.success:
-            self.print_on_tty(self.tty.error_colour,"[KO]\n")
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
             return False
-        self.print_on_tty(self.tty.success_colour,"[OK]\n")
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
         self.tty.current_tty_status = self.tty.success
         return True
 
@@ -76,9 +76,9 @@ class InstallK3dWindows:
             "Installation status (Chocolatey):"
         )
         if status != self.tty.success:
-            self.print_on_tty(self.tty.error_colour,"[KO]\n")
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
             return self.err
-        self.print_on_tty(self.tty.success_colour,"[OK]\n")
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
         return self.success
 
     def _install_k3d_via_chocolatey(self) -> int:
@@ -100,9 +100,9 @@ class InstallK3dWindows:
             "Installation status (k3d):"
         )
         if status != self.tty.success:
-            self.print_on_tty(self.tty.error_colour,"[KO]\n")
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
             return self.err
-        self.print_on_tty(self.tty.success_colour,"[OK]\n")
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
         return self.success
 
     def main(self) -> int:
@@ -131,5 +131,5 @@ class InstallK3dWindows:
         """ Test the class install k3d windows """
         self.print_on_tty(
             self.tty.info_colour,
-            "This is a test message from the install k3d Windows class"
+            "This is a test message from the install k3d Windows class\n"
         )

@@ -257,5 +257,5 @@ class UninstallK3dLinux:
         """ Test the class uninstall k3d linux """
         self.print_on_tty(
             self.tty.info_colour,
-            "This is a test message from the uninstall k3d Linux class"
+            "This is a test message from the uninstall k3d Linux class\n"
         )

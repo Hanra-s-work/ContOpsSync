@@ -53,5 +53,5 @@ class InstallK3dMac:
         """ Test the class install k3d MacOS """
         self.print_on_tty(
             self.tty.info_colour,
-            "This is a test message from the install k3d MacOS class"
+            "This is a test message from the install k3d MacOS class\n"
         )

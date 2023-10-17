@@ -53,6 +53,6 @@ class InstallKubectlMac:
         """ Test the class install kubectl mac """
         self.print_on_tty(
             self.tty.info_colour,
-            "This is a test message from the install kubectl mac class"
+            "This is a test message from the install kubectl mac class\n"
         )
         return self.success

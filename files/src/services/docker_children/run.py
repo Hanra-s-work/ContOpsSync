@@ -237,7 +237,7 @@ Output:
             return self.success
         self.print_on_tty(
             self.tty.info_colour,
-            "This is a test message from the Build Image class from Docker."
+            "This is a test message from the Build Image class from Docker.\n"
         )
 
     def save_commands(self) -> list[dict]:

@@ -826,5 +826,5 @@ class InstallK3dRaspberryPi:
         """ Test the class install k3d raspberry pi """
         self.print_on_tty(
             self.tty.info_colour,
-            "This is a test message from the install k3d raspberry pi class"
+            "This is a test message from the install k3d raspberry pi class\n"
         )

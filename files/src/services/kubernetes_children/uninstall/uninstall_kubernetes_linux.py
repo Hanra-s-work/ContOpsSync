@@ -141,7 +141,7 @@ class UninstallKubernetesLinux:
         """ Test the class install kubernetes linux """
         self.print_on_tty(
             self.tty.info_colour,
-            "This is a test message from the install kubernetes linux class"
+            "This is a test message from the install kubernetes linux class\n"
         )
         self.kind.test_kind_uninstallation_class()
         self.kubectl.test_kubectl_uninstallation_class()

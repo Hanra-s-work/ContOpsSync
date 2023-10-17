@@ -257,5 +257,5 @@ class UninstallK3dMac:
         """ Test the class uninstall k3d mac """
         self.print_on_tty(
             self.tty.info_colour,
-            "This is a test message from the uninstall k3d mac class"
+            "This is a test message from the uninstall k3d mac class\n"
         )

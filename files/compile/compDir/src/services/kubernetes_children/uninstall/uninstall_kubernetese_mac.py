@@ -3,7 +3,7 @@ File in charge of containing the code that will install kubernetes on a mac.
 """
 
 from tty_ov import TTY
-import disp
+from display_tty import IDISP
 
 
 class UninstallKubernetesMac:
@@ -26,7 +26,7 @@ class UninstallKubernetesMac:
             # "manual":False
         }
         # ---- The Disp option ----
-        self.disp = disp.IDISP
+        self.disp = IDISP
         self.disp.toml_content["PRETTIFY_OUTPUT"] = False
         self.disp.toml_content["PRETTY_OUTPUT_IN_BLOCS"] = False
         # ---- links for manual installation ----

@@ -3,7 +3,7 @@ File in charge of containing the class that will install kubernetes for linux di
 """
 
 from tty_ov import TTY
-import disp
+from display_tty import IDISP
 
 
 class UninstallKubernetesLinux:
@@ -26,7 +26,7 @@ class UninstallKubernetesLinux:
             # "manual":False
         }
         # ---- The Disp option ----
-        self.disp = disp.IDISP
+        self.disp = IDISP
         self.disp.toml_content["PRETTIFY_OUTPUT"] = False
         self.disp.toml_content["PRETTY_OUTPUT_IN_BLOCS"] = False
         # ---- links for manual installation ----
@@ -47,5 +47,5 @@ class UninstallKubernetesLinux:
 
     def test_class_install_kubernetes_linux(self) -> int:
         """ Test the class install kubernetes linux """
-        print("This is a test message from the install kubernetes linux class")
+        print("This is a test message from the install kubernetes linux class\n")
         return 0

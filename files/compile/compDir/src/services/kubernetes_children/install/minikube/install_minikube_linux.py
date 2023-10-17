@@ -27,5 +27,5 @@ class InstallMinikubeLinux:
         """ Test the class install minikube linux """
         self.print_on_tty(
             self.tty.info_colour,
-            "This is a test message from the install minikube Linux class"
+            "This is a test message from the install minikube Linux class\n"
         )

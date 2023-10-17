@@ -27,5 +27,5 @@ class InstallK3sMac:
         """ Test the class install k3s MacOS """
         self.print_on_tty(
             self.tty.info_colour,
-            "This is a test message from the install k3s MacOS class"
+            "This is a test message from the install k3s MacOS class\n"
         )

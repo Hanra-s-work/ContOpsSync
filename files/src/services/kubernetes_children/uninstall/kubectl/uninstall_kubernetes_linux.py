@@ -399,6 +399,6 @@ class UninstallKubectlLinux:
         """ Test the class install kubectl linux """
         self.print_on_tty(
             self.tty.info_colour,
-            "This is a test message from the install kubectl linux class"
+            "This is a test message from the install kubectl linux class\n"
         )
         return 0

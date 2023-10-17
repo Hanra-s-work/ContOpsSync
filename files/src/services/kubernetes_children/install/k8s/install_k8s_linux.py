@@ -227,5 +227,5 @@ class InstallK8sLinux:
         """ Test the class install k8s linux """
         self.print_on_tty(
             self.tty.info_colour,
-            "This is a test message from the install k8s Linux class"
+            "This is a test message from the install k8s Linux class\n"
         )

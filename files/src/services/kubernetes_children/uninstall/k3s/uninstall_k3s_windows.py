@@ -56,5 +56,5 @@ class UninstallK3sWindows:
         """ Test the class uninstall k3s windows """
         self.print_on_tty(
             self.tty.info_colour,
-            "This is a test message from the uninstall k3s Windows class"
+            "This is a test message from the uninstall k3s Windows class\n"
         )

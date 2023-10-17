@@ -105,9 +105,9 @@ class InstallDockerLinux:
         )
 
         if self.tty.current_tty_status != self.tty.success:
-            self.print_on_tty(self.tty.error_colour,"[KO]\n")
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
             return False
-        self.print_on_tty(self.tty.success_colour,"[OK]\n")
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
         self.tty.current_tty_status = self.tty.success
         return True
 
@@ -131,9 +131,9 @@ class InstallDockerLinux:
             "Download status:"
         )
         if status != self.success:
-            self.print_on_tty(self.tty.error_colour,"[KO]\n")
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
             return self.err
-        self.print_on_tty(self.tty.success_colour,"[OK]\n")
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
         return self.tty.current_tty_status
 
     def _install_docker_via_script(self) -> int:
@@ -204,9 +204,9 @@ class InstallDockerLinux:
             "Installation status (docker):"
         )
         if status != self.tty.success:
-            self.print_on_tty(self.tty.error_colour,"[KO]\n")
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
             return self.err
-        self.print_on_tty(self.tty.success_colour,"[OK]\n")
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
         return self.tty.current_tty_status
 
     def _test_docker_functionalities(self) -> int:
@@ -238,9 +238,9 @@ class InstallDockerLinux:
             "Functionality status (docker):"
         )
         if status != self.tty.success:
-            self.print_on_tty(self.tty.error_colour,"[KO]\n")
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
             return self.err
-        self.print_on_tty(self.tty.success_colour,"[OK]\n")
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
         return self.tty.current_tty_status
 
     def main(self) -> int:
@@ -273,5 +273,5 @@ class InstallDockerLinux:
         """ Test the class install docker Linux """
         self.print_on_tty(
             self.tty.info_colour,
-            "This is a test message from the install docker Linux class"
+            "This is a test message from the install docker Linux class\n"
         )

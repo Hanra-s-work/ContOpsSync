@@ -134,7 +134,7 @@ class InstallKubernetesMac:
         """ Test the class install kubernetes mac """
         self.print_on_tty(
             self.tty.info_colour,
-            "This is a test message from the install kubernetes mac class"
+            "This is a test message from the install kubernetes mac class\n"
         )
         self.kind.test_kind_installation_class()
         self.kubectl.test_kubectl_installation_class()

@@ -189,5 +189,5 @@ class UninstallMicroK8sLinux:
         """ Test the class install microk8s linux """
         self.print_on_tty(
             self.tty.info_colour,
-            "This is a test message from the install microk8s Linux class"
+            "This is a test message from the install microk8s Linux class\n"
         )

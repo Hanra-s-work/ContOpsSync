@@ -481,5 +481,5 @@ class InstallK3sLinux:
         """ Test the class install k3s linux """
         self.print_on_tty(
             self.tty.info_colour,
-            "This is a test message from the install k3s Linux class"
+            "This is a test message from the install k3s Linux class\n"
         )
