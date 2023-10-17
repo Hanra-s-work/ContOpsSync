@@ -1,5 +1,5 @@
 """
-File in charge of downloading kubernetes for windows
+File in charge of removing kubernetes for windows
 """
 
 import os
@@ -9,7 +9,7 @@ from tqdm import tqdm
 from tty_ov import TTY
 
 
-class InstallKubectlWindows:
+class UninstallKubectlWindows:
     """ The script in charge of installing the kubernetes interpreter for windows """
 
     def __init__(self, tty: TTY, success: int = 0, err: int = 84, error: int = 84) -> None:

@@ -6,16 +6,17 @@ import requests
 import display_tty
 from tqdm import tqdm
 from tty_ov import TTY
-from .k3d import InstallK3d
-from .k3s import InstallK3s
-from .kind import InstallKind
-from .kubectl import InstallKubectl
-from .microk8s import InstallMicroK8s
-from .minikube import InstallMinikube
+from .k3d import UninstallK3d
+from .k3s import UninstallK3s
+from .k8s import UninstallK8s
+from .kind import UninstallKind
+from .kubectl import UninstallKubectl
+from .microk8s import UninstallMicroK8s
+from .minikube import UninstallMinikube
 
 
 class UninstallKubernetesWindows:
-    """ The script in charge of installing the kubernetes interpreter for windows """
+    """ The script in charge of uninstalling the kubernetes interpreter for windows """
 
     def __init__(self, tty: TTY, success: int = 0, err: int = 84, error: int = 84) -> None:
         # ---- System Codes ----
@@ -24,12 +25,13 @@ class UninstallKubernetesWindows:
         self.error = error
         # ---- Parent classes ----
         self.tty = tty
-        self.k3d = InstallK3d(tty, success, err, error)
-        self.k3s = InstallK3s(tty, success, err, error)
-        self.microk8s = InstallMicroK8s(tty, success, err, error)
-        self.kind = InstallKind(tty, success, err, error)
-        self.kubectl = InstallKubectl(tty, success, err, error)
-        self.minikube = InstallMinikube(tty, success, err, error)
+        self.k3d = UninstallK3d(tty, success, err, error)
+        self.k3s = UninstallK3s(tty, success, err, error)
+        self.k8s = UninstallK8s(tty, success, err, error)
+        self.microk8s = UninstallMicroK8s(tty, success, err, error)
+        self.kind = UninstallKind(tty, success, err, error)
+        self.kubectl = UninstallKubectl(tty, success, err, error)
+        self.minikube = UninstallMinikube(tty, success, err, error)
         # ---- TTY rebinds ----
         self.print_on_tty = self.tty.print_on_tty
         # ---- Download options ----
@@ -95,40 +97,38 @@ class UninstallKubernetesWindows:
 
     def install_kubectl(self) -> int:
         """ The main function in charge of installing kubernetes on windows """
-        return self.kubectl.install_windows.main()
+        return self.kubectl.uninstall_windows.main()
 
     def install_minikube(self) -> int:
         """ Install the minikube software """
+        return self.minikube.uninstall_windows.main()
 
     def install_kind(self) -> int:
         """ Install the kind software """
+        return self.kind.uninstall_windows.main()
 
     def install_k3s(self) -> int:
         """ Install the k3s software (needs to be written)"""
+        return self.k3s.uninstall_windows.main()
 
     def install_k3d(self) -> int:
         """ Install the k3s software """
+        return self.k3d.uninstall_windows.main()
 
     def install_k8s(self) -> int:
         """ Install the k8s software """
+        return self.k8s.uninstall_windows.main()
 
     def install_microk8s(self) -> int:
         """ Install the microk8s software """
+        return self.microk8s.uninstall_windows.main()
 
     def install_kubeadm(self) -> int:
         """ Install the kubeadm software """
-
-    def is_k3s_installed(self) -> bool:
-        """ Check if k3s is installed """
-        return self.k3s.install_windows.is_k3s_installed()
-
-    def is_k3d_installed(self) -> bool:
-        """ Check if k3d is installed """
-        return self.k3d.install_windows.is_k3d_installed()
-
-    def get_master_token(self) -> int:
-        """ Get the master token """
-        return self.k3s.install_windows.get_k3s_token()
+        return self.print_on_tty(
+            self.tty.info_colour,
+            "The installation script is yet to come for windows.\n"
+        )
 
     def main(self) -> int:
         """ The main function of the class """
@@ -140,7 +140,7 @@ class UninstallKubernetesWindows:
             self.tty.info_colour,
             "This is a test message from the install kubernetes windows class\n"
         )
-        self.kind.test_kind_installation_class()
-        self.kubectl.test_kubectl_installation_class()
-        self.minikube.test_minikube_installation_class()
+        self.kind.test_kind_uninstallation_class()
+        self.kubectl.test_kubectl_uninstallation_class()
+        self.minikube.test_minikube_uninstallation_class()
         return self.tty.success

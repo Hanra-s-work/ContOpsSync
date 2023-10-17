@@ -8,7 +8,7 @@ from tqdm import tqdm
 from tty_ov import TTY
 
 
-class InstallK8sLinux:
+class UninstallK8sLinux:
     """ The class in charge of installing k8s for linux """
 
     def __init__(self, tty: TTY, success: int = 0, err: int = 84, error: int = 84) -> None:
@@ -223,7 +223,7 @@ class InstallK8sLinux:
                 return status
         return self._manual_installation()
 
-    def test_class_install_k8s_linux(self) -> None:
+    def test_class_uninstall_k8s_linux(self) -> None:
         """ Test the class install k8s linux """
         self.print_on_tty(
             self.tty.info_colour,

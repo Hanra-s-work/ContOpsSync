@@ -1,16 +1,12 @@
 """
-File in charge of containing the class that will install kind for linux distributions.
+File in charge of containing the class that will uninstall k3d for macos distributions.
 """
 
-import os
-import display_tty
-import requests
-from tqdm import tqdm
 from tty_ov import TTY
 
 
-class InstallMinikubeLinux:
-    """ The class in charge of installing kind for linux """
+class UninstallMicroK8sMac:
+    """ The class in charge of uninstalling k3d for linux """
 
     def __init__(self, tty: TTY, success: int = 0, err: int = 84, error: int = 84) -> None:
         self.tty = tty
@@ -23,9 +19,9 @@ class InstallMinikubeLinux:
         """ The main function of the class """
         return self.success
 
-    def test_class_install_minikube_linux(self) -> None:
-        """ Test the class install minikube linux """
+    def test_class_install_microk8s_mac(self) -> None:
+        """ Test the class install k3d MacOS """
         self.print_on_tty(
             self.tty.info_colour,
-            "This is a test message from the install minikube Linux class"
+            "This is a test message from the install k3d MacOS class"
         )

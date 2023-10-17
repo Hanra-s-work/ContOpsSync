@@ -2,14 +2,11 @@
 File in charge of containing the class that will install k8s for Windows distributions.
 """
 
-import os
 import display_tty
-import requests
-from tqdm import tqdm
 from tty_ov import TTY
 
 
-class InstallK8sWindows:
+class UninstallK8sWindows:
     """ The class in charge of installing k8s for Windows """
 
     def __init__(self, tty: TTY, success: int = 0, err: int = 84, error: int = 84) -> None:
@@ -37,7 +34,7 @@ class InstallK8sWindows:
         )
         return self.tty.success
 
-    def test_class_install_k8s_windows(self) -> None:
+    def test_class_uninstall_k8s_windows(self) -> None:
         """ Test the class install k8s windows """
         self.print_on_tty(
             self.tty.info_colour,

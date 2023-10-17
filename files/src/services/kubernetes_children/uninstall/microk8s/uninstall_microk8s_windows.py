@@ -1,15 +1,12 @@
 """
-File in charge of containing the class that will install k3d for Windows distributions.
+File in charge of containing the class that will uninstall k3d for Windows distributions.
 """
 
-import os
 import display_tty
-import requests
-from tqdm import tqdm
 from tty_ov import TTY
 
 
-class InstallMicroK8sWindows:
+class UninstallMicroK8sWindows:
     """ The class in charge of installing k3d for Windows """
 
     def __init__(self, tty: TTY, success: int = 0, err: int = 84, error: int = 84) -> None:
@@ -73,7 +70,7 @@ class InstallMicroK8sWindows:
         )
         self.print_on_tty(
             self.tty.info_colour,
-            "Installation status (Chocolatey):"
+            "Uninstallation status (Chocolatey):"
         )
         if status != self.tty.success:
             self.print_on_tty(self.tty.error_colour, "[KO]\n")
@@ -82,10 +79,10 @@ class InstallMicroK8sWindows:
         return self.success
 
     def _install_k3d_via_chocolatey(self) -> int:
-        """ Install the k3d package on windows using chocolatey """
+        """ Uninstall the k3d package on windows using chocolatey """
         self.print_on_tty(
             self.tty.info_colour,
-            "Installing k3d via chocolatey:"
+            "Uninstalling k3d via chocolatey:"
         )
         status = self.super_run(
             [
@@ -97,7 +94,7 @@ class InstallMicroK8sWindows:
         )
         self.print_on_tty(
             self.tty.info_colour,
-            "Installation status (k3d):"
+            "Uninstallation status (k3d):"
         )
         if status != self.tty.success:
             self.print_on_tty(self.tty.error_colour, "[KO]\n")
@@ -123,7 +120,7 @@ class InstallMicroK8sWindows:
             self.tty.success_colour,
             ""
         )
-        self.disp.sub_sub_title("Installing k3d")
+        self.disp.sub_sub_title("Uninstalling k3d")
         status = self._install_k3d_via_chocolatey()
         return status
 

@@ -6,8 +6,11 @@ from .uninstall_kubernetes_windows import UninstallKubernetesWindows
 from .uninstall_kubernetes_linux import UninstallKubernetesLinux
 from .uninstall_kubernetes_mac import UninstallKubernetesMac
 
-__all__ = ["UnInstallKubernetesWindows",
-           "UnInstallKubernetesLinux", "UnInstallKubernetesMac"]
+__all__ = [
+    "UninstallKubernetesWindows",
+    "UninstallKubernetesLinux",
+    "UninstallKubernetesMac"
+]
 
 
 class Uninstall:

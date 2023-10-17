@@ -4,16 +4,16 @@ File in charge of containing the code that will install kubernetes on a mac.
 
 from tty_ov import TTY
 import display_tty
-from .k3d import InstallK3d
-from .k3s import InstallK3s
-from .kind import InstallKind
-from .kubectl import InstallKubectl
-from .microk8s import InstallMicroK8s
-from .minikube import InstallMinikube
+from .k3d import UninstallK3d
+from .k3s import UninstallK3s
+from .kind import UninstallKind
+from .kubectl import UninstallKubectl
+from .microk8s import UninstallMicroK8s
+from .minikube import UninstallMinikube
 
 
 class UninstallKubernetesMac:
-    """ Install the kubernetes on Mac """
+    """ Uninstall the kubernetes on Mac """
 
     def __init__(self, tty: TTY, success: int = 0, err: int = 84, error: int = 84) -> None:
         # ---- System Codes ----
@@ -22,12 +22,12 @@ class UninstallKubernetesMac:
         self.error = error
         # ---- Parent classes ----
         self.tty = tty
-        self.k3d = InstallK3d(tty, success, err, error)
-        self.k3s = InstallK3s(tty, success, err, error)
-        self.microk8s = InstallMicroK8s(tty, success, err, error)
-        self.kind = InstallKind(tty, success, err, error)
-        self.kubectl = InstallKubectl(tty, success, err, error)
-        self.minikube = InstallMinikube(tty, success, err, error)
+        self.k3d = UninstallK3d(tty, success, err, error)
+        self.k3s = UninstallK3s(tty, success, err, error)
+        self.microk8s = UninstallMicroK8s(tty, success, err, error)
+        self.kind = UninstallKind(tty, success, err, error)
+        self.kubectl = UninstallKubectl(tty, success, err, error)
+        self.minikube = UninstallMinikube(tty, success, err, error)
         # ---- TTY rebinds ----
         self.print_on_tty = self.tty.print_on_tty
         # ---- Download options ----
@@ -55,7 +55,7 @@ class UninstallKubernetesMac:
 
     def install_kubectl(self) -> None:
         """ install the kubectl software """
-        return self.kubectl.install_mac.install_kubectl()
+        return self.kubectl.uninstall_mac.uninstall_kubectl()
 
     def install_minikube(self) -> int:
         """ Install the minikube software """
@@ -113,18 +113,6 @@ class UninstallKubernetesMac:
         )
         return self.success
 
-    def is_k3s_installed(self) -> bool:
-        """ Check if k3s is installed """
-        return self.k3s.install_mac.is_k3s_installed()
-
-    def is_k3d_installed(self) -> bool:
-        """ Check if k3d is installed """
-        return self.k3d.install_mac.is_k3d_installed()
-
-    def get_master_token(self) -> int:
-        """ Get the master token """
-        return self.k3s.install_mac.get_k3s_token()
-
     def main(self) -> None:
         """ Install kubernetes on Mac """
         print("Install kubernetes on Mac - Not created yet")
@@ -136,7 +124,7 @@ class UninstallKubernetesMac:
             self.tty.info_colour,
             "This is a test message from the install kubernetes mac class"
         )
-        self.kind.test_kind_installation_class()
-        self.kubectl.test_kubectl_installation_class()
-        self.minikube.test_minikube_installation_class()
+        self.kind.test_kind_uninstallation_class()
+        self.kubectl.test_kubectl_uninstallation_class()
+        self.minikube.test_minikube_uninstallation_class()
         return self.success

@@ -2,14 +2,10 @@
 File in charge of containing the class that will install kind for Windows distributions.
 """
 
-import os
-import display_tty
-import requests
-from tqdm import tqdm
 from tty_ov import TTY
 
 
-class InstallKindWindows:
+class UninstallKindWindows:
     """ The class in charge of installing kind for Windows """
 
     def __init__(self, tty: TTY, success: int = 0, err: int = 84, error: int = 84) -> None:
@@ -22,6 +18,6 @@ class InstallKindWindows:
         """ The main function of the class """
         return self.success
 
-    def test_class_install_kind_windows(self) -> None:
-        """ Test the class install kind windows """
-        print("This is a test message from the install kind Windows class")
+    def test_class_uninstall_kind_windows(self) -> None:
+        """ Test the class uninstall kind windows """
+        print("This is a test message from the uninstall kind Windows class")

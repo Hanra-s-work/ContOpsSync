@@ -1,5 +1,5 @@
 """
-File in charge of containing the class that will install microk8s for linux distributions.
+File in charge of containing the class that will uninstall microk8s for linux distributions.
 """
 
 import display_tty
@@ -8,8 +8,8 @@ from tqdm import tqdm
 from tty_ov import TTY
 
 
-class InstallMicroK8sLinux:
-    """ The class in charge of installing k3d for linux """
+class UninstallMicroK8sLinux:
+    """ The class in charge of uninstalling k3d for linux """
 
     def __init__(self, tty: TTY, success: int = 0, err: int = 84, error: int = 84) -> None:
         # ---- tty class ----
@@ -132,8 +132,8 @@ class InstallMicroK8sLinux:
         return True
 
     def _manual_installation(self) -> int:
-        """ Install k3d manually """
-        self.disp.sub_sub_title("Installing k3d")
+        """ Uninstall k3d manually """
+        self.disp.sub_sub_title("Ununinstalling k3d")
         status = self._download_file(self.k3d_link, self.k3d_file_name)
         if status != self.success:
             self.print_on_tty(
@@ -144,7 +144,7 @@ class InstallMicroK8sLinux:
         status = self.run(["chmod", "+x", self.k3d_file_name])
         self.print_on_tty(
             self.tty.info_colour,
-            "Installation status (k3d):"
+            "Uninstallation status (k3d):"
         )
         if status != self.success:
             self.print_on_tty(self.tty.error_colour, "[KO]\n")
@@ -157,9 +157,9 @@ class InstallMicroK8sLinux:
         return self.run(["bash", "-c", self.k3d_file_name])
 
     def _install_for_aur(self) -> int:
-        """ Install k3d for Aur systems """
+        """ Uninstall k3d for Aur systems """
         self.disp.sub_sub_title(
-            "Installing k3d for Aur (Arch Linux User Repository) systems"
+            "Ununinstalling k3d for Aur (Arch Linux User Repository) systems"
         )
         status = self.run(
             [
@@ -170,13 +170,13 @@ class InstallMicroK8sLinux:
         )
         self.print_on_tty(
             self.tty.info_colour,
-            "Installation status (k3d):"
+            "Uninstallation status (k3d):"
         )
         if status != self.tty.success:
             self.print_on_tty(self.tty.error_colour, "[KO]\n")
             self.print_on_tty(
                 self.tty.error_colour,
-                "Error installing k3d for Aur systems\n"
+                "Error uninstalling k3d for Aur systems\n"
             )
             self.print_on_tty(
                 self.tty.info_colour,
@@ -186,13 +186,13 @@ class InstallMicroK8sLinux:
             return self.tty.current_tty_status
         self.print_on_tty(self.tty.success_colour, "[OK]\n")
         self.print_on_tty(self.tty.success_colour, "")
-        self.disp.success_message("Installed k3d using yay ;-)")
+        self.disp.success_message("Uninstalled k3d using yay ;-)")
         self.tty.current_tty_status = self.tty.success
         return status
 
     def _install_for_brew(self) -> int:
-        """ Install Kubectl using brew """
-        self.disp.sub_sub_title("Installing Kubectl via Brew")
+        """ Uninstall Kubectl using brew """
+        self.disp.sub_sub_title("Ununinstalling Kubectl via Brew")
         status = self.run(
             [
                 "brew",
@@ -203,7 +203,7 @@ class InstallMicroK8sLinux:
         if status != self.tty.success:
             self.print_on_tty(
                 self.tty.error_colour,
-                "Error installing Kubernetes for Linux, reverting to manual install\n"
+                "Error uninstalling Kubernetes for Linux, reverting to manual install\n"
             )
             self.tty.current_tty_status = self.tty.err
             return self.tty.current_tty_status
@@ -216,7 +216,7 @@ class InstallMicroK8sLinux:
         )
         self.print_on_tty(
             self.tty.info_colour,
-            "Installation status (k3d):"
+            "Uninstallation status (k3d):"
         )
         if status != self.tty.success:
             self.print_on_tty(
@@ -228,12 +228,12 @@ class InstallMicroK8sLinux:
 
         self.print_on_tty(self.tty.success_colour, "[OK]\n")
         self.print_on_tty(self.tty.success_colour, "")
-        self.disp.success_message("Installed k3s using brew ;-)")
+        self.disp.success_message("Uninstalled k3s using brew ;-)")
         self.tty.current_tty_status = self.tty.success
         return self.tty.current_tty_status
 
     def _install_for_snap(self) -> int:
-        """ Install micro Microk8s"""
+        """ Uninstall micro Microk8s"""
 
     def main(self) -> int:
         """ The main function of the class """

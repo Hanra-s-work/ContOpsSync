@@ -27,6 +27,19 @@ class Kubernetes:
 
     def kubernetes_class_test(self, args: list) -> int:
         """ This is a test to check that the classe's function has correctly imported """
+        function_name = "kubernetes_class_test"
+        if self.tty.help_function_child_name == function_name:
+            help_description = f"""
+Function in charge of testing the classes attached to the kubernetes class
+Usage Example:
+Input:
+    {function_name}
+Output:
+    The class displaying their test message
+"""
+            self.tty.function_help(function_name, help_description)
+            self.tty.current_tty_status = self.tty.success
+            return self.success
         self.tty.print_on_tty(
             self.tty.success_colour,
             "This is a test message.\n"

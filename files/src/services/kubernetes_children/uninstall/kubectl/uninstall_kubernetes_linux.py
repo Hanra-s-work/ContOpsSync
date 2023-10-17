@@ -1,5 +1,5 @@
 """
-File in charge of containing the class that will install kubectl for linux distributions.
+File in charge of containing the class that will uninstall kubectl for linux distributions.
 """
 
 import os
@@ -10,8 +10,8 @@ from tqdm import tqdm
 from tty_ov import TTY
 
 
-class InstallKubectlLinux:
-    """ The class in charge of installing kubernetes for linux """
+class UninstallKubectlLinux:
+    """ The class in charge of uninstalling kubernetes for linux """
 
     def __init__(self, tty: TTY, success: int = 0, err: int = 84, error: int = 84) -> None:
         # ---- System Codes ----
@@ -154,12 +154,12 @@ class InstallKubectlLinux:
         return self.tty.current_tty_status
 
     def _install_kubectl(self) -> int:
-        """ Install the kubectl file in the system """
+        """ Uninstall the kubectl file in the system """
         self.print_on_tty(
             self.tty.info_colour,
             ""
         )
-        self.disp.sub_sub_title("Installing Kubernetes")
+        self.disp.sub_sub_title("Ununinstalling Kubernetes")
         status = self.run(
             [
                 "sudo",
@@ -174,7 +174,7 @@ class InstallKubectlLinux:
         if status != self.tty.success:
             self.print_on_tty(
                 self.tty.error_colour,
-                "Error installing Kubernetes for Linux\n"
+                "Error uninstalling Kubernetes for Linux\n"
             )
             self.tty.current_tty_status = self.tty.err
             return self.tty.current_tty_status
@@ -258,8 +258,8 @@ class InstallKubectlLinux:
         return True
 
     def install_for_snap(self) -> int:
-        """ Install Kubectl using snap """
-        self.disp.sub_sub_title("Installing Kubectl via Snap")
+        """ Uninstall Kubectl using snap """
+        self.disp.sub_sub_title("Ununinstalling Kubectl via Snap")
         status = self.run(
             [
                 "snap",
@@ -271,7 +271,7 @@ class InstallKubectlLinux:
         if status != self.tty.success:
             self.print_on_tty(
                 self.tty.error_colour,
-                "Error installing Kubernetes for Linux, reverting to manual install\n"
+                "Error uninstalling Kubernetes for Linux, reverting to manual install\n"
             )
             self.tty.current_tty_status = self.tty.err
             return self.tty.current_tty_status
@@ -293,13 +293,13 @@ class InstallKubectlLinux:
             self.tty.success_colour,
             ""
         )
-        self.disp.success_message("Installed Kubectl using snap ;-)")
+        self.disp.success_message("Uninstalled Kubectl using snap ;-)")
         self.tty.current_tty_status = self.tty.success
         return self.tty.current_tty_status
 
     def install_for_brew(self) -> int:
-        """ Install Kubectl using brew """
-        self.disp.sub_sub_title("Installing Kubectl via Brew")
+        """ Uninstall Kubectl using brew """
+        self.disp.sub_sub_title("Ununinstalling Kubectl via Brew")
         status = self.run(
             [
                 "brew",
@@ -310,7 +310,7 @@ class InstallKubectlLinux:
         if status != self.tty.success:
             self.print_on_tty(
                 self.tty.error_colour,
-                "Error installing Kubectl for Linux, reverting to manual install\n"
+                "Error uninstalling Kubectl for Linux, reverting to manual install\n"
             )
             self.tty.current_tty_status = self.tty.err
             return self.tty.current_tty_status
@@ -338,12 +338,12 @@ class InstallKubectlLinux:
             self.tty.success_colour,
             ""
         )
-        self.disp.success_message("Installed Kubectl using brew ;-)")
+        self.disp.success_message("Uninstalled Kubectl using brew ;-)")
         self.tty.current_tty_status = self.tty.success
         return self.tty.current_tty_status
 
     def install_kubectl(self) -> int:
-        """ Install kubectl for linux """
+        """ Uninstall kubectl for linux """
         self.print_on_tty(self.tty.help_title_colour, "")
         self.disp.title("Downloading Kubernetes for Linux")
         if self.has_snap() is True:
@@ -372,7 +372,7 @@ class InstallKubectlLinux:
         if status != self.success:
             self.print_on_tty(
                 self.tty.error_colour,
-                "Error installing Kubernetes for Linux\n"
+                "Error uninstalling Kubernetes for Linux\n"
             )
             self.tty.current_tty_status = self.tty.error
             return self.tty.current_tty_status
@@ -392,7 +392,7 @@ class InstallKubectlLinux:
         return self.tty.current_tty_status
 
     def main(self) -> int:
-        """ Install kubernetes on Linux """
+        """ Uninstall kubernetes on Linux """
         return self.install_kubectl()
 
     def test_class_install_kubectl_linux(self) -> int:

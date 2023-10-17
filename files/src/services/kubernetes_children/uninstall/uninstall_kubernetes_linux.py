@@ -6,17 +6,17 @@ import display_tty
 import requests
 from tqdm import tqdm
 from tty_ov import TTY
-from .k3d import InstallK3d
-from .k3s import InstallK3s
-from .k8s import InstallK8s
-from .kind import InstallKind
-from .kubectl import InstallKubectl
-from .microk8s import InstallMicroK8s
-from .minikube import InstallMinikube
+from .k3d import UninstallK3d
+from .k3s import UninstallK3s
+from .k8s import UninstallK8s
+from .kind import UninstallKind
+from .kubectl import UninstallKubectl
+from .microk8s import UninstallMicroK8s
+from .minikube import UninstallMinikube
 
 
 class UninstallKubernetesLinux:
-    """ The class in charge of installing kubernetes for linux """
+    """ The class in charge of uninstalling kubernetes for linux """
 
     def __init__(self, tty: TTY, success: int = 0, err: int = 84, error: int = 84) -> None:
         # ---- System Codes ----
@@ -25,13 +25,13 @@ class UninstallKubernetesLinux:
         self.error = error
         # ---- Parent classes ----
         self.tty = tty
-        self.k3d = InstallK3d(tty, success, err, error)
-        self.k3s = InstallK3s(tty, success, err, error)
-        self.k8s = InstallK8s(tty, success, err, error)
-        self.kind = InstallKind(tty, success, err, error)
-        self.kubectl = InstallKubectl(tty, success, err, error)
-        self.microk8s = InstallMicroK8s(tty, success, err, error)
-        self.minikube = InstallMinikube(tty, success, err, error)
+        self.k3d = UninstallK3d(tty, success, err, error)
+        self.k3s = UninstallK3s(tty, success, err, error)
+        self.k8s = UninstallK8s(tty, success, err, error)
+        self.kind = UninstallKind(tty, success, err, error)
+        self.kubectl = UninstallKubectl(tty, success, err, error)
+        self.microk8s = UninstallMicroK8s(tty, success, err, error)
+        self.minikube = UninstallMinikube(tty, success, err, error)
         # ---- TTY rebinds ----
         self.print_on_tty = self.tty.print_on_tty
         self.run = self.tty.run_command
@@ -93,35 +93,31 @@ class UninstallKubernetesLinux:
 
     def install_kubectl(self) -> int:
         """ Install kubectl for linux """
-        return self.kubectl.install_linux.main()
+        return self.kubectl.uninstall_linux.main()
 
     def install_minikube(self) -> int:
         """ Install the minikube software """
-        return self.minikube.install_linux.main()
+        return self.minikube.uninstall_linux.main()
 
     def install_kind(self) -> int:
         """ Install the kind software """
-        return self.kind.install_linux.main()
+        return self.kind.uninstall_linux.main()
 
-    def install_k3s(self, install_as_slave: bool = False, force_docker: bool = False, master_token: str = "", master_ip: str = "") -> int:
+    def install_k3s(self) -> int:
         """ Install the k3s software """
-        if self.k3s.install_raspberrypi.is_raspberrypi() is True:
-            return self.k3s.install_raspberrypi.main(install_as_slave, force_docker, master_token, master_ip)
-        return self.k3s.install_linux.main(install_as_slave, force_docker, master_token, master_ip)
+        return self.k3s.uninstall_linux.main()
 
-    def install_k3d(self, install_as_slave: bool = False, master_token: str = "", master_ip: str = "") -> int:
+    def install_k3d(self) -> int:
         """ Install the k3d software """
-        if self.k3s.install_raspberrypi.is_raspberrypi() is True:
-            return self.k3d.install_raspberrypi.main(install_as_slave, master_token, master_ip)
-        return self.k3d.install_linux.main()
+        return self.k3d.uninstall_linux.main()
 
     def install_k8s(self) -> int:
         """ Install the k8s software """
-        return self.k8s.install_linux.main()
+        return self.k8s.uninstall_linux.main()
 
     def install_microk8s(self) -> int:
         """ Install the microk8s software """
-        return self.microk8s.install_linux.main()
+        return self.microk8s.uninstall_linux.main()
 
     def install_kubeadm(self) -> int:
         """ Install the kubeadm software """
@@ -129,24 +125,6 @@ class UninstallKubernetesLinux:
             self.tty.info_colour,
             "This option is not yet available due to system requirements that would be long and difficult to verify for each linux distribution"
         )
-
-    def is_k3s_installed(self) -> bool:
-        """ Check if k3s is installed """
-        if self.k3s.install_raspberrypi.is_raspberrypi() is True:
-            return self.k3s.install_raspberrypi.is_k3s_installed()
-        return self.k3s.install_linux.is_k3s_installed()
-
-    def is_k3d_installed(self) -> bool:
-        """ Check if k3d is installed """
-        if self.k3d.install_raspberrypi.is_raspberrypi() is True:
-            return self.k3d.install_raspberrypi.is_k3d_installed()
-        return self.k3d.install_linux.is_k3d_installed()
-
-    def get_master_token(self) -> int:
-        """ Get the master token """
-        if self.k3s.install_raspberrypi.is_raspberrypi() is True:
-            return self.k3s.install_raspberrypi.get_k3s_token()
-        return self.k3s.install_linux.get_k3s_token()
 
     def main(self) -> int:
         """ The main function of the program """
@@ -165,7 +143,7 @@ class UninstallKubernetesLinux:
             self.tty.info_colour,
             "This is a test message from the install kubernetes linux class"
         )
-        self.kind.test_kind_installation_class()
-        self.kubectl.test_kubectl_installation_class()
-        self.minikube.test_minikube_installation_class()
+        self.kind.test_kind_uninstallation_class()
+        self.kubectl.test_kubectl_uninstallation_class()
+        self.minikube.test_minikube_uninstallation_class()
         return self.success
