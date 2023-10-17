@@ -23,5 +23,5 @@ class UninstallMinikubeWindows:
         """ Test the class uninstall minikube windows """
         self.print_on_tty(
             self.tty.info_colour,
-            "This is a test message from the uninstall minikube Windows class"
+            "This is a test message from the uninstall minikube Windows class\n"
         )

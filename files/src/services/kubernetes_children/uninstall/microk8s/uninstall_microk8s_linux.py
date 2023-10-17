@@ -22,51 +22,11 @@ class UninstallMicroK8sLinux:
         self.run = self.tty.run_command
         self.print_on_tty = self.tty.print_on_tty
         self.function_help = self.tty.function_help
+        self.super_run = self.tty.run_as_admin
         # ---- The Disp option ----
         self.disp = display_tty.IDISP
         self.disp.toml_content["PRETTIFY_OUTPUT"] = False
         self.disp.toml_content["PRETTY_OUTPUT_IN_BLOCS"] = False
-        # ---- k3d installation script ----
-        self.k3d_link = "https://raw.githubusercontent.com/rancher/k3d/main/install.sh"
-        self.k3d_file_name = "/tmp/k3d_install.sh"
-
-    def _download_file(self, url: str, filepath: str) -> int:
-        """ Download a file from a url """
-        self.print_on_tty(
-            self.tty.info_colour,
-            f"Downloading file from url: {url}\n"
-        )
-        try:
-            request = requests.get(
-                url,
-                allow_redirects=True,
-                timeout=10,
-                stream=True
-            )
-            with open(filepath, "wb") as file:
-                total_length = int(request.headers.get('content-length'))
-                chunk_size = 1024
-                for chunk in tqdm(
-                    request.iter_content(chunk_size=chunk_size),
-                    total=(total_length // chunk_size)+1,
-                    unit='KB'
-                ):
-                    if chunk:
-                        file.write(chunk)
-                        file.flush()
-            self.print_on_tty(
-                self.tty.success_colour,
-                f"File downloaded to: {filepath}\n"
-            )
-            self.tty.current_tty_status = self.tty.success
-            return self.tty.current_tty_status
-        except requests.RequestException as err:
-            self.print_on_tty(
-                self.tty.error_colour,
-                f"Error downloading file: {err}\n"
-            )
-            self.tty.current_tty_status = self.tty.error
-            return self.tty.current_tty_status
 
     def _has_yay(self) -> bool:
         """ Returns true if the user has yay [package manager] installed """
@@ -131,121 +91,99 @@ class UninstallMicroK8sLinux:
         self.tty.current_tty_status = self.tty.success
         return True
 
-    def _manual_installation(self) -> int:
-        """ Uninstall k3d manually """
-        self.disp.sub_sub_title("Ununinstalling k3d")
-        status = self._download_file(self.k3d_link, self.k3d_file_name)
-        if status != self.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "Error downloading the k3d install script\n"
-            )
-            return self.err
-        status = self.run(["chmod", "+x", self.k3d_file_name])
-        self.print_on_tty(
-            self.tty.info_colour,
-            "Uninstallation status (k3d):"
-        )
-        if status != self.success:
-            self.print_on_tty(self.tty.error_colour, "[KO]\n")
-            self.print_on_tty(
-                self.tty.error_colour,
-                "Error granting execution permissions to the k3d install script\n"
-            )
-            return self.err
-        self.print_on_tty(self.tty.success_colour, "[OK]\n")
-        return self.run(["bash", "-c", self.k3d_file_name])
-
-    def _install_for_aur(self) -> int:
-        """ Uninstall k3d for Aur systems """
-        self.disp.sub_sub_title(
-            "Ununinstalling k3d for Aur (Arch Linux User Repository) systems"
-        )
-        status = self.run(
-            [
-                "yay",
-                "-S",
-                "rancher-k3d-bin"
-            ]
-        )
-        self.print_on_tty(
-            self.tty.info_colour,
-            "Uninstallation status (k3d):"
-        )
-        if status != self.tty.success:
-            self.print_on_tty(self.tty.error_colour, "[KO]\n")
-            self.print_on_tty(
-                self.tty.error_colour,
-                "Error uninstalling k3d for Aur systems\n"
-            )
-            self.print_on_tty(
-                self.tty.info_colour,
-                "Defaulting to default method\n"
-            )
-            self.tty.current_tty_status = self.tty.err
-            return self.tty.current_tty_status
-        self.print_on_tty(self.tty.success_colour, "[OK]\n")
-        self.print_on_tty(self.tty.success_colour, "")
-        self.disp.success_message("Uninstalled k3d using yay ;-)")
-        self.tty.current_tty_status = self.tty.success
-        return status
-
-    def _install_for_brew(self) -> int:
+    def _uninstall_for_brew(self) -> int:
         """ Uninstall Kubectl using brew """
-        self.disp.sub_sub_title("Ununinstalling Kubectl via Brew")
-        status = self.run(
+        self.print_on_tty(
+            self.tty.info_colour,
+            "Uninstalling microk8s via brew:"
+        )
+        self.tty.current_tty_status = self.super_run(
             [
                 "brew",
-                "install",
-                "k3d"
-            ]
-        )
-        if status != self.tty.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "Error uninstalling Kubernetes for Linux, reverting to manual install\n"
-            )
-            self.tty.current_tty_status = self.tty.err
-            return self.tty.current_tty_status
-        status = self.run(
-            [
-                "kubectl",
-                "version",
-                "--output=yaml"
+                "uninstall",
+                "microk8s"
             ]
         )
         self.print_on_tty(
             self.tty.info_colour,
-            "Uninstallation status (k3d):"
+            "Uninstallation status (microk8s):"
         )
-        if status != self.tty.success:
-            self.print_on_tty(
-                self.tty.error_colour,
-                "Error testing the installation of Kubernetes for Linux\n"
-            )
-            self.tty.current_tty_status = self.tty.err
-            return self.tty.current_tty_status
-
+        if self.tty.current_tty_status != self.tty.success:
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
+            return self.err
         self.print_on_tty(self.tty.success_colour, "[OK]\n")
-        self.print_on_tty(self.tty.success_colour, "")
-        self.disp.success_message("Uninstalled k3s using brew ;-)")
-        self.tty.current_tty_status = self.tty.success
-        return self.tty.current_tty_status
+        return self.success
 
-    def _install_for_snap(self) -> int:
+    def _uninstall_for_yay(self) -> int:
+        """ Uninstall k3d using yay """
+        self.print_on_tty(
+            self.tty.info_colour,
+            "Uninstalling microk8s via yay:"
+        )
+        self.tty.current_tty_status = self.super_run(
+            [
+                "yay",
+                "-R",
+                "microk8s"
+            ]
+        )
+        self.print_on_tty(
+            self.tty.info_colour,
+            "Uninstallation status (microk8s):"
+        )
+        if self.tty.current_tty_status != self.tty.success:
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
+            return self.err
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
+        return self.success
+
+    def _uninstall_for_snap(self) -> int:
         """ Uninstall micro Microk8s"""
+        self.print_on_tty(
+            self.tty.info_colour,
+            ""
+        )
+        self.disp.inform_message(["Uninstalling microk8s for Linux via snap"])
+        self.super_run(
+            [
+                "snap",
+                "remove",
+                "microk8s"
+            ]
+        )
+        self.print_on_tty(
+            self.tty.info_colour,
+            "Microk8s uninstallation status: "
+        )
+        if self.tty.current_tty_status != self.tty.success:
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
+            return self.err
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
+        return self.success
 
     def main(self) -> int:
         """ The main function of the class """
         if self._has_yay() is True:
-            status = self._install_for_aur()
+            status = self._uninstall_for_yay()
             if status == self.success:
                 return status
         if self._has_brew() is True:
-            status = self._install_for_brew()
+            status = self._uninstall_for_brew()
             if status == self.success:
                 return status
-        return self._manual_installation()
+        if self._has_snap() is True:
+            status = self._uninstall_for_snap()
+            if status == self.success:
+                return status
+        self.print_on_tty(
+            self.tty.error_colour,
+            ""
+        )
+        self.disp.error_message(
+            "No known package manager found, microk8s will thus not bee installed\n"
+        )
+        self.tty.current_tty_status = self.error
+        return self.error
 
     def test_class_install_microk8s_linux(self) -> None:
         """ Test the class install microk8s linux """

@@ -17,11 +17,15 @@ class UninstallMicroK8sMac:
 
     def main(self) -> int:
         """ The main function of the class """
+        self.print_on_tty(
+            self.tty.info_colour,
+            "This function will be filled in future updates for mac users\n"
+        )
         return self.success
 
     def test_class_install_microk8s_mac(self) -> None:
         """ Test the class install k3d MacOS """
         self.print_on_tty(
             self.tty.info_colour,
-            "This is a test message from the install k3d MacOS class"
+            "This is a test message from the uninstall microk8s MacOS class\n"
         )
