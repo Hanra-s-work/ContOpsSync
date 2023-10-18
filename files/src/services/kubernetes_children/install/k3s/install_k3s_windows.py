@@ -32,8 +32,8 @@ class InstallK3sWindows:
             [
                 "k3s",
                 "--version",
-                ">/dev/nul",
-                "2>/dev/nul"
+                ">nul",
+                "2>nul"
             ]
         )
         if self.tty.current_tty_status != self.tty.success:
