@@ -340,7 +340,7 @@ Output:
             return self.success
         self.print_on_tty(
             self.tty.info_colour,
-            "This message prooves that the uninstall kubernetes has loaded correctly.\n"
+            "This message proves that the uninstall kubernetes has loaded correctly.\n"
         )
         self.windows.test_class_uninstall_kubernetes_windows()
         self.linux.test_class_uninstall_kubernetes_linux()

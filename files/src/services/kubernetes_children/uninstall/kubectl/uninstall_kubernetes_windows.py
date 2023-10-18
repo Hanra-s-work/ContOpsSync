@@ -505,10 +505,10 @@ If you want to use kubectl outside of this instance, please restart all the term
         """ The main function of the class """
         return self.install_kubectl()
 
-    def test_class_install_kubectl_windows(self) -> int:
-        """ Test the class install kubectl windows """
+    def test_class_uninstall_kubectl_windows(self) -> int:
+        """ Test the class uninstall kubectl windows """
         self.print_on_tty(
             self.tty.info_colour,
-            "This is a test message from the install kubectl windows class\n"
+            "This is a test message from the uninstall kubectl windows class\n"
         )
         return self.tty.success

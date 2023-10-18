@@ -53,60 +53,60 @@ class UninstallKubernetesMac:
         self.kube_folder = ".kube"
         self.config_file = "config"
 
-    def install_kubectl(self) -> None:
-        """ install the kubectl software """
+    def uninstall_kubectl(self) -> None:
+        """ Uninstall the kubectl software """
         return self.kubectl.uninstall_mac.uninstall_kubectl()
 
-    def install_minikube(self) -> int:
-        """ Install the minikube software """
+    def uninstall_minikube(self) -> int:
+        """ Uninstall the minikube software """
         self.print_on_tty(
             self.tty.info_colour,
             "The installation script is yet to come for macs."
         )
         return self.success
 
-    def install_kind(self) -> int:
-        """ Install the kind software """
+    def uninstall_kind(self) -> int:
+        """ Uninstall the kind software """
         self.print_on_tty(
             self.tty.info_colour,
             "The installation script is yet to come for macs."
         )
         return self.success
 
-    def install_k3s(self) -> int:
-        """ Install the k3s software (needs to be written)"""
+    def uninstall_k3s(self) -> int:
+        """ Uninstall the k3s software (needs to be written)"""
         self.print_on_tty(
             self.tty.info_colour,
             "The installation script is yet to come for macs."
         )
         return self.success
 
-    def install_k3d(self) -> int:
-        """ Install the k3s software """
+    def uninstall_k3d(self) -> int:
+        """ Uninstall the k3s software """
         self.print_on_tty(
             self.tty.info_colour,
             "The installation script is yet to come for macs."
         )
         return self.success
 
-    def install_k8s(self) -> int:
-        """ Install the k8s software """
+    def uninstall_k8s(self) -> int:
+        """ Uninstall the k8s software """
         self.print_on_tty(
             self.tty.info_colour,
             "The installation script is yet to come for macs."
         )
         return self.success
 
-    def install_microk8s(self) -> int:
-        """ Install the k8s software """
+    def uninstall_microk8s(self) -> int:
+        """ Uninstall the k8s software """
         self.print_on_tty(
             self.tty.info_colour,
             "The installation script is yet to come for macs."
         )
         return self.success
 
-    def install_kubeadm(self) -> int:
-        """ Install the kubeadm software """
+    def uninstall_kubeadm(self) -> int:
+        """ Uninstall the kubeadm software """
         self.print_on_tty(
             self.tty.info_colour,
             "The installation script is yet to come for macs."
@@ -114,15 +114,15 @@ class UninstallKubernetesMac:
         return self.success
 
     def main(self) -> None:
-        """ Install kubernetes on Mac """
-        print("Install kubernetes on Mac - Not created yet")
+        """ Uninstall kubernetes on Mac """
+        print("Uninstall kubernetes on Mac - Not created yet")
         return self.success
 
-    def test_class_install_kubernetes_mac(self) -> int:
-        """ Test the class install kubernetes mac """
+    def test_class_uninstall_kubernetes_mac(self) -> int:
+        """ Test the class uninstall kubernetes mac """
         self.print_on_tty(
             self.tty.info_colour,
-            "This is a test message from the install kubernetes mac class\n"
+            "This is a test message from the uninstall kubernetes mac class\n"
         )
         self.kind.test_kind_uninstallation_class()
         self.kubectl.test_kubectl_uninstallation_class()
