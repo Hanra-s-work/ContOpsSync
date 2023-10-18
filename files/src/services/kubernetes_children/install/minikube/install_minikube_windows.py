@@ -18,6 +18,28 @@ class InstallMinikubeWindows:
         self.err = err
         self.error = error
         self.print_on_tty = self.tty.print_on_tty
+        self.run = self.tty.run_command
+
+    def is_minikube_installed(self) -> bool:
+        """ Returns true if minikube is installed """
+        self.print_on_tty(
+            self.tty.info_colour,
+            "Checking if minikube is installed:"
+        )
+        self.tty.current_tty_status = self.run(
+            [
+                "minikube",
+                "version",
+                ">nul",
+                "2>nul"
+            ]
+        )
+        if self.tty.current_tty_status != self.success:
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
+            return False
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
+        self.tty.current_tty_status = self.success
+        return True
 
     def main(self) -> int:
         """ The main function of the class """
