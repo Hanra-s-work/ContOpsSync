@@ -19,6 +19,27 @@ class InstallKindLinux:
         self.err = err
         self.error = error
 
+    def is_kind_installed(self) -> bool:
+        """ Returns true if kind is installed """
+        self.print_on_tty(
+            self.tty.info_colour,
+            "Checking if kind is installed:"
+        )
+        self.tty.current_tty_status = self.tty.run_command(
+            [
+                "kind",
+                "version",
+                ">/dev/null",
+                "2>/dev/null"
+            ]
+        )
+        if self.tty.current_tty_status != self.tty.success:
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
+            return False
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
+        self.tty.current_tty_status = self.tty.success
+        return True
+
     def main(self) -> int:
         """ The main function of the class """
         return self.success
