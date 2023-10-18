@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-world-containerd
+spec:
+  containers:
+  - name: hello-world-containerd
+    image: hello-world
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+
+# This is the command to build the pod: kubectl apply -f hello-world-containerd.yaml
