@@ -162,12 +162,12 @@ class UninstallK3sLinux:
         """ Remove k3s if it was installed manually """
         self.print_on_tty(
             self.tty.info_colour,
-            "Checking if k3s was installed manually:"
+            "Checking if k3s was installed manually:\n"
         )
         if self._file_exists(self.k3s_agent_uninstall_file) is True:
             self.print_on_tty(
                 self.tty.info_colour,
-                "Uninstalling k3s manually:"
+                "Uninstalling k3s manually:\n"
             )
             self.tty.current_tty_status = self.run(
                 [
@@ -188,7 +188,7 @@ class UninstallK3sLinux:
         if self._file_exists(self.k3s_uninstall_file) is True:
             self.print_on_tty(
                 self.tty.info_colour,
-                "Uninstalling k3s manually:"
+                "Uninstalling k3s manually:\n"
             )
             self.tty.current_tty_status = self.run(
                 [
@@ -214,7 +214,7 @@ class UninstallK3sLinux:
 
     def main(self) -> int:
         """ The main function of the class """
-        self.print_on_tty(self.tty.info_colour, "Uninstalling k3s:")
+        self.print_on_tty(self.tty.info_colour, "Uninstalling k3s:\n")
         if self._manual_uninstallation() != self.success:
             if self._has_yay() is True:
                 status = self._uninstall_for_aur()
