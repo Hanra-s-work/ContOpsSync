@@ -21,6 +21,7 @@ class InstallKubectlWindows:
         self.tty = tty
         # ---- TTY rebinds ----
         self.print_on_tty = self.tty.print_on_tty
+        self.run = self.tty.run_command
         # ---- Download options ----
         self.download_options = {
             "choco": False,
@@ -500,6 +501,27 @@ If you want to use kubectl outside of this instance, please restart all the term
         )
         self.tty.current_tty_status = self.tty.success
         return self.tty.success
+
+    def is_kubectl_installed(self) -> bool:
+        """ Returns true if kubectl is installed """
+        self.print_on_tty(
+            self.tty.info_colour,
+            "Checking if kubectl is installed (Windows):"
+        )
+        self.tty.current_tty_status = self.run(
+            [
+                "kubectl",
+                "--version",
+                ">nul",
+                "2>nul"
+            ]
+        )
+        if self.tty.current_tty_status != self.tty.success:
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
+            return False
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
+        self.tty.current_tty_status = self.tty.success
+        return True
 
     def main(self) -> int:
         """ The main function of the class """

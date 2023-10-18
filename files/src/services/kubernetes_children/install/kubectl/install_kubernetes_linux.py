@@ -391,6 +391,28 @@ class InstallKubectlLinux:
         self.tty.current_tty_status = self.tty.success
         return self.tty.current_tty_status
 
+    def is_kubectl_installed(self) -> bool:
+        """ Returns true if kubectl is installed """
+        self.print_on_tty(
+            self.tty.info_colour,
+            "Checking if kubectl is installed (Linux):"
+        )
+        self.tty.current_tty_status = self.run(
+            [
+                "kubectl",
+                "version",
+                "--output=yaml",
+                ">/dev/null",
+                "2>/dev/null"
+            ]
+        )
+        if self.tty.current_tty_status != self.tty.success:
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
+            return False
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
+        self.tty.current_tty_status = self.tty.success
+        return True
+
     def main(self) -> int:
         """ Install kubernetes on Linux """
         return self.install_kubectl()
