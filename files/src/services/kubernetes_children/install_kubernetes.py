@@ -367,6 +367,87 @@ Output:
         )
         return self.error
 
+    def is_kubectl_installed(self, args: list) -> int:
+        """ Returns true if kubectl is installed """
+        function_name = "is_kubectl_installed"
+        if self.tty.help_function_child_name == function_name:
+            help_description = f"""
+Returns true if kubectl is installed
+Usage Example:
+Input:
+    {function_name}
+Output:
+    [OK] if kubectl is installed
+"""
+            self.tty.function_help(function_name, help_description)
+            self.tty.current_tty_status = self.tty.success
+            return self.tty.success
+        if self.current_system == "Windows":
+            status = self.windows.is_kubectl_installed()
+        if self.current_system == "Linux":
+            status = self.linux.is_kubectl_installed()
+        if self.current_system == "Darwin" or self.current_system == "Java":
+            status = self.mac.is_kubectl_installed()
+        if status is False:
+            self.tty.current_tty_status = self.tty.error
+            return self.tty.error
+        self.tty.current_tty_status = self.tty.success
+        return self.tty.success
+
+    def is_minikube_installed(self, args: list) -> int:
+        """ Returns true if minikube is installed """
+        function_name = "is_minikube_installed"
+        if self.tty.help_function_child_name == function_name:
+            help_description = f"""
+Returns true if minikube is installed
+Usage Example:
+Input:
+    {function_name}
+Output:
+    [OK] if minikube is installed
+"""
+            self.tty.function_help(function_name, help_description)
+            self.tty.current_tty_status = self.tty.success
+            return self.tty.success
+        if self.current_system == "Windows":
+            status = self.windows.is_minikube_installed()
+        if self.current_system == "Linux":
+            status = self.linux.is_minikube_installed()
+        if self.current_system == "Darwin" or self.current_system == "Java":
+            status = self.mac.is_minikube_installed()
+        if status is False:
+            self.tty.current_tty_status = self.tty.error
+            return self.tty.error
+        self.tty.current_tty_status = self.tty.success
+        return self.tty.success
+
+    def is_kind_installed(self, args: list) -> int:
+        """ Returns true if kind is installed """
+        function_name = "is_kind_installed"
+        if self.tty.help_function_child_name == function_name:
+            help_description = f"""
+Returns true if kind is installed
+Usage Example:
+Input:
+    {function_name}
+Output:
+    [OK] if kind is installed
+"""
+            self.tty.function_help(function_name, help_description)
+            self.tty.current_tty_status = self.tty.success
+            return self.tty.success
+        if self.current_system == "Windows":
+            status = self.windows.is_kind_installed()
+        if self.current_system == "Linux":
+            status = self.linux.is_kind_installed()
+        if self.current_system == "Darwin" or self.current_system == "Java":
+            status = self.mac.is_kind_installed()
+        if status is False:
+            self.tty.current_tty_status = self.tty.error
+            return self.tty.error
+        self.tty.current_tty_status = self.tty.success
+        return self.tty.success
+
     def is_k3s_installed(self, args: list) -> int:
         """ Returns true if k3s is installed """
         function_name = "is_k3s_installed"
@@ -415,6 +496,87 @@ Output:
             status = self.linux.is_k3d_installed()
         if self.current_system == "Darwin" or self.current_system == "Java":
             status = self.mac.is_k3d_installed()
+        if status is False:
+            self.tty.current_tty_status = self.tty.error
+            return self.tty.error
+        self.tty.current_tty_status = self.tty.success
+        return self.tty.success
+
+    def is_microk8s_installed(self, args: list) -> int:
+        """ Returns true if microk8s is installed """
+        function_name = "is_microk8s_installed"
+        if self.tty.help_function_child_name == function_name:
+            help_description = f"""
+Returns true if microk8s is installed
+Usage Example:
+Input:
+    {function_name}
+Output:
+    [OK] if microk8s is installed
+"""
+            self.tty.function_help(function_name, help_description)
+            self.tty.current_tty_status = self.tty.success
+            return self.tty.success
+        if self.current_system == "Windows":
+            status = self.windows.is_microk8s_installed()
+        if self.current_system == "Linux":
+            status = self.linux.is_microk8s_installed()
+        if self.current_system == "Darwin" or self.current_system == "Java":
+            status = self.mac.is_microk8s_installed()
+        if status is False:
+            self.tty.current_tty_status = self.tty.error
+            return self.tty.error
+        self.tty.current_tty_status = self.tty.success
+        return self.tty.success
+
+    def is_k8s_installed(self, args: list) -> int:
+        """ Returns true if k8s is installed """
+        function_name = "is_k8s_installed"
+        if self.tty.help_function_child_name == function_name:
+            help_description = f"""
+Returns true if k8s is installed
+Usage Example:
+Input:
+    {function_name}
+Output:
+    [OK] if k8s is installed
+"""
+            self.tty.function_help(function_name, help_description)
+            self.tty.current_tty_status = self.tty.success
+            return self.tty.success
+        if self.current_system == "Windows":
+            status = self.windows.is_k8s_installed()
+        if self.current_system == "Linux":
+            status = self.linux.is_k8s_installed()
+        if self.current_system == "Darwin" or self.current_system == "Java":
+            status = self.mac.is_k8s_installed()
+        if status is False:
+            self.tty.current_tty_status = self.tty.error
+            return self.tty.error
+        self.tty.current_tty_status = self.tty.success
+        return self.tty.success
+
+    def is_kubeadm_installed(self, args: list) -> int:
+        """ Returns true if kubeadm is installed """
+        function_name = "is_kubeadm_installed"
+        if self.tty.help_function_child_name == function_name:
+            help_description = f"""
+Returns true if kubeadm is installed
+Usage Example:
+Input:
+    {function_name}
+Output:
+    [OK] if kubeadm is installed
+"""
+            self.tty.function_help(function_name, help_description)
+            self.tty.current_tty_status = self.tty.success
+            return self.tty.success
+        if self.current_system == "Windows":
+            status = self.windows.is_kubeadm_installed()
+        if self.current_system == "Linux":
+            status = self.linux.is_kubeadm_installed()
+        if self.current_system == "Darwin" or self.current_system == "Java":
+            status = self.mac.is_kubeadm_installed()
         if status is False:
             self.tty.current_tty_status = self.tty.error
             return self.tty.error
@@ -472,6 +634,75 @@ Output:
         self.mac.test_class_install_kubernetes_mac()
         return self.success
 
+    def is_kubernetes_installed(self, args: list) -> int:
+        """ Check if a flavor of kubernetes is installed on your system """
+        function_name = "is_kubernetes_installed"
+        if self.tty.help_function_child_name == function_name:
+            help_description = f"""
+Check if a flavor of kubernetes is installed on your system
+Usage Example:
+Input:
+    {function_name}
+Output:
+    [OK] if a flavor of kubernetes is installed on your system
+"""
+            self.tty.function_help(function_name, help_description)
+            self.tty.current_tty_status = self.tty.success
+            return self.tty.success
+        if self.is_kubectl_installed([]) is True:
+            self.print_on_tty(
+                self.tty.info_colour,
+                "kubectl is installed on your system\n"
+            )
+            return self.success
+        if self.is_minikube_installed([]) is True:
+            self.print_on_tty(
+                self.tty.info_colour,
+                "minikube is installed on your system\n"
+            )
+            return self.success
+        if self.is_kind_installed([]) is True:
+            self.print_on_tty(
+                self.tty.info_colour,
+                "kind is installed on your system\n"
+            )
+            return self.success
+        if self.is_k3s_installed([]) is True:
+            self.print_on_tty(
+                self.tty.info_colour,
+                "k3s is installed on your system\n"
+            )
+            return self.success
+        if self.is_k3d_installed([]) is True:
+            self.print_on_tty(
+                self.tty.info_colour,
+                "k3d is installed on your system\n"
+            )
+            return self.success
+        if self.is_microk8s_installed([]) is True:
+            self.print_on_tty(
+                self.tty.info_colour,
+                "microk8s is installed on your system\n"
+            )
+            return self.success
+        if self.is_k8s_installed([]) is True:
+            self.print_on_tty(
+                self.tty.info_colour,
+                "k8s is installed on your system\n"
+            )
+            return self.success
+        if self.is_kubeadm_installed([]) is True:
+            self.print_on_tty(
+                self.tty.info_colour,
+                "kubeadm is installed on your system\n"
+            )
+            return self.success
+        self.print_on_tty(
+            self.tty.info_colour,
+            "No flavors of kubernetes are installed on your system\n"
+        )
+        return self.success
+
     def save_commands(self) -> list:
         """ The function in charge of saving the commands to the options list """
         self.options = [
@@ -512,12 +743,40 @@ Output:
                 "desc": "View the installation options for the host system"
             },
             {
+                "is_kubectl_installed": self.is_kubectl_installed,
+                "desc": "Returns true if kubectl is installed"
+            },
+            {
+                "is_minikube_installed": self.is_minikube_installed,
+                "desc": "Returns true if minikube is installed"
+            },
+            {
+                "is_kind_installed": self.is_kind_installed,
+                "desc": "Returns true if kind is installed"
+            },
+            {
                 "is_k3s_installed": self.is_k3s_installed,
                 "desc": "Check if k3s is installed on your system"
             },
             {
                 "is_k3d_installed": self.is_k3d_installed,
                 "desc": "Check if k3d is installed on your system"
+            },
+            {
+                "is_microk8s_installed": self.is_microk8s_installed,
+                "desc": "Check if microk8s is installed on your system"
+            },
+            {
+                "is_k8s_installed": self.is_k8s_installed,
+                "desc": "Check if k8s is installed on your system"
+            },
+            {
+                "is_kubeadm_installed": self.is_kubeadm_installed,
+                "desc": "Check if kubeadm is installed on your system"
+            },
+            {
+                "is_kubernetes_installed": self.is_kubernetes_installed,
+                "desc": "Check if a flavor of kubernetes is installed on your system"
             },
             {
                 "get_master_token": self.get_master_token,
