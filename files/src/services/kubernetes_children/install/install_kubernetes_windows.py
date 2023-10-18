@@ -8,10 +8,12 @@ from tqdm import tqdm
 from tty_ov import TTY
 from .k3d import InstallK3d
 from .k3s import InstallK3s
+from .k8s import InstallK8s
 from .kind import InstallKind
 from .kubectl import InstallKubectl
 from .microk8s import InstallMicroK8s
 from .minikube import InstallMinikube
+from .kubeadm import InstallKubeadm
 
 
 class InstallKubernetesWindows:
@@ -26,10 +28,12 @@ class InstallKubernetesWindows:
         self.tty = tty
         self.k3d = InstallK3d(tty, success, err, error)
         self.k3s = InstallK3s(tty, success, err, error)
-        self.microk8s = InstallMicroK8s(tty, success, err, error)
+        self.k8s = InstallK8s(tty, success, err, error)
         self.kind = InstallKind(tty, success, err, error)
         self.kubectl = InstallKubectl(tty, success, err, error)
+        self.microk8s = InstallMicroK8s(tty, success, err, error)
         self.minikube = InstallMinikube(tty, success, err, error)
+        self.kubeadm = InstallKubeadm(tty, success, err, error)
         # ---- TTY rebinds ----
         self.print_on_tty = self.tty.print_on_tty
         # ---- Download options ----
@@ -111,12 +115,31 @@ class InstallKubernetesWindows:
 
     def install_k8s(self) -> int:
         """ Install the k8s software """
+        return self.k8s.install_windows.main()
 
     def install_microk8s(self) -> int:
         """ Install the microk8s software """
+        return self.microk8s.install_windows.main()
 
     def install_kubeadm(self) -> int:
         """ Install the kubeadm software """
+        self.print_on_tty(
+            self.tty.info_colour,
+            "Installation not yet written\n"
+        )
+        return self.tty.success
+
+    def is_kubectl_installed(self) -> bool:
+        """ Check if kubectl is installed """
+        return self.kubectl.install_windows.is_kubectl_installed()
+
+    def is_minikube_installed(self) -> bool:
+        """ Check if minikube is installed """
+        return self.minikube.install_windows.is_minikube_installed()
+
+    def is_kind_installed(self) -> bool:
+        """ Check if kind is installed """
+        return self.kind.install_windows.is_kind_installed()
 
     def is_k3s_installed(self) -> bool:
         """ Check if k3s is installed """
@@ -125,6 +148,18 @@ class InstallKubernetesWindows:
     def is_k3d_installed(self) -> bool:
         """ Check if k3d is installed """
         return self.k3d.install_windows.is_k3d_installed()
+
+    def is_microk8s_installed(self) -> bool:
+        """ Check if microk8s is installed """
+        return self.microk8s.install_windows.is_microk8s_installed()
+
+    def is_k8s_installed(self) -> bool:
+        """ Check if k8s is installed """
+        return self.k8s.install_windows.is_k8s_installed()
+
+    def is_kubeadm_installed(self) -> bool:
+        """ Check if kubeadm is installed """
+        return self.kubeadm.install_windows.is_kubeadm_installed()
 
     def get_master_token(self) -> int:
         """ Get the master token """

@@ -13,6 +13,7 @@ from .kind import InstallKind
 from .kubectl import InstallKubectl
 from .microk8s import InstallMicroK8s
 from .minikube import InstallMinikube
+from .kubeadm import InstallKubeadm
 
 
 class InstallKubernetesLinux:
@@ -32,6 +33,7 @@ class InstallKubernetesLinux:
         self.kubectl = InstallKubectl(tty, success, err, error)
         self.microk8s = InstallMicroK8s(tty, success, err, error)
         self.minikube = InstallMinikube(tty, success, err, error)
+        self.kubeadm = InstallKubeadm(tty, success, err, error)
         # ---- TTY rebinds ----
         self.print_on_tty = self.tty.print_on_tty
         self.run = self.tty.run_command
@@ -130,17 +132,37 @@ class InstallKubernetesLinux:
             "This option is not yet available due to system requirements that would be long and difficult to verify for each linux distribution"
         )
 
+    def is_kubectl_installed(self) -> bool:
+        """ Check if kubectl is installed """
+        return self.kubectl.install_linux.is_kubectl_installed()
+
+    def is_minikube_installed(self) -> bool:
+        """ Check if minikube is installed """
+        return self.minikube.install_linux.is_minikube_installed()
+
+    def is_kind_installed(self) -> bool:
+        """ Check if kind is installed """
+        return self.kind.install_linux.is_kind_installed()
+
     def is_k3s_installed(self) -> bool:
         """ Check if k3s is installed """
-        if self.k3s.install_raspberrypi.is_raspberrypi() is True:
-            return self.k3s.install_raspberrypi.is_k3s_installed()
         return self.k3s.install_linux.is_k3s_installed()
 
     def is_k3d_installed(self) -> bool:
         """ Check if k3d is installed """
-        if self.k3d.install_raspberrypi.is_raspberrypi() is True:
-            return self.k3d.install_raspberrypi.is_k3d_installed()
         return self.k3d.install_linux.is_k3d_installed()
+
+    def is_microk8s_installed(self) -> bool:
+        """ Check if microk8s is installed """
+        return self.microk8s.install_linux.is_microk8s_installed()
+
+    def is_k8s_installed(self) -> bool:
+        """ Check if k8s is installed """
+        return self.k8s.install_linux.is_k8s_installed()
+
+    def is_kubeadm_installed(self) -> bool:
+        """ Check if kubeadm is installed """
+        return self.kubeadm.install_linux.is_kubeadm_installed()
 
     def get_master_token(self) -> int:
         """ Get the master token """
