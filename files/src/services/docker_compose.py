@@ -4,6 +4,7 @@ File containing the DockerCompose class in charge of managing the Docker-Compose
 
 import os
 from tty_ov import TTY
+from .docker_compose_children import DockerComposeChildren
 
 
 class DockerCompose:
@@ -16,6 +17,9 @@ class DockerCompose:
         self.tty = tty
         # ---- TTY Docker Compose options ----
         self.options = []
+        # ---- DockerComposeChildren ----
+        self.docker_compose_children = DockerComposeChildren(
+            tty, success, err, error)
 
     def docker_compose_class_test(self, args: list) -> int:
         """ This is a test to check that the classe's function has correctly imported """
@@ -46,6 +50,7 @@ class DockerCompose:
     def injector(self) -> int:
         """ The function in charge of injecting the docker_compose class into the main class """
         self.save_commands()
+        self.docker_compose_children.inject_child_ressources(self.options)
         return self.tty.import_functions_into_shell(self.options)
 
     def build(self, path: str, tag: str) -> None:
