@@ -18,6 +18,28 @@ class InstallMicroK8sMac:
         self.err = err
         self.error = error
         self.print_on_tty = self.tty.print_on_tty
+        self.run = self.tty.run_command
+
+    def is_microk8s_installed(self) -> bool:
+        """ Returns true if microk8s is installed """
+        self.print_on_tty(
+            self.tty.info_colour,
+            "Checking if microk8s is installed:"
+        )
+        self.tty.current_tty_status = self.run(
+            [
+                "microk8s",
+                "version",
+                ">/dev/null",
+                "2>/dev/null"
+            ]
+        )
+        if self.tty.current_tty_status != self.success:
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
+            return False
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
+        self.tty.current_tty_status = self.success
+        return True
 
     def main(self) -> int:
         """ The main function of the class """

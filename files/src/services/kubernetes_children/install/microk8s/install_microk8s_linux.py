@@ -234,6 +234,68 @@ class InstallMicroK8sLinux:
 
     def _install_for_snap(self) -> int:
         """ Install micro Microk8s"""
+        self.disp.sub_sub_title("Installing Microk8s via Snap")
+        status = self.run(
+            [
+                "snap",
+                "install",
+                "--classic",
+                "microk8s"
+            ]
+        )
+        if status != self.tty.success:
+            self.print_on_tty(
+                self.tty.error_colour,
+                "Error installing Kubernetes for Linux, reverting to manual install\n"
+            )
+            self.tty.current_tty_status = self.tty.err
+            return self.tty.current_tty_status
+        status = self.run(
+            [
+                "kubectl",
+                "version",
+                "--output=yaml"
+            ]
+        )
+        self.print_on_tty(
+            self.tty.info_colour,
+            "Installation status (k8s):"
+        )
+        if status != self.tty.success:
+            self.print_on_tty(
+                self.tty.error_colour,
+                "Error testing the installation of Kubernetes for Linux\n"
+            )
+            self.tty.current_tty_status = self.tty.err
+            return self.tty.current_tty_status
+
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
+        self.print_on_tty(self.tty.success_colour, "")
+        self.disp.success_message("Installed k8s using snap ;-)")
+        self.tty.current_tty_status = self.tty.success
+        return self.tty.current_tty_status
+
+    def is_microk8s_installed(self) -> bool:
+        """ Returns true if k8s is installed """
+        self.print_on_tty(
+            self.tty.info_colour,
+            "Checking if microk8s is installed:"
+        )
+        self.tty.current_tty_status = self.run(
+            [
+                "microk8s",
+                "version",
+                "--output=yaml",
+                ">/dev/null",
+                "2>/dev/null"
+            ]
+        )
+        if self.tty.current_tty_status != self.tty.success:
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
+            return False
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
+        self.tty.current_tty_status = self.tty.success
+        return True
 
     def main(self) -> int:
         """ The main function of the class """
@@ -243,6 +305,10 @@ class InstallMicroK8sLinux:
                 return status
         if self._has_brew() is True:
             status = self._install_for_brew()
+            if status == self.success:
+                return status
+        if self._has_snap() is True:
+            status = self._install_for_snap()
             if status == self.success:
                 return status
         return self._manual_installation()
