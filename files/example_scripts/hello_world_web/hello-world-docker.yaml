@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world-deployment-docker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-world
+  template:
+    metadata:
+      labels:
+        app: hello-world
+    spec:
+      containers:
+      - name: hello-world
+        image: hello-world
+        resources:
+          requests:
+            memory: "64Mi" # Request 64 megabytes of memory
+            cpu: "250m" # Request 250 milliCPU (0.25 CPU cores)
+          limits:
+            memory: "128Mi" # Limit memory usage to 128 megabytes
+            cpu: "500m" # Limit CPU usage to 500 milliCPU (0.5 CPU cores)
+      - name: web-server
+        image: hello-world-web-server
+        resources:
+          requests:
+            memory: "128Mi" # Request 128 megabytes of memory
+            cpu: "500m" # Request 500 milliCPU (0.5 CPU cores)
+          limits:
+            memory: "256Mi" # Limit memory usage to 256 megabytes
+            cpu: "1" # Limit CPU usage to 1 CPU core
