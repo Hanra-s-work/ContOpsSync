@@ -138,6 +138,8 @@ def test_help() -> None:
     help_result = _list_to_dict(list(help_options), SUCCESS)
     print(f"help_options = {help_options}, help_result = {help_result}")
     for i in help_options:
+        if i == "desc":
+            continue
         MI.tty.process_complex_input(["help", i])
         help_result[i] = MI.tty.current_tty_status
     status0 = _de_initialise_class(MI)

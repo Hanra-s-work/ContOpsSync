@@ -332,6 +332,23 @@ class InstallK3sRaspberryPi:
         self.print_on_tty(self.tty.success_colour, "[OK]\n")
         return hostname
 
+    def _get_current_hostname_if_exists(self) -> str:
+        """ Get the current hostname if it exists """
+        current_hostname = self._get_file_content(
+            self.cmdline_file,
+            self.encoding
+        )
+        if "ip" in current_hostname:
+            current_hostname = current_hostname.split("ip=")[1]
+            current_hostname = current_hostname.split(" ")[0]
+            current_hostname = current_hostname.split("\n")[0]
+            static_ip = current_hostname.split(":")
+            if len(static_ip) == 6:
+                current_hostname = static_ip[3]
+                return current_hostname
+        else:
+            return self._create_hostname()
+
     def _get_router_name(self) -> str:
         """ Get the name of the current connection form that is used by the system """
         self.print_on_tty(
@@ -385,7 +402,7 @@ class InstallK3sRaspberryPi:
         usr_ip = self._get_usr_ip()
         dns_ip = self._get_dns_ip()
         network_mask = "255.255.255.0"
-        hostname = self._create_hostname()
+        hostname = self._get_current_hostname_if_exists()
         router_name = self._get_router_name()
         auto_configuration_here_off = "off"
         self.print_on_tty(
@@ -398,6 +415,47 @@ class InstallK3sRaspberryPi:
         static_ip = f"{usr_ip}::{dns_ip}:{network_mask}:{hostname}:{router_name}:{auto_configuration_here_off}"
         self.print_on_tty(self.tty.success_colour, "[OK]\n")
         return static_ip
+
+    def _check_if_cgroup_is_running(self) -> int:
+        """ Check if the cgroup is running, returns success if true """
+        self.print_on_tty(
+            self.tty.info_colour,
+            "Checking if the cgroup is running:\n"
+        )
+        self.tty.current_tty_status = self.run(
+            [
+                "status=\"$(grep",
+                "memory",
+                "/proc/cgroups",
+                "|",
+                "while",
+                "read",
+                "-r",
+                "n",
+                "n",
+                "n",
+                "enabled;",
+                "do",
+                "echo",
+                "$enabled;",
+                "done)\";",
+                "if [ $status -eq 0 ];",
+                "then",
+                "exit 1;",
+                "else",
+                "exit 0;",
+                "fi;"
+            ]
+        )
+        self.print_on_tty(
+            self.tty.info_colour,
+            "CGroup status: "
+        )
+        if self.tty.current_tty_status != self.tty.success:
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
+            return self.err
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
+        return self.success
 
     def _enable_cgroups_if_not(self) -> int:
         """ Enable the cgroups module for the raspberry pi """
@@ -735,6 +793,13 @@ class InstallK3sRaspberryPi:
     def _install_master_k3s(self, force_docker: bool = False) -> int:
         """ Install the k3s version for the master node (the one managing the others) """
         self.tty.setenv(["K3S_KUBECONFIG_MODE", '"644"'])
+        self.tty.setenv(["K3S_FORCE_INSTALL_DOCKER", "0"])
+        self.tty.setenv(
+            [
+                "K3S_NODE_NAME",
+                self._get_file_content(self.k3s_hostname_file, self.encoding)
+            ]
+        )
         install_line = [
             "chmod",
             "+x",
@@ -763,6 +828,7 @@ class InstallK3sRaspberryPi:
         self.tty.setenv(["K3S_KUBECONFIG_MODE", '"644"'])
         self.tty.setenv(["K3S_TOKEN", f"{master_token}"])
         self.tty.setenv(["K3S_URL", f"https://{master_ip}:6443"])
+        self.tty.setenv(["K3S_FORCE_INSTALL_DOCKER", "0"])
         self.tty.setenv(
             [
                 "K3S_NODE_NAME",
@@ -807,6 +873,24 @@ class InstallK3sRaspberryPi:
         if status != self.success:
             self._installation_failed_message()
             return self.error
+        self.print_on_tty(self.tty.info_colour, "")
+        self.disp.sub_sub_title("Checking cgroup status")
+        response = self._check_if_cgroup_is_running()
+        self.print_on_tty(self.tty.info_colour, "cgroup status:")
+        if response != self.success:
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
+            self._installation_failed_message()
+            self.print_on_tty(self.tty.error_colour, "")
+            self.disp.error_message("The cgroup is not running")
+            self.print_on_tty(self.tty.info_colour, "")
+            self.disp.inform_message(
+                [
+                    "The cgroup has been enabled but is not running.",
+                    "Please reboot your system and try again the same way run this program."
+                ]
+            )
+            return self.error
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
         status = self.get_k3s_installer()
         if status != self.success:
             self._installation_failed_message()

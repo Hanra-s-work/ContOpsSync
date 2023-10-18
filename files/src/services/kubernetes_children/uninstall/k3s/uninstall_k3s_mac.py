@@ -116,7 +116,7 @@ class UninstallK3sMac:
         """ Uninstall k3s for aur """
         self.print_on_tty(
             self.tty.info_colour,
-            "Uninstalling k3s for aur:"
+            "Uninstalling k3s for aur:\n"
         )
         self.tty.current_tty_status = self.run(
             [
@@ -139,7 +139,7 @@ class UninstallK3sMac:
         """ Uninstall k3s for brew """
         self.print_on_tty(
             self.tty.info_colour,
-            "Uninstalling k3s for brew:"
+            "Uninstalling k3s for brew:\n"
         )
         self.tty.current_tty_status = self.run(
             [

@@ -116,7 +116,7 @@ class UninstallK3sLinux:
         """ Uninstall k3s for aur """
         self.print_on_tty(
             self.tty.info_colour,
-            "Uninstalling k3s for aur:"
+            "Uninstalling k3s for aur:\n"
         )
         self.tty.current_tty_status = self.run(
             [
