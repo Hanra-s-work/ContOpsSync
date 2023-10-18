@@ -18,6 +18,7 @@ class InstallK8sMac:
         self.err = err
         self.error = error
         self.print_on_tty = self.tty.print_on_tty
+        self.run = self.tty.run_command
 
     def main(self) -> int:
         """ The main function of the class """
@@ -26,6 +27,28 @@ class InstallK8sMac:
             "The installation script is yet to come for macs."
         )
         return self.success
+
+    def is_k8s_installed(self) -> bool:
+        """ Returns true if k8s is installed """
+        self.print_on_tty(
+            self.tty.info_colour,
+            "Checking if k8s is installed:"
+        )
+        self.tty.current_tty_status = self.run(
+            [
+                "kubectl",
+                "version",
+                "--output=yaml",
+                ">/dev/null",
+                "2>/dev/null"
+            ]
+        )
+        if self.tty.current_tty_status != self.tty.success:
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
+            return False
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
+        self.tty.current_tty_status = self.tty.success
+        return True
 
     def test_class_install_k8s_mac(self) -> None:
         """ Test the class install k8s MacOS """

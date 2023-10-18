@@ -25,6 +25,28 @@ class InstallK8sWindows:
         self.disp.toml_content["PRETTIFY_OUTPUT"] = False
         self.disp.toml_content["PRETTY_OUTPUT_IN_BLOCS"] = False
 
+    def is_k8s_installed(self) -> bool:
+        """ Returns true if k8s is installed """
+        self.print_on_tty(
+            self.tty.info_colour,
+            "Checking if k8s is installed:"
+        )
+        self.tty.current_tty_status = self.run(
+            [
+                "kubectl",
+                "version",
+                "--output=yaml",
+                ">nul",
+                "2>nul"
+            ]
+        )
+        if self.tty.current_tty_status != self.tty.success:
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
+            return False
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
+        self.tty.current_tty_status = self.tty.success
+        return True
+
     def main(self) -> int:
         """ The main function of the class """
         self.print_on_tty(

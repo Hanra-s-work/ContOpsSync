@@ -211,6 +211,28 @@ class InstallK8sLinux:
         self.tty.current_tty_status = self.tty.success
         return self.tty.current_tty_status
 
+    def is_k8s_installed(self) -> bool:
+        """ Returns true if k8s is installed """
+        self.print_on_tty(
+            self.tty.info_colour,
+            "Checking if k8s is installed:"
+        )
+        self.tty.current_tty_status = self.run(
+            [
+                "kubectl",
+                "version",
+                "--output=yaml",
+                ">/dev/null",
+                "2>/dev/null"
+            ]
+        )
+        if self.tty.current_tty_status != self.tty.success:
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
+            return False
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
+        self.tty.current_tty_status = self.tty.success
+        return True
+
     def main(self) -> int:
         """ The main function of the class """
         if self._has_yay() is True:
