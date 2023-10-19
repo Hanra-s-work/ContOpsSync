@@ -13,8 +13,8 @@ spec:
         app: hello-world
     spec:
       containers:
-      - name: hello-world-docker
-        image: hello-world-docker
+      - name: hello-world
+        image: hello-world-web
         resources:
           requests:
             memory: "64Mi" # Request 64 megabytes of memory

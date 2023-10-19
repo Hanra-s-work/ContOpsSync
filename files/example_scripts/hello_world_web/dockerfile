@@ -1,8 +1,20 @@
 # Use an official Nginx runtime as a parent image
-FROM nginx:alpine
+FROM nginx:stable
 
-# Copy the "Hello, World!" HTML file into the Nginx document root
-COPY hello-world.html /usr/share/nginx/html/
+# Creating path if it does not exist
+RUN mkdir -p /usr/share/nginx/html
+
+# going to the html page
+WORKDIR /usr/share/nginx/html
+
+# Removing current welcome file
+RUN rm -vf index*
+
+# Copy the "Hello, World!" HTML file into the Nginx docker
+COPY index.html .
+
+# Going back to the root
+WORKDIR /
 
 # Expose port 80 for HTTP
 EXPOSE 80
