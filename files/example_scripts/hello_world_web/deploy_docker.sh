@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Build docker image
-docker build -t hello-world-web:latest .
+docker pull hanralatalliard/hello-world-nginx:latest
 
 # Set the namespace where you want to deploy the pod
 NAMESPACE="hello-world-deployment-docker"

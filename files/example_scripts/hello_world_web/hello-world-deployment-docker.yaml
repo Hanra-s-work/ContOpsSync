@@ -13,8 +13,8 @@ spec:
         app: hello-world
     spec:
       containers:
-      - name: hello-world-web-container
-        image: hello-world-web
+      - name: hello-world-nginx-container
+        image: hello-world-nginx
         resources:
           requests:
             memory: "64Mi" # Request 64 megabytes of memory
