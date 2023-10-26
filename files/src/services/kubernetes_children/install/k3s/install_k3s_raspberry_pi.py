@@ -802,7 +802,7 @@ class InstallK3sRaspberryPi:
             [
                 "sudo",
                 "chmod",
-                "644",
+                "664",
                 "-R",
                 self.k3s_folder
             ]
@@ -841,6 +841,7 @@ class InstallK3sRaspberryPi:
 
         self.run(install_line)
         self.get_k3s_token()
+        self._fix_broken_permissions()
         return self.tty.success
 
     def _install_slave_k3s(self, force_docker: bool = False, master_token: str = "", master_ip: str = "") -> int:
@@ -874,6 +875,7 @@ class InstallK3sRaspberryPi:
             self.tty.setenv(["K3S_FORCE_INSTALL_DOCKER", "1"])
             install_line.append("--docker")
         self.run(install_line)
+        self._fix_broken_permissions()
         return self.tty.success
 
     def main(self, install_as_slave: bool = False, force_docker: bool = False, master_token: str = "", master_ip: str = "") -> int:
