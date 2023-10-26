@@ -52,6 +52,8 @@ class InstallK3sRaspberryPi:
         self.ip_save_file = "/tmp/your_current_ip.txt"
         # ---- Router file ----
         self.router_save_file = "/tmp/your_router_name.txt"
+        # ---- k3s folder ----
+        self.k3s_folder = "/etc/rancher/k3s/"
 
     def _get_file_content(self, file_path: str, encoding: str = "utf-8") -> str:
         """ Get the content of a file """
@@ -783,6 +785,31 @@ class InstallK3sRaspberryPi:
         self.print_on_tty(
             self.tty.info_colour,
             "Saving the token status: "
+        )
+        if status != self.success:
+            self.print_on_tty(self.tty.error_colour, "[KO]\n")
+            return self.error
+        self.print_on_tty(self.tty.success_colour, "[OK]\n")
+        return self.success
+
+    def _fix_broken_permissions(self) -> int:
+        """ Fix the broken permissions on the k3s folder """
+        self.print_on_tty(
+            self.tty.info_colour,
+            "Fixing the broken permissions on the k3s folder:\n"
+        )
+        status = self.run(
+            [
+                "sudo",
+                "chmod",
+                "644",
+                "-R",
+                self.k3s_folder
+            ]
+        )
+        self.print_on_tty(
+            self.tty.info_colour,
+            "Fixing the broken permissions status: "
         )
         if status != self.success:
             self.print_on_tty(self.tty.error_colour, "[KO]\n")
