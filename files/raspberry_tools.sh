@@ -92,7 +92,7 @@ function update_system() {
     if [ $update_system -eq $hl_true ]; then
         cecho "Updating system"
         sudo apt-get update
-        sudo apt-get upgrade --with-new-pkgs -y
+        sudo apt-get upgrade --with-new-pkgs
     fi
 }
 
@@ -168,6 +168,8 @@ function create_environement() {
     fi
     if [ $create_env -eq $hl_true ]; then
         install_python_venv
+        echo "Giving execution rights to all the bash files contained in this program"
+        chmod +x -R *.sh
         cecho "Creating virtual environment"
         python3 -m venv $my_env
         fresh_env=$hl_true

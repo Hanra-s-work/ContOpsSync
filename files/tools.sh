@@ -45,6 +45,8 @@ else
 fi
 
 if [ ! -d $MY_ENV ]; then
+    echo "Giving execution rights to all the bash files contained in this program"
+    chmod +x -R *.sh
     echo "Creating virtual environment"
     python3 -m venv $MY_ENV
     FRESH_ENV=$TRUE
