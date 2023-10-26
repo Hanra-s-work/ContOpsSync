@@ -14,7 +14,7 @@ function run_command {
 alias kubectl="sudo kubectl"
 echo "Welcome to hello world web no docker"
 echo "Getting your web files for the ingress deployment"
-deployment_files=$(find . \( -iname "*.html" -o -iname '*.css' -o -iname '*.js'\) -type f)
+deployment_files=$(find . \( -iname "*.html" -o -iname '*.css' -o -iname '*.js'-type f \))
 echo "Creating configmap"
 run_command "sudo kubectl create configmap $configmap_filename --from-file $deployment_files"
 echo "Getting configmap uptime"
