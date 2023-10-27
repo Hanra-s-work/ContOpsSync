@@ -1,0 +1,2581 @@
+{
+  "rootTopicKey": "df01e7b7-5f6c-4084-8f77-7ceb919084f5",
+  "editorRootTopicKey": "df01e7b7-5f6c-4084-8f77-7ceb919084f5",
+  "focusKey": "c33594a3-513c-4893-ba6c-9a6b2d81361c",
+  "extData": {
+    "TOPIC_REFERENCE": {
+      "reference": {}
+    }
+  },
+  "topics": [
+    {
+      "key": "c82bd17d-cde2-41ec-8718-01ca4b1d7b7f",
+      "parentKey": "3c957dd2-d9cb-4281-b1db-0c7e408b6182",
+      "subKeys": [
+        "0fb39ab9-f485-4768-94ca-6a5c3d93f35c",
+        "9ff389fc-dcaf-4019-b984-f1124d0abad2"
+      ],
+      "collapse": true,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "N﻿ginx docs"
+        }
+      ]
+    },
+    {
+      "key": "e055daf3-d054-4407-ab30-b89023a3a7a8",
+      "parentKey": "d10b8c07-e278-4d2d-85c7-85953624e248",
+      "subKeys": [
+        "2ef0c640-3fbc-401d-bb1e-8bfbdd1d2c92"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "7.﻿"
+        }
+      ]
+    },
+    {
+      "key": "858c0d09-176e-4005-a7d9-5fdbd2724842",
+      "parentKey": "c1eda28f-56a2-49cc-95a2-3850cf2c310b",
+      "subKeys": [
+        "3fec9974-7682-485f-a531-1ce15e2062af"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "E﻿nter: curl localhost:<the_port_you_chose>"
+        }
+      ]
+    },
+    {
+      "key": "78e7a954-4009-41cb-b4fd-ed8ad8cc65e9",
+      "parentKey": "14cac4bb-ce18-4941-b973-dbd94e56686c",
+      "subKeys": [
+        "a80f57ac-e453-45c6-9879-3dfca55e47a1",
+        "b3c7071a-a570-4b14-8786-4d781fdf4213"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "﻿if the port is between 1023 and 100"
+        }
+      ]
+    },
+    {
+      "key": "fd6cc044-b6aa-471f-856a-f324245033cd",
+      "parentKey": "53d4a75e-f21f-4b91-9a9a-b8df7b2d4fe3",
+      "subKeys": [
+        "4e595f9d-2fcb-44d2-91ed-d5a1fea51c5b"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "I﻿f the message is something like: Connection refused"
+        }
+      ]
+    },
+    {
+      "key": "9f905856-c7aa-4b53-a969-3690d109c483",
+      "parentKey": "10fd6b2e-188f-4b9f-b3b3-e59715de2a36",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "https://www.rfc-editor.org/rfc/rfc6335.html"
+        }
+      ]
+    },
+    {
+      "key": "261972e7-5b18-44c4-a67a-902a3321a42e",
+      "parentKey": "668d4b51-2ea4-48f9-bf79-3f451068ba82",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "E﻿nter the folder containing the files you wish to deploy"
+        }
+      ]
+    },
+    {
+      "key": "2972091a-3c57-420e-983b-620cbe9caf2e",
+      "parentKey": "2f645b4c-9acf-4cc0-bcbd-7782787834a7",
+      "subKeys": [
+        "45731cbd-ad43-4c6e-a5bc-410e6896d6d2"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "1﻿."
+        }
+      ]
+    },
+    {
+      "key": "dcbc63ae-deb0-483e-8fc6-6d1471b69786",
+      "parentKey": "14cac4bb-ce18-4941-b973-dbd94e56686c",
+      "subKeys": [
+        "a718145e-b9d5-4ab1-81e9-4d926e20f9fa"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "S﻿QL database"
+        }
+      ]
+    },
+    {
+      "key": "e30adfad-bc10-41a3-8d85-3fe7484f6a1c",
+      "parentKey": "3e74ed66-1d60-4166-b5bc-92b240ec89ed",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "https://projectcontour.io/"
+        }
+      ]
+    },
+    {
+      "key": "5d87e088-75a7-4dc5-bfdc-55d28d151276",
+      "parentKey": "d0edcf3f-b053-43c0-b928-41dd53ba4cee",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "https://tetrate.io/blog/how-istio-got-its-name/"
+        }
+      ]
+    },
+    {
+      "key": "e75865e2-04ad-41fb-a52d-57a82779870f",
+      "parentKey": "04786244-e8ee-4535-a680-798bb5c662da",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "C﻿hoose a name for your configmap file (only: A-Z, a-z, 0-9 and - are alowed)"
+        }
+      ]
+    },
+    {
+      "key": "18ab49fd-9b99-4c2c-bee7-c038a194151e",
+      "parentKey": "8ee83e21-f3e8-482d-a3a3-546309b25401",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "4﻿43"
+        }
+      ]
+    },
+    {
+      "key": "f82c3421-c3f3-4b15-ac73-a3d5da824bab",
+      "parentKey": "d9e4f611-8ae0-4868-a62e-99f699603cc6",
+      "subKeys": [
+        "b01fa8ff-a7a9-42a8-9d5c-edda70be0cbe"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "H﻿acking Kubernetes"
+        }
+      ]
+    },
+    {
+      "key": "d7cc917a-149d-45f6-8263-289871a69f45",
+      "parentKey": "8fdb0ddb-159e-45b0-a2f0-410f5aa3cad8",
+      "subKeys": [
+        "6917ea3b-cc0b-4306-abed-580c228364ab"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "C﻿reate a configmap from the file you just located"
+        }
+      ]
+    },
+    {
+      "key": "0c1b6255-20aa-4050-bd4f-2240d03b725a",
+      "parentKey": "1c2e9c21-0054-4140-9f56-6dbb1d51357e",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "https://www.haproxy.org/"
+        }
+      ]
+    },
+    {
+      "key": "d10b8c07-e278-4d2d-85c7-85953624e248",
+      "parentKey": "c8245afe-d6c6-4329-8b98-5f117f2f4cc8",
+      "subKeys": [
+        "668d4b51-2ea4-48f9-bf79-3f451068ba82",
+        "8532d07d-8400-460e-ba7c-bda15e6872d4",
+        "04786244-e8ee-4535-a680-798bb5c662da",
+        "8fdb0ddb-159e-45b0-a2f0-410f5aa3cad8",
+        "7244b7e8-f699-4a1c-aba6-7bbf47f7290b",
+        "1f129c24-197f-4cd1-bded-624f08eadaaf",
+        "e055daf3-d054-4407-ab30-b89023a3a7a8",
+        "22bd3e01-e93f-4d76-a065-370a5b6581db"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "V﻿ia command line"
+        }
+      ]
+    },
+    {
+      "key": "354d8940-a38f-4824-8140-d1b50a13257d",
+      "parentKey": "fe19320b-f870-4fc2-bfea-0b0a08b8aa8f",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "C﻿reate a new file with the same name as the one you chose for your configmap file"
+        }
+      ]
+    },
+    {
+      "key": "ba1abd02-9f7c-4515-8928-769de3d98ef7",
+      "parentKey": "b03d7d47-7df0-4b31-b6c5-be6f25c89b10",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "﻿Check the logs to see if the error is explained in them"
+        }
+      ]
+    },
+    {
+      "key": "07e8d23b-12a5-4030-9217-61351458dc27",
+      "parentKey": "6d8536cd-9642-4f8a-99c3-3e1a862e58ad",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "I﻿f you have a ressource error memory, try removing some pods to see if this fixes the issue"
+        }
+      ]
+    },
+    {
+      "key": "3091ebee-f6bf-40aa-817b-a2fd5f2aff54",
+      "parentKey": "6be1cecb-1fa7-4c93-9f9f-70515e355495",
+      "subKeys": [
+        "28c95694-9c59-403e-bd7b-6070266d26d4"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "W﻿hat a firewall is?"
+        }
+      ]
+    },
+    {
+      "key": "20c68059-8c35-4718-81a2-55159bf4646a",
+      "parentKey": "782f746c-c49c-44c2-a49a-054272871b07",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "https://traefik.io/blog/the-roadmap-to-traefik-proxy-3-0/"
+        }
+      ]
+    },
+    {
+      "key": "28c95694-9c59-403e-bd7b-6070266d26d4",
+      "parentKey": "3091ebee-f6bf-40aa-817b-a2fd5f2aff54",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "A firewall is a network security device that monitors incoming and outgoing network traffic and decides whether to allow or block specific traffic based on a defined set of security rules."
+        }
+      ]
+    },
+    {
+      "key": "d2d231d1-4eea-4798-a786-01f006b616a3",
+      "parentKey": "71204210-2fa9-4e93-b14e-275ed26dc044",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "5﻿000"
+        }
+      ]
+    },
+    {
+      "key": "41d5cf4c-24ad-4d99-aea6-b79b1d19b9bd",
+      "parentKey": "66a3eef7-882a-4122-ad8c-1625b41707da",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "M﻿onitors who goes in and out"
+        }
+      ]
+    },
+    {
+      "key": "3fec9974-7682-485f-a531-1ce15e2062af",
+      "parentKey": "858c0d09-176e-4005-a7d9-5fdbd2724842",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "T﻿his command will attempt to get the content of your web page"
+        }
+      ]
+    },
+    {
+      "key": "85c5fc78-8fb2-4d5b-bacb-aa09f0d49b6a",
+      "parentKey": "92dda3a4-5bec-48ab-bac3-a02ce60ef323",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "https://www.rfc-editor.org/rfc/rfc6335.html"
+        }
+      ]
+    },
+    {
+      "key": "10fd6b2e-188f-4b9f-b3b3-e59715de2a36",
+      "parentKey": "712b918f-a1e9-460c-af96-6d48d610c123",
+      "subKeys": [
+        "9f905856-c7aa-4b53-a969-3690d109c483"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "﻿RFC6335"
+        }
+      ]
+    },
+    {
+      "key": "a19db7cd-e180-41d8-ab78-020128b99c65",
+      "parentKey": "14cac4bb-ce18-4941-b973-dbd94e56686c",
+      "subKeys": [
+        "3c006796-f35d-43d4-896c-a3f385a7a7eb"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "﻿More info:"
+        }
+      ]
+    },
+    {
+      "key": "8fdb0ddb-159e-45b0-a2f0-410f5aa3cad8",
+      "parentKey": "d10b8c07-e278-4d2d-85c7-85953624e248",
+      "subKeys": [
+        "d7cc917a-149d-45f6-8263-289871a69f45"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "﻿4."
+        }
+      ]
+    },
+    {
+      "key": "89056880-36e0-4372-a6a3-34b93dae36f6",
+      "parentKey": "a13431c1-93cb-40c9-9faa-d3363263ed36",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "https://traefik.io/blog/the-roadmap-to-traefik-proxy-3-0/"
+        }
+      ]
+    },
+    {
+      "key": "eafaab4f-0ab7-40a7-8cf4-a6a0ae257bd6",
+      "parentKey": "c4893d1b-df83-45dc-be6b-566f327703d5",
+      "subKeys": [
+        "c3e222fe-2aba-41d0-8f3f-6502e51e6e42"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "﻿If it is already in use"
+        }
+      ]
+    },
+    {
+      "key": "d7e19239-1dd3-4794-b283-683a70c57a0a",
+      "parentKey": "22bd3e01-e93f-4d76-a065-370a5b6581db",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "﻿If this did not work, try adding a / at the end of the link"
+        }
+      ]
+    },
+    {
+      "key": "6b25ff13-65ab-4d67-9ac7-54875bcf1b11",
+      "parentKey": "a2a7b9eb-45a0-46fc-9163-811f8c0d0c0a",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "T﻿his could mean that your application is running but that the ressource you are trying to fetch does not exist"
+        }
+      ]
+    },
+    {
+      "key": "f2d59388-4c3d-4151-9e3e-385fd5ad668a",
+      "parentKey": "17d56f3b-60b0-43ff-ad4c-b93c85d8cfbc",
+      "subKeys": [
+        "b322d8a9-0bad-4c85-ac41-e67e09b4d7b8"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "0﻿"
+        }
+      ]
+    },
+    {
+      "key": "07c7e4e5-3dcd-408c-ae1b-52b4adeffada",
+      "parentKey": "7244b7e8-f699-4a1c-aba6-7bbf47f7290b",
+      "subKeys": [
+        "94f552df-2752-4e31-a28c-523a8d5e940f"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "I﻿f you wish to ensure that the configmap was created, you can run:"
+        }
+      ]
+    },
+    {
+      "key": "30546e49-7c40-4b1b-bb6b-95671447516a",
+      "parentKey": "4c517bec-bd00-4683-9b83-d909d17884cc",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "https://www.cisco.com/c/en/us/products/security/firewalls/what-is-a-firewall.html"
+        }
+      ]
+    },
+    {
+      "key": "a0afaf30-c45c-45a3-873d-17224fb667ca",
+      "parentKey": "14cac4bb-ce18-4941-b973-dbd94e56686c",
+      "subKeys": [
+        "e65b255f-d209-49e5-bbd8-946aed3f5666"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "h﻿ttp (website without ssl)"
+        }
+      ]
+    },
+    {
+      "key": "0fb39ab9-f485-4768-94ca-6a5c3d93f35c",
+      "parentKey": "c82bd17d-cde2-41ec-8718-01ca4b1d7b7f",
+      "subKeys": [
+        "86a3e74a-8262-47cc-a8e8-0d954fcf39bb"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": " ﻿Ingress overview"
+        }
+      ]
+    },
+    {
+      "key": "357debd0-a77d-43e8-a053-419a58ec1744",
+      "parentKey": "0c2846e6-4dde-4463-a4ff-8df410921158",
+      "subKeys": [
+        "e39f9a23-e270-42f6-b099-cbf05a86306f"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "﻿Istio"
+        }
+      ]
+    },
+    {
+      "key": "57f2fac9-8e01-485a-b4d8-33a8e7a9d9a6",
+      "parentKey": "c8245afe-d6c6-4329-8b98-5f117f2f4cc8",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "V﻿ia yaml"
+        }
+      ]
+    },
+    {
+      "key": "65f6535f-3c4b-4f42-b68d-90795bea0c34",
+      "parentKey": "5dd2cab9-966f-4221-860f-4d6f73e10cd7",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": " ﻿https://youtu.be/GhZi4DxaxxE"
+        }
+      ]
+    },
+    {
+      "key": "d75e6c12-14bf-4569-b44b-b4bd4d718189",
+      "parentKey": "66a3eef7-882a-4122-ad8c-1625b41707da",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "R﻿edirects the url to the pod that would be up and running"
+        }
+      ]
+    },
+    {
+      "key": "a2a7b9eb-45a0-46fc-9163-811f8c0d0c0a",
+      "parentKey": "53d4a75e-f21f-4b91-9a9a-b8df7b2d4fe3",
+      "subKeys": [
+        "6b25ff13-65ab-4d67-9ac7-54875bcf1b11"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "I﻿f you get a mossage close to not found"
+        }
+      ]
+    },
+    {
+      "key": "f26e26ca-1220-4886-b27c-70a3cf4d3910",
+      "parentKey": "b5f07e32-8af0-4793-b7e5-046578548721",
+      "subKeys": [
+        "4b9ae74c-1fa1-46f2-ba34-51c45377d280"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "N﻿ginx"
+        }
+      ]
+    },
+    {
+      "key": "66a3eef7-882a-4122-ad8c-1625b41707da",
+      "parentKey": "6be1cecb-1fa7-4c93-9f9f-70515e355495",
+      "subKeys": [
+        "41d5cf4c-24ad-4d99-aea6-b79b1d19b9bd",
+        "d75e6c12-14bf-4569-b44b-b4bd4d718189"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "I﻿t is a network manager and a firewall"
+        }
+      ]
+    },
+    {
+      "key": "1c2e9c21-0054-4140-9f56-6dbb1d51357e",
+      "parentKey": "b5f07e32-8af0-4793-b7e5-046578548721",
+      "subKeys": [
+        "0c1b6255-20aa-4050-bd4f-2240d03b725a"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "H﻿AProxy"
+        }
+      ]
+    },
+    {
+      "key": "bb7ac1e3-4050-45ab-b3d9-cf1c64492cc6",
+      "parentKey": "6d8536cd-9642-4f8a-99c3-3e1a862e58ad",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "I﻿f the error is a warning about a depreceated method, try and fix it then try again"
+        }
+      ]
+    },
+    {
+      "key": "22bd3e01-e93f-4d76-a065-370a5b6581db",
+      "parentKey": "d10b8c07-e278-4d2d-85c7-85953624e248",
+      "subKeys": [
+        "c1eda28f-56a2-49cc-95a2-3850cf2c310b",
+        "d7e19239-1dd3-4794-b283-683a70c57a0a",
+        "53d4a75e-f21f-4b91-9a9a-b8df7b2d4fe3"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "﻿8."
+        }
+      ]
+    },
+    {
+      "key": "5ea4408d-0884-47f5-8454-ac5549d94d30",
+      "parentKey": "0c2846e6-4dde-4463-a4ff-8df410921158",
+      "subKeys": [
+        "3e74ed66-1d60-4166-b5bc-92b240ec89ed"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "﻿Contour"
+        }
+      ]
+    },
+    {
+      "key": "4e595f9d-2fcb-44d2-91ed-d5a1fea51c5b",
+      "parentKey": "fd6cc044-b6aa-471f-856a-f324245033cd",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "T﻿his means that you might not be fetching the correct port, this could also mean that the application is not running yet"
+        }
+      ]
+    },
+    {
+      "key": "5c37e1f1-39ec-4d40-a3d9-16dfc0b3d827",
+      "parentKey": "6d8536cd-9642-4f8a-99c3-3e1a862e58ad",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "﻿If you see a port already taken error message, try increasing the port number by 1"
+        }
+      ]
+    },
+    {
+      "key": "c3e222fe-2aba-41d0-8f3f-6502e51e6e42",
+      "parentKey": "eafaab4f-0ab7-40a7-8cf4-a6a0ae257bd6",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "I﻿ncrement the number by 1"
+        }
+      ]
+    },
+    {
+      "key": "488a3798-6649-4118-a8c6-b2434e22f7a3",
+      "parentKey": "8532d07d-8400-460e-ba7c-bda15e6872d4",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "L﻿ocate the name of the html file you wish to deploy"
+        }
+      ]
+    },
+    {
+      "key": "45731cbd-ad43-4c6e-a5bc-410e6896d6d2",
+      "parentKey": "2972091a-3c57-420e-983b-620cbe9caf2e",
+      "subKeys": [
+        "98613602-cad6-4cf4-bb12-cdb63a88ae06",
+        "ee2d2966-a1ae-4eb5-bcb9-4cb179ab607d",
+        "b03d7d47-7df0-4b31-b6c5-be6f25c89b10"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "C﻿heck if your pod is running"
+        }
+      ]
+    },
+    {
+      "key": "f67376b7-5e08-4a23-bd26-14686fdcde59",
+      "parentKey": "df01e7b7-5f6c-4084-8f77-7ceb919084f5",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "W﻿ho are the targets of this lesson?"
+        }
+      ]
+    },
+    {
+      "key": "80f64918-e32b-41b2-b6d0-e191f75890a8",
+      "parentKey": "eeb7fbcf-e369-45d1-95ea-b3c6454ab32a",
+      "subKeys": [
+        "1f760e9b-fe11-4bda-9709-b196303ebe08"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": ".﻿1"
+        }
+      ]
+    },
+    {
+      "key": "56d42805-ca40-4462-ae3b-d77c796588ba",
+      "parentKey": "28505c06-cdb6-44ef-8cc4-dcc657afe412",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "#Check 6.3 if you do not know how/what port to choose﻿\napiVersion: networking.k8s.io/v1\r\nkind: Ingress\r\nmetadata:\r\n  name: <the_configmap_file_name>\r\n  annotations:\r\n    spec.ingressClassName: <your_ingress_manager(see_6.2_for_options)>\r\nspec:\r\n  rules:\r\n  - http:\r\n      paths:\r\n      - path: /\r\n        pathType: Prefix\r\n        backend:\r\n          service:\r\n            name: hello-world\r\n            port:\r\n              number: <the_port_on_which_you_wish_to_expose_your_website>"
+        }
+      ]
+    },
+    {
+      "key": "fc3a632d-7213-4290-8c01-ae06106d4f72",
+      "parentKey": "a2e530fa-0aef-409b-b125-8dcb3eddb73b",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "W﻿hen you wish to monitor who see's you website"
+        }
+      ]
+    },
+    {
+      "key": "e8911c13-8620-4338-a3b7-3a5559f9b6f7",
+      "parentKey": "c8245afe-d6c6-4329-8b98-5f117f2f4cc8",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "V﻿ia helm"
+        }
+      ]
+    },
+    {
+      "key": "d9e4f611-8ae0-4868-a62e-99f699603cc6",
+      "parentKey": "f9570e28-1356-4e05-aa86-f76bb6cf64ff",
+      "subKeys": [
+        "f82c3421-c3f3-4b15-ac73-a3d5da824bab"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "Y﻿ou might be interested in"
+        }
+      ]
+    },
+    {
+      "key": "eeb7fbcf-e369-45d1-95ea-b3c6454ab32a",
+      "parentKey": "1f129c24-197f-4cd1-bded-624f08eadaaf",
+      "subKeys": [
+        "80f64918-e32b-41b2-b6d0-e191f75890a8",
+        "cef76df9-714c-436c-9b5e-c11fa6a9efa1"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": " ﻿.3 (if you do not know which port to use)"
+        }
+      ]
+    },
+    {
+      "key": "b3c7071a-a570-4b14-8786-4d781fdf4213",
+      "parentKey": "78e7a954-4009-41cb-b4fd-ed8ad8cc65e9",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "﻿if port to high, use the last digit of the port"
+        }
+      ]
+    },
+    {
+      "key": "1a913657-c331-4b22-adff-bfd1ea3c71f0",
+      "parentKey": "c33594a3-513c-4893-ba6c-9a6b2d81361c",
+      "subKeys": [
+        "66c8bb99-642d-4061-80a8-7f2551a61106"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "I﻿f you have detected that the container is the cause, run: sudo kubeclt delete pod <your_pod_name>"
+        }
+      ]
+    },
+    {
+      "key": "85e1856b-682d-4877-845e-1a75f00be771",
+      "parentKey": "2f645b4c-9acf-4cc0-bcbd-7782787834a7",
+      "subKeys": [
+        "e7092d41-6325-40a3-8a1f-6024bf0c792b"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "﻿2."
+        }
+      ]
+    },
+    {
+      "key": "c4893d1b-df83-45dc-be6b-566f327703d5",
+      "parentKey": "14cac4bb-ce18-4941-b973-dbd94e56686c",
+      "subKeys": [
+        "a15d69c0-c82e-4942-9b08-f61ca7e4d436",
+        "eafaab4f-0ab7-40a7-8cf4-a6a0ae257bd6"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "i﻿f the port is higher or equal to 1023"
+        }
+      ]
+    },
+    {
+      "key": "5d44b267-d616-4217-814a-915bc0262d85",
+      "parentKey": "1f129c24-197f-4cd1-bded-624f08eadaaf",
+      "subKeys": [
+        "0c2846e6-4dde-4463-a4ff-8df410921158"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": ".﻿2"
+        }
+      ]
+    },
+    {
+      "key": "14cac4bb-ce18-4941-b973-dbd94e56686c",
+      "parentKey": "cef76df9-714c-436c-9b5e-c11fa6a9efa1",
+      "subKeys": [
+        "a0afaf30-c45c-45a3-873d-17224fb667ca",
+        "8ee83e21-f3e8-482d-a3a3-546309b25401",
+        "71204210-2fa9-4e93-b14e-275ed26dc044",
+        "dcbc63ae-deb0-483e-8fc6-6d1471b69786",
+        "c4893d1b-df83-45dc-be6b-566f327703d5",
+        "78e7a954-4009-41cb-b4fd-ed8ad8cc65e9",
+        "8d5bb23a-32b5-43df-bd8f-960fda2b47ad",
+        "12b502d8-2a69-41b2-b5ba-90d6546ea6a3",
+        "17d56f3b-60b0-43ff-ad4c-b93c85d8cfbc",
+        "6090dc17-d8d0-4a0d-b4e6-c72ff562998a",
+        "a19db7cd-e180-41d8-ab78-020128b99c65"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "c﻿ommon port rebinds"
+        }
+      ]
+    },
+    {
+      "key": "782f746c-c49c-44c2-a49a-054272871b07",
+      "parentKey": "b5f07e32-8af0-4793-b7e5-046578548721",
+      "subKeys": [
+        "20c68059-8c35-4718-81a2-55159bf4646a"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "﻿Traefik"
+        }
+      ]
+    },
+    {
+      "key": "d0edcf3f-b053-43c0-b928-41dd53ba4cee",
+      "parentKey": "edc8592c-0024-4a83-8019-f109a65d217b",
+      "subKeys": [
+        "5d87e088-75a7-4dc5-bfdc-55d28d151276"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "o﻿rigin of the name"
+        }
+      ]
+    },
+    {
+      "key": "6df239ae-34a1-4b4c-b988-0bc17bdd5d93",
+      "parentKey": "2b01d506-6670-449e-a660-e8e2b2874b4d",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "3﻿307"
+        }
+      ]
+    },
+    {
+      "key": "3e74ed66-1d60-4166-b5bc-92b240ec89ed",
+      "parentKey": "5ea4408d-0884-47f5-8454-ac5549d94d30",
+      "subKeys": [
+        "e30adfad-bc10-41a3-8d85-3fe7484f6a1c"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "F﻿rom contour"
+        }
+      ]
+    },
+    {
+      "key": "c15fdf34-3ce9-485a-b37d-f3e57aca8495",
+      "parentKey": "27241880-c0a4-4b0c-83e7-eecc5163f80c",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "https://projectcontour.io/"
+        }
+      ]
+    },
+    {
+      "key": "a3bf64bc-4611-4b26-9e71-ffe5f254b941",
+      "parentKey": "3c957dd2-d9cb-4281-b1db-0c7e408b6182",
+      "subKeys": [
+        "300e5880-a4ef-4046-8e06-1d35891518d7"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "K﻿ubernetes"
+        }
+      ]
+    },
+    {
+      "key": "28505c06-cdb6-44ef-8cc4-dcc657afe412",
+      "parentKey": "fe19320b-f870-4fc2-bfea-0b0a08b8aa8f",
+      "subKeys": [
+        "56d42805-ca40-4462-ae3b-d77c796588ba",
+        "48027abe-a504-4cda-930b-479359cbc88a",
+        "4acd14e2-bfb6-456d-b21d-55aa06e32fbf"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "W﻿rite the following lines in the file\nreplace the <items> by the values you want﻿"
+        }
+      ]
+    },
+    {
+      "key": "5b5333b9-0800-42a4-802b-630a5de63144",
+      "parentKey": "6090dc17-d8d0-4a0d-b4e6-c72ff562998a",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "65535"
+        }
+      ]
+    },
+    {
+      "key": "6bdf174c-9b5e-40f1-8e1d-f931c04b2b46",
+      "parentKey": "b03d7d47-7df0-4b31-b6c5-be6f25c89b10",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "﻿Otherwise, run: sudo kubectl logs <your_pod_name>"
+        }
+      ]
+    },
+    {
+      "key": "2f645b4c-9acf-4cc0-bcbd-7782787834a7",
+      "parentKey": "14509398-7f1d-4067-a85b-4c6c9fbab85a",
+      "subKeys": [
+        "2972091a-3c57-420e-983b-620cbe9caf2e",
+        "85e1856b-682d-4877-845e-1a75f00be771"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "W﻿hen you have an error, try following these steps:"
+        }
+      ]
+    },
+    {
+      "key": "04786244-e8ee-4535-a680-798bb5c662da",
+      "parentKey": "d10b8c07-e278-4d2d-85c7-85953624e248",
+      "subKeys": [
+        "e75865e2-04ad-41fb-a52d-57a82779870f"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "﻿3."
+        }
+      ]
+    },
+    {
+      "key": "7f0202df-a5d4-4955-a6ba-9ba5fbb0e91c",
+      "parentKey": "ef7133f1-e6dd-40f3-813e-e1c250a55e3a",
+      "subKeys": [
+        "694a0d8a-c017-498c-aee1-fb96746b1d67"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "F﻿rom nginx"
+        }
+      ]
+    },
+    {
+      "key": "668d4b51-2ea4-48f9-bf79-3f451068ba82",
+      "parentKey": "d10b8c07-e278-4d2d-85c7-85953624e248",
+      "subKeys": [
+        "261972e7-5b18-44c4-a67a-902a3321a42e"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "1﻿."
+        }
+      ]
+    },
+    {
+      "key": "c49fc5b2-ca2f-45ee-bfa4-eef99be09e37",
+      "parentKey": "0c2846e6-4dde-4463-a4ff-8df410921158",
+      "subKeys": [
+        "a13431c1-93cb-40c9-9faa-d3363263ed36"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "﻿Traefik"
+        }
+      ]
+    },
+    {
+      "key": "694a0d8a-c017-498c-aee1-fb96746b1d67",
+      "parentKey": "7f0202df-a5d4-4955-a6ba-9ba5fbb0e91c",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": ""
+        }
+      ]
+    },
+    {
+      "key": "b64558ac-ddf7-4a8a-a3dc-964199ca5c51",
+      "parentKey": "300e5880-a4ef-4046-8e06-1d35891518d7",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "https://kubernetes.io/docs/concepts/services-networking/ingress/"
+        }
+      ]
+    },
+    {
+      "key": "b5f07e32-8af0-4793-b7e5-046578548721",
+      "parentKey": "3c957dd2-d9cb-4281-b1db-0c7e408b6182",
+      "subKeys": [
+        "27241880-c0a4-4b0c-83e7-eecc5163f80c",
+        "f26e26ca-1220-4886-b27c-70a3cf4d3910",
+        "c5ae92f1-5e06-4078-83a9-58c7b5120ebf",
+        "1c2e9c21-0054-4140-9f56-6dbb1d51357e",
+        "782f746c-c49c-44c2-a49a-054272871b07",
+        "edc8592c-0024-4a83-8019-f109a65d217b"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "I﻿ngress controlers"
+        }
+      ]
+    },
+    {
+      "key": "6090dc17-d8d0-4a0d-b4e6-c72ff562998a",
+      "parentKey": "14cac4bb-ce18-4941-b973-dbd94e56686c",
+      "subKeys": [
+        "5b5333b9-0800-42a4-802b-630a5de63144"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "﻿The highest port number is:"
+        }
+      ]
+    },
+    {
+      "key": "b03d7d47-7df0-4b31-b6c5-be6f25c89b10",
+      "parentKey": "45731cbd-ad43-4c6e-a5bc-410e6896d6d2",
+      "subKeys": [
+        "df67b398-1159-4e3b-931b-d09e674ac464",
+        "6bdf174c-9b5e-40f1-8e1d-f931c04b2b46",
+        "ba1abd02-9f7c-4515-8928-769de3d98ef7"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "﻿Check the \"READY\" colum"
+        }
+      ]
+    },
+    {
+      "key": "4b9ae74c-1fa1-46f2-ba34-51c45377d280",
+      "parentKey": "f26e26ca-1220-4886-b27c-70a3cf4d3910",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "https://docs.nginx.com/nginx-ingress-controller/"
+        }
+      ]
+    },
+    {
+      "key": "21c10a46-aec2-4634-9f09-8e959d2f0e82",
+      "parentKey": "a2e530fa-0aef-409b-b125-8dcb3eddb73b",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "W﻿hen you wish to stay up and running at anytime."
+        }
+      ]
+    },
+    {
+      "key": "917821eb-9d37-41bb-beaa-17d13497ccba",
+      "parentKey": "712b918f-a1e9-460c-af96-6d48d610c123",
+      "subKeys": [
+        "6c333dcc-7c8a-408f-9d78-7131ad4e24ae"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "H﻿omepage"
+        }
+      ]
+    },
+    {
+      "key": "76917e8e-3abe-4bef-a0db-3ed71512f280",
+      "parentKey": "c8245afe-d6c6-4329-8b98-5f117f2f4cc8",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "V﻿ia manifest"
+        }
+      ]
+    },
+    {
+      "key": "12b502d8-2a69-41b2-b5ba-90d6546ea6a3",
+      "parentKey": "14cac4bb-ce18-4941-b973-dbd94e56686c",
+      "subKeys": [
+        "4364cd0d-552f-45bb-9bcc-8474b832c5db"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "﻿Lower port number is:"
+        }
+      ]
+    },
+    {
+      "key": "edc8592c-0024-4a83-8019-f109a65d217b",
+      "parentKey": "b5f07e32-8af0-4793-b7e5-046578548721",
+      "subKeys": [
+        "3280c3f0-110f-4a39-9bf3-2ff36a0860d0",
+        "d0edcf3f-b053-43c0-b928-41dd53ba4cee"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "﻿Istio"
+        }
+      ]
+    },
+    {
+      "key": "712b918f-a1e9-460c-af96-6d48d610c123",
+      "parentKey": "3c957dd2-d9cb-4281-b1db-0c7e408b6182",
+      "subKeys": [
+        "917821eb-9d37-41bb-beaa-17d13497ccba",
+        "10fd6b2e-188f-4b9f-b3b3-e59715de2a36"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "I﻿CAN"
+        }
+      ]
+    },
+    {
+      "key": "2a3c2639-6b0f-435e-beff-12325dd410de",
+      "parentKey": "0c2846e6-4dde-4463-a4ff-8df410921158",
+      "subKeys": [
+        "a2521691-6d34-4951-b84d-6414f6401f92"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "G﻿CP HTTPS (Load Balancer (GCE)"
+        }
+      ]
+    },
+    {
+      "key": "71204210-2fa9-4e93-b14e-275ed26dc044",
+      "parentKey": "14cac4bb-ce18-4941-b973-dbd94e56686c",
+      "subKeys": [
+        "d2d231d1-4eea-4798-a786-01f006b616a3"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "backend﻿"
+        }
+      ]
+    },
+    {
+      "key": "c5ae92f1-5e06-4078-83a9-58c7b5120ebf",
+      "parentKey": "b5f07e32-8af0-4793-b7e5-046578548721",
+      "subKeys": [
+        "6ee71c44-7a33-4156-8588-cede87b621fa"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "G﻿CP HTTPS"
+        }
+      ]
+    },
+    {
+      "key": "3280c3f0-110f-4a39-9bf3-2ff36a0860d0",
+      "parentKey": "edc8592c-0024-4a83-8019-f109a65d217b",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "https://istio.io/"
+        }
+      ]
+    },
+    {
+      "key": "a2521691-6d34-4951-b84d-6414f6401f92",
+      "parentKey": "2a3c2639-6b0f-435e-beff-12325dd410de",
+      "subKeys": [
+        "6e0fa047-b49d-471f-8fa8-150aad12dbc5"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "F﻿rom google"
+        }
+      ]
+    },
+    {
+      "key": "94f552df-2752-4e31-a28c-523a8d5e940f",
+      "parentKey": "07c7e4e5-3dcd-408c-ae1b-52b4adeffada",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "Enter: sudo kubectl get configmap <your_configmap_filename>"
+        }
+      ]
+    },
+    {
+      "key": "c8245afe-d6c6-4329-8b98-5f117f2f4cc8",
+      "parentKey": "df01e7b7-5f6c-4084-8f77-7ceb919084f5",
+      "subKeys": [
+        "d10b8c07-e278-4d2d-85c7-85953624e248",
+        "57f2fac9-8e01-485a-b4d8-33a8e7a9d9a6",
+        "e8911c13-8620-4338-a3b7-3a5559f9b6f7",
+        "76917e8e-3abe-4bef-a0db-3ed71512f280",
+        "14509398-7f1d-4067-a85b-4c6c9fbab85a"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "H﻿ow do I set it up?"
+        }
+      ]
+    },
+    {
+      "key": "a15d69c0-c82e-4942-9b08-f61ca7e4d436",
+      "parentKey": "c4893d1b-df83-45dc-be6b-566f327703d5",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "t﻿ry and use the port"
+        }
+      ]
+    },
+    {
+      "key": "4c517bec-bd00-4683-9b83-d909d17884cc",
+      "parentKey": "979a8dfa-36ee-4d8e-97bc-1ec219b8fc6d",
+      "subKeys": [
+        "30546e49-7c40-4b1b-bb6b-95671447516a"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "W﻿hat a firewall is"
+        }
+      ]
+    },
+    {
+      "key": "4364cd0d-552f-45bb-9bcc-8474b832c5db",
+      "parentKey": "12b502d8-2a69-41b2-b5ba-90d6546ea6a3",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "0﻿"
+        }
+      ]
+    },
+    {
+      "key": "979a8dfa-36ee-4d8e-97bc-1ec219b8fc6d",
+      "parentKey": "3c957dd2-d9cb-4281-b1db-0c7e408b6182",
+      "subKeys": [
+        "4c517bec-bd00-4683-9b83-d909d17884cc"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "C﻿isco"
+        }
+      ]
+    },
+    {
+      "key": "8532d07d-8400-460e-ba7c-bda15e6872d4",
+      "parentKey": "d10b8c07-e278-4d2d-85c7-85953624e248",
+      "subKeys": [
+        "488a3798-6649-4118-a8c6-b2434e22f7a3"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "2﻿."
+        }
+      ]
+    },
+    {
+      "key": "52da61a0-ef0a-47b6-895b-258bf8ceacc9",
+      "parentKey": "f5b182cb-4541-4591-8cc6-cd11d43bc9e1",
+      "subKeys": [
+        "d4d61a88-d1b3-4e3d-afdc-2f0b282d0a81"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "F﻿rom HAProxy Technologies, LLC"
+        }
+      ]
+    },
+    {
+      "key": "e65b255f-d209-49e5-bbd8-946aed3f5666",
+      "parentKey": "a0afaf30-c45c-45a3-873d-17224fb667ca",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "8﻿080"
+        }
+      ]
+    },
+    {
+      "key": "321c48ce-56ae-49db-b212-55738dec7dec",
+      "parentKey": "9c410959-08ec-4038-ae3f-3beda7dc3961",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "e﻿xample:\nport 80 (website without ssl) becomes 8080﻿"
+        }
+      ]
+    },
+    {
+      "key": "f5b182cb-4541-4591-8cc6-cd11d43bc9e1",
+      "parentKey": "0c2846e6-4dde-4463-a4ff-8df410921158",
+      "subKeys": [
+        "52da61a0-ef0a-47b6-895b-258bf8ceacc9"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "﻿Haproxy"
+        }
+      ]
+    },
+    {
+      "key": "c1eda28f-56a2-49cc-95a2-3850cf2c310b",
+      "parentKey": "22bd3e01-e93f-4d76-a065-370a5b6581db",
+      "subKeys": [
+        "858c0d09-176e-4005-a7d9-5fdbd2724842"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "T﻿est your deployement to see if it succeeded"
+        }
+      ]
+    },
+    {
+      "key": "425e9f43-9c31-40fe-9e1a-c7c89ac6c34e",
+      "parentKey": "cc315644-e771-46c3-9805-a2b12f7b07e7",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "I﻿f this is the case, please refer to the section 2. of troubleshooting"
+        }
+      ]
+    },
+    {
+      "key": "b01fa8ff-a7a9-42a8-9d5c-edda70be0cbe",
+      "parentKey": "f82c3421-c3f3-4b15-ac73-a3d5da824bab",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "https://www.youtube.com/watch?v=L_ej12aahNI"
+        }
+      ]
+    },
+    {
+      "key": "2ef0c640-3fbc-401d-bb1e-8bfbdd1d2c92",
+      "parentKey": "e055daf3-d054-4407-ab30-b89023a3a7a8",
+      "subKeys": [
+        "654de1cd-c7a1-470e-87d0-1a3c5855343f"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "T﻿he next step is to deploy the file you just created"
+        }
+      ]
+    },
+    {
+      "key": "6e0fa047-b49d-471f-8fa8-150aad12dbc5",
+      "parentKey": "a2521691-6d34-4951-b84d-6414f6401f92",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "https://cloud.google.com/load-balancing/docs/https/"
+        }
+      ]
+    },
+    {
+      "key": "66c8bb99-642d-4061-80a8-7f2551a61106",
+      "parentKey": "1a913657-c331-4b22-adff-bfd1ea3c71f0",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": " ﻿This will remove the pod, you can then try re-deploying your project"
+        }
+      ]
+    },
+    {
+      "key": "6917ea3b-cc0b-4306-abed-580c228364ab",
+      "parentKey": "d7cc917a-149d-45f6-8263-289871a69f45",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "E﻿nter: sudo kubectl create configmap <your_configmap_name> --from-file <your_html_file_name>"
+        }
+      ]
+    },
+    {
+      "key": "e84a8e89-cbcb-4481-8d00-64a4dcd3daec",
+      "parentKey": "9ff389fc-dcaf-4019-b984-f1124d0abad2",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "https://www.nginx.com/blog/inside-nginx-how-we-designed-for-performance-scale/"
+        }
+      ]
+    },
+    {
+      "key": "f9570e28-1356-4e05-aa86-f76bb6cf64ff",
+      "parentKey": "3c957dd2-d9cb-4281-b1db-0c7e408b6182",
+      "subKeys": [
+        "5dd2cab9-966f-4221-860f-4d6f73e10cd7",
+        "a40e4d3b-c83d-429b-92ef-36a5d70e23a0",
+        "d9e4f611-8ae0-4868-a62e-99f699603cc6"
+      ],
+      "collapse": true,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "Y﻿outube"
+        }
+      ]
+    },
+    {
+      "key": "17d56f3b-60b0-43ff-ad4c-b93c85d8cfbc",
+      "parentKey": "14cac4bb-ce18-4941-b973-dbd94e56686c",
+      "subKeys": [
+        "f2d59388-4c3d-4151-9e3e-385fd5ad668a"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "﻿The ports that are highly probable to be used by the system are:"
+        }
+      ]
+    },
+    {
+      "key": "c618678b-0860-46ca-85f5-152136ab3c9b",
+      "parentKey": "e39f9a23-e270-42f6-b099-cbf05a86306f",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "https://istio.io/"
+        }
+      ]
+    },
+    {
+      "key": "14509398-7f1d-4067-a85b-4c6c9fbab85a",
+      "parentKey": "c8245afe-d6c6-4329-8b98-5f117f2f4cc8",
+      "subKeys": [
+        "2f645b4c-9acf-4cc0-bcbd-7782787834a7"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "T﻿roubleshooting"
+        }
+      ]
+    },
+    {
+      "key": "7244b7e8-f699-4a1c-aba6-7bbf47f7290b",
+      "parentKey": "d10b8c07-e278-4d2d-85c7-85953624e248",
+      "subKeys": [
+        "07c7e4e5-3dcd-408c-ae1b-52b4adeffada"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "﻿5. (optional)"
+        }
+      ]
+    },
+    {
+      "key": "06af6dcb-58aa-4a33-9004-c14ee7630685",
+      "parentKey": "9f50efb0-2f1f-45e9-8f41-be83666a3472",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "https://youtu.be/X48VuDVv0do"
+        }
+      ]
+    },
+    {
+      "key": "27241880-c0a4-4b0c-83e7-eecc5163f80c",
+      "parentKey": "b5f07e32-8af0-4793-b7e5-046578548721",
+      "subKeys": [
+        "c15fdf34-3ce9-485a-b37d-f3e57aca8495"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "C﻿ontour"
+        }
+      ]
+    },
+    {
+      "key": "98613602-cad6-4cf4-bb12-cdb63a88ae06",
+      "parentKey": "45731cbd-ad43-4c6e-a5bc-410e6896d6d2",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "R﻿un: sudo kubectl get pods"
+        }
+      ]
+    },
+    {
+      "key": "3c006796-f35d-43d4-896c-a3f385a7a7eb",
+      "parentKey": "a19db7cd-e180-41d8-ab78-020128b99c65",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml"
+        }
+      ]
+    },
+    {
+      "key": "300e5880-a4ef-4046-8e06-1d35891518d7",
+      "parentKey": "a3bf64bc-4611-4b26-9e71-ffe5f254b941",
+      "subKeys": [
+        "b64558ac-ddf7-4a8a-a3dc-964199ca5c51"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "I﻿ngress overview"
+        }
+      ]
+    },
+    {
+      "key": "8ee83e21-f3e8-482d-a3a3-546309b25401",
+      "parentKey": "14cac4bb-ce18-4941-b973-dbd94e56686c",
+      "subKeys": [
+        "18ab49fd-9b99-4c2c-bee7-c038a194151e"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "h﻿ttps (website with ssl)"
+        }
+      ]
+    },
+    {
+      "key": "6d8536cd-9642-4f8a-99c3-3e1a862e58ad",
+      "parentKey": "e7092d41-6325-40a3-8a1f-6024bf0c792b",
+      "subKeys": [
+        "bb7ac1e3-4050-45ab-b3d9-cf1c64492cc6",
+        "07e8d23b-12a5-4030-9217-61351458dc27",
+        "5c37e1f1-39ec-4d40-a3d9-16dfc0b3d827",
+        "adfe1630-0ec2-497a-a9c6-f070acb06547",
+        "c33594a3-513c-4893-ba6c-9a6b2d81361c"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "I﻿f you do see errors:"
+        }
+      ]
+    },
+    {
+      "key": "b322d8a9-0bad-4c85-ac41-e67e09b4d7b8",
+      "parentKey": "f2d59388-4c3d-4151-9e3e-385fd5ad668a",
+      "subKeys": [
+        "4eae6cdf-40b3-4718-8622-aaa51b3ed63c"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "t﻿o"
+        }
+      ]
+    },
+    {
+      "key": "df01e7b7-5f6c-4084-8f77-7ceb919084f5",
+      "parentKey": null,
+      "subKeys": [
+        "6be1cecb-1fa7-4c93-9f9f-70515e355495",
+        "a2e530fa-0aef-409b-b125-8dcb3eddb73b",
+        "c8245afe-d6c6-4329-8b98-5f117f2f4cc8",
+        "f67376b7-5e08-4a23-bd26-14686fdcde59",
+        "3c957dd2-d9cb-4281-b1db-0c7e408b6182"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "Ingress"
+        }
+      ]
+    },
+    {
+      "key": "cc315644-e771-46c3-9805-a2b12f7b07e7",
+      "parentKey": "ee2d2966-a1ae-4eb5-bcb9-4cb179ab607d",
+      "subKeys": [
+        "425e9f43-9c31-40fe-9e1a-c7c89ac6c34e"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "I﻿f you do not see a name resembling the one to your pod, this means that you probably did not deploy the pod"
+        }
+      ]
+    },
+    {
+      "key": "adfe1630-0ec2-497a-a9c6-f070acb06547",
+      "parentKey": "6d8536cd-9642-4f8a-99c3-3e1a862e58ad",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "﻿If the error is occuring at the level of the ingress file, try and change the ingress manager (a list has been provided in this mind-map)"
+        }
+      ]
+    },
+    {
+      "key": "ee2d2966-a1ae-4eb5-bcb9-4cb179ab607d",
+      "parentKey": "45731cbd-ad43-4c6e-a5bc-410e6896d6d2",
+      "subKeys": [
+        "cc315644-e771-46c3-9805-a2b12f7b07e7"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "﻿Try and locate the name of your pod"
+        }
+      ]
+    },
+    {
+      "key": "df67b398-1159-4e3b-931b-d09e674ac464",
+      "parentKey": "b03d7d47-7df0-4b31-b6c5-be6f25c89b10",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "I﻿f you see: 1/1, this means that your pod is running"
+        }
+      ]
+    },
+    {
+      "key": "a13431c1-93cb-40c9-9faa-d3363263ed36",
+      "parentKey": "c49fc5b2-ca2f-45ee-bfa4-eef99be09e37",
+      "subKeys": [
+        "89056880-36e0-4372-a6a3-34b93dae36f6"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "F﻿rom Traefik Labs"
+        }
+      ]
+    },
+    {
+      "key": "3c957dd2-d9cb-4281-b1db-0c7e408b6182",
+      "parentKey": "df01e7b7-5f6c-4084-8f77-7ceb919084f5",
+      "subKeys": [
+        "f9570e28-1356-4e05-aa86-f76bb6cf64ff",
+        "c82bd17d-cde2-41ec-8718-01ca4b1d7b7f",
+        "a3bf64bc-4611-4b26-9e71-ffe5f254b941",
+        "979a8dfa-36ee-4d8e-97bc-1ec219b8fc6d",
+        "b5f07e32-8af0-4793-b7e5-046578548721",
+        "712b918f-a1e9-460c-af96-6d48d610c123"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "S﻿ources"
+        }
+      ]
+    },
+    {
+      "key": "48027abe-a504-4cda-930b-479359cbc88a",
+      "parentKey": "28505c06-cdb6-44ef-8cc4-dcc657afe412",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "﻿---\r\napiVersion: v1\r\nkind: Service\r\nmetadata:\r\n  name: hello-world\r\nspec:\r\n  ports:\r\n  - port: <the_port_on_which_you_wish_to_expose_your_website>\r\n    protocol: TCP\r\n  selector:\r\n    app: hello-world"
+        }
+      ]
+    },
+    {
+      "key": "c33594a3-513c-4893-ba6c-9a6b2d81361c",
+      "parentKey": "6d8536cd-9642-4f8a-99c3-3e1a862e58ad",
+      "subKeys": [
+        "1a913657-c331-4b22-adff-bfd1ea3c71f0"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "﻿If you have containers that are pulled from the internet (i.e. docker hub), try and pull them manually and run them to see if they are the ones causing the issue"
+        }
+      ]
+    },
+    {
+      "key": "6c333dcc-7c8a-408f-9d78-7131ad4e24ae",
+      "parentKey": "917821eb-9d37-41bb-beaa-17d13497ccba",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml"
+        }
+      ]
+    },
+    {
+      "key": "2b01d506-6670-449e-a660-e8e2b2874b4d",
+      "parentKey": "a718145e-b9d5-4ab1-81e9-4d926e20f9fa",
+      "subKeys": [
+        "6df239ae-34a1-4b4c-b988-0bc17bdd5d93"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "o﻿r"
+        }
+      ]
+    },
+    {
+      "key": "6ee71c44-7a33-4156-8588-cede87b621fa",
+      "parentKey": "c5ae92f1-5e06-4078-83a9-58c7b5120ebf",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "https://cloud.google.com/load-balancing/docs/https/"
+        }
+      ]
+    },
+    {
+      "key": "d4d61a88-d1b3-4e3d-afdc-2f0b282d0a81",
+      "parentKey": "52da61a0-ef0a-47b6-895b-258bf8ceacc9",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "https://www.haproxy.org/"
+        }
+      ]
+    },
+    {
+      "key": "1f129c24-197f-4cd1-bded-624f08eadaaf",
+      "parentKey": "d10b8c07-e278-4d2d-85c7-85953624e248",
+      "subKeys": [
+        "fe19320b-f870-4fc2-bfea-0b0a08b8aa8f",
+        "5d44b267-d616-4217-814a-915bc0262d85",
+        "eeb7fbcf-e369-45d1-95ea-b3c6454ab32a"
+      ],
+      "collapse": true,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "﻿6."
+        }
+      ]
+    },
+    {
+      "key": "f6b2e075-adcf-4b36-b9a5-2a91db6783a1",
+      "parentKey": "a80f57ac-e453-45c6-9879-3dfca55e47a1",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "e﻿xample:\nport 443 (website with ssl) becomes 4443﻿"
+        }
+      ]
+    },
+    {
+      "key": "0c2846e6-4dde-4463-a4ff-8df410921158",
+      "parentKey": "5d44b267-d616-4217-814a-915bc0262d85",
+      "subKeys": [
+        "2a3c2639-6b0f-435e-beff-12325dd410de",
+        "ef7133f1-e6dd-40f3-813e-e1c250a55e3a",
+        "5ea4408d-0884-47f5-8454-ac5549d94d30",
+        "f5b182cb-4541-4591-8cc6-cd11d43bc9e1",
+        "c49fc5b2-ca2f-45ee-bfa4-eef99be09e37",
+        "357debd0-a77d-43e8-a053-419a58ec1744"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "I﻿ngress managers"
+        }
+      ]
+    },
+    {
+      "key": "a2e530fa-0aef-409b-b125-8dcb3eddb73b",
+      "parentKey": "df01e7b7-5f6c-4084-8f77-7ceb919084f5",
+      "subKeys": [
+        "c9cbc3ef-dad9-4b8d-898c-65b8e85081ab",
+        "fc3a632d-7213-4290-8c01-ae06106d4f72",
+        "21c10a46-aec2-4634-9f09-8e959d2f0e82"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "W﻿hen would I use it?"
+        }
+      ]
+    },
+    {
+      "key": "ef7133f1-e6dd-40f3-813e-e1c250a55e3a",
+      "parentKey": "0c2846e6-4dde-4463-a4ff-8df410921158",
+      "subKeys": [
+        "7f0202df-a5d4-4955-a6ba-9ba5fbb0e91c"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "N﻿ginx controler"
+        }
+      ]
+    },
+    {
+      "key": "301743e0-7cb1-432f-94fb-b930eaebe89f",
+      "parentKey": "1a231578-31b6-4e31-bdba-1bb1147cfe85",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "https://youtu.be/7bA0gTroJjw"
+        }
+      ]
+    },
+    {
+      "key": "a718145e-b9d5-4ab1-81e9-4d926e20f9fa",
+      "parentKey": "dcbc63ae-deb0-483e-8fc6-6d1471b69786",
+      "subKeys": [
+        "2b01d506-6670-449e-a660-e8e2b2874b4d"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "3﻿306"
+        }
+      ]
+    },
+    {
+      "key": "8d5bb23a-32b5-43df-bd8f-960fda2b47ad",
+      "parentKey": "14cac4bb-ce18-4941-b973-dbd94e56686c",
+      "subKeys": [
+        "9c410959-08ec-4038-ae3f-3beda7dc3961"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "﻿if the port is smaller than 100"
+        }
+      ]
+    },
+    {
+      "key": "5dd2cab9-966f-4221-860f-4d6f73e10cd7",
+      "parentKey": "f9570e28-1356-4e05-aa86-f76bb6cf64ff",
+      "subKeys": [
+        "65f6535f-3c4b-4f42-b68d-90795bea0c34"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "S﻿etting up ingress in a multy node cluster"
+        }
+      ]
+    },
+    {
+      "key": "e01bedff-ebee-45d1-b6d0-42d4134b6e14",
+      "parentKey": "e7092d41-6325-40a3-8a1f-6024bf0c792b",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": " ﻿If you do not see any error messages, but do not see your pod (see 1.), try and check your deploy file and fix any warnings"
+        }
+      ]
+    },
+    {
+      "key": "9c410959-08ec-4038-ae3f-3beda7dc3961",
+      "parentKey": "8d5bb23a-32b5-43df-bd8f-960fda2b47ad",
+      "subKeys": [
+        "321c48ce-56ae-49db-b212-55738dec7dec"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "T﻿ake the number and type it out twice"
+        }
+      ]
+    },
+    {
+      "key": "a80f57ac-e453-45c6-9879-3dfca55e47a1",
+      "parentKey": "78e7a954-4009-41cb-b4fd-ed8ad8cc65e9",
+      "subKeys": [
+        "f6b2e075-adcf-4b36-b9a5-2a91db6783a1"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "T﻿ake the first digit and duplicate it"
+        }
+      ]
+    },
+    {
+      "key": "4eae6cdf-40b3-4718-8622-aaa51b3ed63c",
+      "parentKey": "b322d8a9-0bad-4c85-ac41-e67e09b4d7b8",
+      "subKeys": [
+        "92dda3a4-5bec-48ab-bac3-a02ce60ef323"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "1﻿023"
+        }
+      ]
+    },
+    {
+      "key": "654de1cd-c7a1-470e-87d0-1a3c5855343f",
+      "parentKey": "2ef0c640-3fbc-401d-bb1e-8bfbdd1d2c92",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "E﻿nter: sudo kubectl apply -f <your_configmap_filename>"
+        }
+      ]
+    },
+    {
+      "key": "86a3e74a-8262-47cc-a8e8-0d954fcf39bb",
+      "parentKey": "0fb39ab9-f485-4768-94ca-6a5c3d93f35c",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "https://docs.nginx.com/nginx-ingress-controller/intro/overview/"
+        }
+      ]
+    },
+    {
+      "key": "1f760e9b-fe11-4bda-9709-b196303ebe08",
+      "parentKey": "80f64918-e32b-41b2-b6d0-e191f75890a8",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "I﻿n general, it is not advised to use ports under 2000 because they migth more likly than not be used by the system"
+        }
+      ]
+    },
+    {
+      "key": "9f50efb0-2f1f-45e9-8f41-be83666a3472",
+      "parentKey": "a40e4d3b-c83d-429b-92ef-36a5d70e23a0",
+      "subKeys": [
+        "06af6dcb-58aa-4a33-9004-c14ee7630685"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "T﻿echWorld with Nana"
+        }
+      ]
+    },
+    {
+      "key": "92dda3a4-5bec-48ab-bac3-a02ce60ef323",
+      "parentKey": "4eae6cdf-40b3-4718-8622-aaa51b3ed63c",
+      "subKeys": [
+        "85c5fc78-8fb2-4d5b-bacb-aa09f0d49b6a"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "s﻿ee rfc6335"
+        }
+      ]
+    },
+    {
+      "key": "fe19320b-f870-4fc2-bfea-0b0a08b8aa8f",
+      "parentKey": "1f129c24-197f-4cd1-bded-624f08eadaaf",
+      "subKeys": [
+        "354d8940-a38f-4824-8140-d1b50a13257d",
+        "28505c06-cdb6-44ef-8cc4-dcc657afe412"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": ".﻿1"
+        }
+      ]
+    },
+    {
+      "key": "a40e4d3b-c83d-429b-92ef-36a5d70e23a0",
+      "parentKey": "f9570e28-1356-4e05-aa86-f76bb6cf64ff",
+      "subKeys": [
+        "9f50efb0-2f1f-45e9-8f41-be83666a3472",
+        "1a231578-31b6-4e31-bdba-1bb1147cfe85"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": " O﻿verview of Kubernetes"
+        }
+      ]
+    },
+    {
+      "key": "1a231578-31b6-4e31-bdba-1bb1147cfe85",
+      "parentKey": "a40e4d3b-c83d-429b-92ef-36a5d70e23a0",
+      "subKeys": [
+        "301743e0-7cb1-432f-94fb-b930eaebe89f"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "N﻿etwork Chuck        \n(overview+﻿why use kubernetes)﻿"
+        }
+      ]
+    },
+    {
+      "key": "e39f9a23-e270-42f6-b099-cbf05a86306f",
+      "parentKey": "357debd0-a77d-43e8-a053-419a58ec1744",
+      "subKeys": [
+        "c618678b-0860-46ca-85f5-152136ab3c9b"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "F﻿rom Tetrate (big contributor)"
+        }
+      ]
+    },
+    {
+      "key": "4acd14e2-bfb6-456d-b21d-55aa06e32fbf",
+      "parentKey": "28505c06-cdb6-44ef-8cc4-dcc657afe412",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "﻿---\r\napiVersion: apps/v1\r\nkind: Deployment\r\nmetadata:\r\n  name: hello-world-nginx\r\nspec:\r\n  selector:\r\n    matchLabels:\r\n      app: hello-world\r\n  replicas: 3\r\n  template:\r\n    metadata:\r\n      labels:\r\n        app: hello-world\r\n    spec:\r\n      containers:\r\n      - name: nginx\r\n        image: nginx\r\n        ports:\r\n        - containerPort: <the_port_on_which_you_wish_to_expose_your_website>\r\n        volumeMounts:\r\n        - name: hello-world-volume\r\n          mountPath: /usr/share/nginx/html\r\n      volumes:\r\n      - name: hello-world-volume\r\n        configMap:\r\n          name: hello-world;47;118;0;32;1_"
+        }
+      ]
+    },
+    {
+      "key": "53d4a75e-f21f-4b91-9a9a-b8df7b2d4fe3",
+      "parentKey": "22bd3e01-e93f-4d76-a065-370a5b6581db",
+      "subKeys": [
+        "fd6cc044-b6aa-471f-856a-f324245033cd",
+        "a2a7b9eb-45a0-46fc-9163-811f8c0d0c0a"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "﻿If this still did not work, check the error message:"
+        }
+      ]
+    },
+    {
+      "key": "6be1cecb-1fa7-4c93-9f9f-70515e355495",
+      "parentKey": "df01e7b7-5f6c-4084-8f77-7ceb919084f5",
+      "subKeys": [
+        "66a3eef7-882a-4122-ad8c-1625b41707da",
+        "3091ebee-f6bf-40aa-817b-a2fd5f2aff54"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "W﻿hat is it?"
+        }
+      ]
+    },
+    {
+      "key": "9ff389fc-dcaf-4019-b984-f1124d0abad2",
+      "parentKey": "c82bd17d-cde2-41ec-8718-01ca4b1d7b7f",
+      "subKeys": [
+        "e84a8e89-cbcb-4481-8d00-64a4dcd3daec"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "D﻿etailed explanation about how nginx ingress works"
+        }
+      ]
+    },
+    {
+      "key": "c9cbc3ef-dad9-4b8d-898c-65b8e85081ab",
+      "parentKey": "a2e530fa-0aef-409b-b125-8dcb3eddb73b",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "W﻿hen you wish to expose your website without having to create to many load balancers"
+        }
+      ]
+    },
+    {
+      "key": "e7092d41-6325-40a3-8a1f-6024bf0c792b",
+      "parentKey": "85e1856b-682d-4877-845e-1a75f00be771",
+      "subKeys": [
+        "e01bedff-ebee-45d1-b6d0-42d4134b6e14",
+        "6d8536cd-9642-4f8a-99c3-3e1a862e58ad"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "C﻿heck if the build was successfull"
+        }
+      ]
+    },
+    {
+      "key": "cef76df9-714c-436c-9b5e-c11fa6a9efa1",
+      "parentKey": "eeb7fbcf-e369-45d1-95ea-b3c6454ab32a",
+      "subKeys": [
+        "14cac4bb-ce18-4941-b973-dbd94e56686c"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "﻿.2"
+        }
+      ]
+    }
+  ],
+  "config": {
+    "readOnly": false,
+    "allowUndo": true,
+    "layoutDir": 0,
+    "theme": {
+      "name": "default",
+      "randomColor": true,
+      "background": "rgb(57,60,65)",
+      "highlightColor": "#50C9CE",
+      "marginH": 60,
+      "marginV": 20,
+      "contentStyle": {
+        "lineHeight": "1.5",
+        "fontSize": "16px"
+      },
+      "linkStyle": {
+        "lineRadius": 5,
+        "lineType": "curve",
+        "lineWidth": "3px"
+      },
+      "rootTopic": {
+        "contentStyle": {
+          "fontSize": "36px"
+        },
+        "subLinkStyle": {
+          "lineType": "round",
+          "lineWidth": "3px"
+        }
+      },
+      "primaryTopic": {
+        "contentStyle": {
+          "fontSize": "24px"
+        },
+        "subLinkStyle": {
+          "lineType": "round",
+          "lineWidth": "3px"
+        }
+      },
+      "normalTopic": {
+        "subLinkStyle": {
+          "lineType": "round",
+          "lineWidth": "3px"
+        }
+      }
+    }
+  },
+  "formatVersion": "0.0"
+}
