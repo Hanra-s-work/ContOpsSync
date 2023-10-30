@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: hello-world
   annotations:
-    spec.ingressClassName: "traefik"
+    spec.ingressClassName: "nginx"
 spec:
   rules:
   - http:
