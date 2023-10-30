@@ -1,7 +1,7 @@
 {
   "rootTopicKey": "df01e7b7-5f6c-4084-8f77-7ceb919084f5",
   "editorRootTopicKey": "df01e7b7-5f6c-4084-8f77-7ceb919084f5",
-  "focusKey": "c33594a3-513c-4893-ba6c-9a6b2d81361c",
+  "focusKey": "f67376b7-5e08-4a23-bd26-14686fdcde59",
   "extData": {
     "TOPIC_REFERENCE": {
       "reference": {}
@@ -15,7 +15,7 @@
         "0fb39ab9-f485-4768-94ca-6a5c3d93f35c",
         "9ff389fc-dcaf-4019-b984-f1124d0abad2"
       ],
-      "collapse": true,
+      "collapse": false,
       "style": null,
       "blocks": [
         {
@@ -794,7 +794,10 @@
     {
       "key": "f67376b7-5e08-4a23-bd26-14686fdcde59",
       "parentKey": "df01e7b7-5f6c-4084-8f77-7ceb919084f5",
-      "subKeys": [],
+      "subKeys": [
+        "8e365ccb-375b-48ca-9f8f-39e94b3f91a1",
+        "a41aea78-1764-46a0-97a2-80efe83062ea"
+      ],
       "collapse": false,
       "style": null,
       "blocks": [
@@ -1043,6 +1046,19 @@
         {
           "type": "CONTENT",
           "data": "F﻿rom contour"
+        }
+      ]
+    },
+    {
+      "key": "1b326852-ab35-4be8-9a1d-f0b1625f7183",
+      "parentKey": "8e365ccb-375b-48ca-9f8f-39e94b3f91a1",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "A﻿nybody who whishes to set-up an ingress into their kubernetes cluster"
         }
       ]
     },
@@ -1605,6 +1621,21 @@
       ]
     },
     {
+      "key": "8e365ccb-375b-48ca-9f8f-39e94b3f91a1",
+      "parentKey": "f67376b7-5e08-4a23-bd26-14686fdcde59",
+      "subKeys": [
+        "1b326852-ab35-4be8-9a1d-f0b1625f7183"
+      ],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "T﻿he targets are:"
+        }
+      ]
+    },
+    {
       "key": "c1eda28f-56a2-49cc-95a2-3850cf2c310b",
       "parentKey": "22bd3e01-e93f-4d76-a065-370a5b6581db",
       "subKeys": [
@@ -1720,7 +1751,7 @@
         "a40e4d3b-c83d-429b-92ef-36a5d70e23a0",
         "d9e4f611-8ae0-4868-a62e-99f699603cc6"
       ],
-      "collapse": true,
+      "collapse": false,
       "style": null,
       "blocks": [
         {
@@ -1911,8 +1942,8 @@
       "subKeys": [
         "6be1cecb-1fa7-4c93-9f9f-70515e355495",
         "a2e530fa-0aef-409b-b125-8dcb3eddb73b",
-        "c8245afe-d6c6-4329-8b98-5f117f2f4cc8",
         "f67376b7-5e08-4a23-bd26-14686fdcde59",
+        "c8245afe-d6c6-4329-8b98-5f117f2f4cc8",
         "3c957dd2-d9cb-4281-b1db-0c7e408b6182"
       ],
       "collapse": false,
@@ -2105,7 +2136,7 @@
         "5d44b267-d616-4217-814a-915bc0262d85",
         "eeb7fbcf-e369-45d1-95ea-b3c6454ab32a"
       ],
-      "collapse": true,
+      "collapse": false,
       "style": null,
       "blocks": [
         {
@@ -2452,6 +2483,19 @@
         {
           "type": "CONTENT",
           "data": "﻿If this still did not work, check the error message:"
+        }
+      ]
+    },
+    {
+      "key": "a41aea78-1764-46a0-97a2-80efe83062ea",
+      "parentKey": "f67376b7-5e08-4a23-bd26-14686fdcde59",
+      "subKeys": [],
+      "collapse": false,
+      "style": null,
+      "blocks": [
+        {
+          "type": "CONTENT",
+          "data": "I﻿t is expected that you have a basic knowledge of Kubernetes, (pods, containers, [what kubectl is])"
         }
       ]
     },
