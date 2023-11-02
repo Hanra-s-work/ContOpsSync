@@ -4,6 +4,7 @@ File containing the Kubernetes class in charge of managin kubernetes service
 
 import os
 from tty_ov import TTY
+from .kubectl import Kubectl
 from .install import Install
 from .install_kubernetes import InstallKubernetes
 from .uninstall_kubernetes import UninstallKubernetes
@@ -25,7 +26,12 @@ class KubeChildren:
         self.install = Install()
         self.app_info = AppInfoKubernetes(tty, success, err, error)
         self.uninstall_kubernetes = UninstallKubernetes(
-            tty, success, err, error)
+            tty,
+            success,
+            err,
+            error
+        )
+        self.kubectl = Kubectl(tty, success, err, error)
 
     def test_children(self) -> int:
         """ The function in charge of testing the children """
@@ -43,5 +49,7 @@ class KubeChildren:
         content = self.install_kubernetes.save_commands()
         parent_options.extend(content)
         content = self.uninstall_kubernetes.save_commands()
+        parent_options.extend(content)
+        content = self.kubectl.save_commands()
         parent_options.extend(content)
         self.app_info.inject_child_functions_into_shell(parent_options)
