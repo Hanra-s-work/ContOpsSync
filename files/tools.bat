@@ -30,6 +30,9 @@ IF NOT EXIST "wenv" (
     @REM %PYTHON_VERSION% install_ressources\install_libs.py
     echo "Creating environement"
     %PYTHON_VERSION% -m venv %ENV_NAME%
+)
+
+IF EXIST "wenv" (
     echo "Activating environement"
     cmd /c "wenv\Scripts\activate & echo Updating the pip module & python -m pip install --upgrade pip & deactivate"
 )
