@@ -772,7 +772,11 @@ Output:
             seperated_by_spaces = self._get_ip_for_windows(seperated_by_spaces)
         self.print_on_tty(
             self.tty.info_colour,
-            f"Your current ip is: {seperated_by_spaces}"
+            f"Your current ip is: "
+        )
+        self.print_on_tty(
+            self.tty.success_colour,
+            f"{seperated_by_spaces}\n"
         )
         return self.success
 

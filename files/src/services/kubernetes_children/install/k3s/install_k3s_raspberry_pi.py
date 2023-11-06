@@ -825,14 +825,15 @@ class InstallK3sRaspberryPi:
             self.k3s_hostname_file,
             self.encoding
         )
+        k3s_node_name = k3s_node_name.replace("\n", "")
         self.tty.setenv(["K3S_NODE_NAME", k3s_node_name])
         install_line = [
             "chmod",
             "+x",
             self.installer_file,
             "&&",
+            "export",
             'K3S_KUBECONFIG_MODE="644"',
-            "&&",
             f"K3S_NODE_NAME={k3s_node_name}",
             "&&",
             "sudo",
@@ -864,18 +865,17 @@ class InstallK3sRaspberryPi:
             self.k3s_hostname_file,
             self.encoding
         )
+        k3s_node_name = k3s_node_name.replace("\n", "")
         self.tty.setenv(["K3S_NODE_NAME", k3s_node_name])
         install_line = [
             "chmod",
             "+x",
             self.installer_file,
             "&&",
+            "export",
             'K3S_KUBECONFIG_MODE="644"',
-            "&&",
             f"K3S_NODE_NAME='{k3s_node_name}'",
-            "&&",
             f"K3S_TOKEN='{master_token}'",
-            "&&",
             f"K3S_URL='https://{master_ip}:6443'",
             "&&",
             "sudo",

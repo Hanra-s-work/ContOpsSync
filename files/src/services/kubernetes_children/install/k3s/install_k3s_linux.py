@@ -233,6 +233,7 @@ class InstallK3sLinux:
             "+x",
             self.k3s_file_name,
             "&&",
+            "export",
             'K3S_KUBECONFIG_MODE="644"',
             "&&",
             "sudo",
@@ -259,7 +260,10 @@ class InstallK3sLinux:
         self.tty.setenv(["K3S_TOKEN", f"{master_token}"])
         self.tty.setenv(["K3S_URL", f"https://{master_ip}:6443"])
         k3s_node_name = self._get_file_content(
-            self.k3s_hostname_file, self.encoding)
+            self.k3s_hostname_file,
+            self.encoding
+        )
+        k3s_node_name = k3s_node_name.replace("\n", "")
         self.tty.setenv(["K3S_NODE_NAME", k3s_node_name])
         install_line = [
             "chmod",
@@ -268,10 +272,9 @@ class InstallK3sLinux:
             "&&",
             'K3S_KUBECONFIG_MODE="644"',
             "&&",
+            "export",
             f"K3S_NODE_NAME='{k3s_node_name}'",
-            "&&",
             f"K3S_TOKEN='{master_token}'",
-            "&&",
             f"K3S_URL='https://{master_ip}:6443'",
             "&&",
             "sudo",
