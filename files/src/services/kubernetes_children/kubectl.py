@@ -40,6 +40,10 @@ Output:
             self.tty.function_help(function_name, help_description)
             self.tty.current_tty_status = self.tty.success
             return self.success
+        if platform.system() != "Windows":
+            args.insert(0, "sudo kubectl")
+        else:
+            args.insert(0, "kubectl")
         return self.tty.run_command(args)
 
     def kube(self, args: list) -> int:
@@ -62,6 +66,7 @@ Output:
                 os.environ["kube"] = "sudo kubectl"
             else:
                 os.environ["kube"] = "kubectl"
+        args.insert(0, "kube")
         return self.tty.run_command(args)
 
     def rebind_kubectl_as_kube(self, args: list) -> int:
@@ -90,14 +95,14 @@ Output:
             )
         return self.success
 
-    def _create_rebind_command(self, command, rebind_item: str, new_name: str) -> dict:
+    def _create_rebind_command(self, command: dict[str], rebind_item: str, new_name: str) -> dict:
         """ Create the rebind command """
-        data = command.copy()
+        data = dict()
         for i in command:
             if rebind_item in i:
-                tmp = i.replace(f"{i}", f"{new_name}")
-                data[tmp] = data[i]
-                del data[i]
+                tmp = i.replace(f"{rebind_item}", f"{new_name}")
+                data[f"{tmp}"] = command[i]
+                data["desc"] = command["desc"]
                 break
         return data
 
@@ -129,6 +134,8 @@ Output:
         option_tracker = 0
         for i in self.tty.options:
             for b in i:
+                if b in "desc":
+                    continue
                 if "kube" in b:
                     self.tty.options.append(
                         self._create_rebind_command(i, b, "kubectl")
@@ -137,9 +144,11 @@ Output:
                         self.tty.success_colour,
                         f"Command '{b}' rebound to {b.replace('kube', 'kubectl')}, the originale command is still available.\n"
                     )
+                break
             option_tracker += 1
             if option_tracker >= option_length:
                 break
+        print(self.tty.options)
         return self.success
 
     def test_class_kubectl(self, args: list) -> int:
