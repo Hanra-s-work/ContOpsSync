@@ -703,6 +703,79 @@ Output:
         )
         return self.success
 
+    def _get_active_ip(self, ip_list: list[str]) -> str:
+        for i in ip_list:
+            status = self.tty.run_command(["ping", "-n", "1", i])
+            if status == self.tty.success:
+                return i
+
+    def _get_ip_for_windows(self, file_content: list[str]) -> str:
+        """ Get the ip for windows """
+        ip_s = list()
+        for i in file_content:
+            if i[0].isnumeric() == True:
+                if "127" in i.split(".")[0]:
+                    continue
+                ip_s.append(i)
+        return self._get_active_ip(ip_s)
+
+    def _get_file_content(self, file_path: str) -> str:
+        """ Get the content of a file """
+        with open(file_path, "r") as file:
+            content = file.read()
+        return content
+
+    def get_master_ip(self, args: list) -> int:
+        """ Get the master ip """
+        function_name = "get_master_ip"
+        if self.tty.help_function_child_name == function_name:
+            help_description = f"""
+Get the master ip
+Usage Example:
+Input:
+    {function_name}
+Output:
+    The master ip
+"""
+            self.tty.function_help(function_name, help_description)
+            self.tty.current_tty_status = self.tty.success
+            return self.success
+        ip_data_file_name = "your_ip.txt"
+        current_os = platform.system()
+        if current_os == "Windows":
+            self.tty.run_command(
+                [
+                    "ipconfig",
+                    "|",
+                    "findstr",
+                    "/i",
+                    "IPv4 Address",
+                    ">",
+                    ip_data_file_name
+                ]
+            )
+        else:
+            self.tty.run_command(
+                [
+                    "sudo",
+                    "hostname",
+                    "-I",
+                    ">",
+                    ip_data_file_name
+                ]
+            )
+        file_content = self._get_file_content(ip_data_file_name)
+        seperated_by_spaces = file_content.split(" ")
+        if current_os != "Windows":
+            seperated_by_spaces = seperated_by_spaces[0]
+        else:
+            seperated_by_spaces = self._get_ip_for_windows(seperated_by_spaces)
+        self.print_on_tty(
+            self.tty.info_colour,
+            f"Your current ip is: {seperated_by_spaces}"
+        )
+        return self.success
+
     def save_commands(self) -> list:
         """ The function in charge of saving the commands to the options list """
         self.options = [
@@ -781,6 +854,10 @@ Output:
             {
                 "get_master_token": self.get_master_token,
                 "desc": "Get the token of the master node"
+            },
+            {
+                "get_master_ip": self.get_master_ip,
+                "desc": "Get the master ip"
             },
             {
                 "test_install_kubernetes": self.test_install_kubernetes,
