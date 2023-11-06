@@ -233,6 +233,8 @@ class InstallK3sLinux:
             "+x",
             self.k3s_file_name,
             "&&",
+            'K3S_KUBECONFIG_MODE="644"',
+            "&&",
             "sudo",
             self.k3s_file_name
         ]
@@ -266,6 +268,14 @@ class InstallK3sLinux:
             "chmod",
             "+x",
             self.k3s_file_name,
+            "&&",
+            'K3S_KUBECONFIG_MODE="644"',
+            "&&",
+            f"K3S_NODE_NAME='{k3s_node_name}'",
+            "&&",
+            f"K3S_TOKEN='{master_token}'",
+            "&&",
+            f"K3S_URL='https://{master_ip}:6443'",
             "&&",
             "sudo",
             self.k3s_file_name

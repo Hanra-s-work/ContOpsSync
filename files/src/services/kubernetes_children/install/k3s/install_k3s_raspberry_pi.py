@@ -821,16 +821,19 @@ class InstallK3sRaspberryPi:
         """ Install the k3s version for the master node (the one managing the others) """
         self.tty.setenv(["K3S_KUBECONFIG_MODE", '"644"'])
         self.tty.setenv(["K3S_FORCE_INSTALL_DOCKER", "0"])
-        self.tty.setenv(
-            [
-                "K3S_NODE_NAME",
-                self._get_file_content(self.k3s_hostname_file, self.encoding)
-            ]
+        k3s_node_name = self._get_file_content(
+            self.k3s_hostname_file,
+            self.encoding
         )
+        self.tty.setenv(["K3S_NODE_NAME", k3s_node_name])
         install_line = [
             "chmod",
             "+x",
             self.installer_file,
+            "&&",
+            'K3S_KUBECONFIG_MODE="644"',
+            "&&",
+            f"K3S_NODE_NAME={k3s_node_name}",
             "&&",
             "sudo",
             self.installer_file
@@ -857,19 +860,27 @@ class InstallK3sRaspberryPi:
         self.tty.setenv(["K3S_TOKEN", f"{master_token}"])
         self.tty.setenv(["K3S_URL", f"https://{master_ip}:6443"])
         self.tty.setenv(["K3S_FORCE_INSTALL_DOCKER", "0"])
-        self.tty.setenv(
-            [
-                "K3S_NODE_NAME",
-                self._get_file_content(self.k3s_hostname_file, self.encoding)
-            ]
+        k3s_node_name = self._get_file_content(
+            self.k3s_hostname_file,
+            self.encoding
         )
+        self.tty.setenv(["K3S_NODE_NAME", k3s_node_name])
         install_line = [
             "chmod",
             "+x",
             self.installer_file,
             "&&",
+            'K3S_KUBECONFIG_MODE="644"',
+            "&&",
+            f"K3S_NODE_NAME='{k3s_node_name}'",
+            "&&",
+            f"K3S_TOKEN='{master_token}'",
+            "&&",
+            f"K3S_URL='https://{master_ip}:6443'",
+            "&&",
             "sudo",
-            self.installer_file
+            self.installer_file,
+
         ]
         if force_docker is True:
             self.tty.setenv(["K3S_FORCE_INSTALL_DOCKER", "1"])
