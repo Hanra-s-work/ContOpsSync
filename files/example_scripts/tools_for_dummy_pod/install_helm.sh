@@ -39,6 +39,18 @@ function install_helm_if_not_present {
     fi
     return $success
 }
+function is_k3s_installed() {
+    echo "Checking if k3s is installed"
+    run_command "$SUDO k3s version >/dev/null 2>&1"
+    if [ $? -ne $success ]; then return $hl_false; fi
+    return $hl_true
+}
+
+is_k3s_installed
+if [ $? -eq $hl_true ]; then
+    echo "Adding path variable for the KUBECONFIG path"
+    run_command export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+fi
 
 echo "This script will help you install the helm deployer on your kubernetes infrastructure."
 yes_no "Do you wish to install helm in your kubernetes environement?"
