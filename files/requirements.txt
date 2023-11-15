@@ -12,6 +12,7 @@ uuid == 1.30
 pytest == 7.4.2
 asciimatics == 1.14.0
 asciimatics_overlay_ov == 1.0.1
+english-words == 2.0.1
 # urwid does not natively run on windows
 # urwid == 2.2.1
 # Not Powerfull enougth
