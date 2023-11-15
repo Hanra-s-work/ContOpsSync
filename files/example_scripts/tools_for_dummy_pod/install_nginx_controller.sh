@@ -40,6 +40,19 @@ function install_helm_if_not_present {
     return $success
 }
 
+function is_k3s_installed() {
+    echo "Checking if k3s is installed"
+    run_command "$SUDO k3s version >/dev/null 2>&1"
+    if [ $? -ne $success ]; then return $hl_false; fi
+    return $hl_true
+}
+
+is_k3s_installed
+if [ $? -eq $hl_true ]; then
+    echo "Adding path variable for the KUBECONFIG path"
+    run_command export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+fi
+
 yes_no "Do you wish to install the nginx controller in your kubernetes environement?"
 RESPONSE=$?
 if [ $RESPONSE -eq $hl_false ]; then
@@ -64,7 +77,7 @@ if [ $? -ne $success ]; then
     exit $error
 fi
 echo "Adding the nginx repository to the helm manager"
-run_command "$SUDO helm repo add nginx-stable https://helm.nginx.com/stable"
+run_command "$SUDO helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx"
 if [ $? -ne $success ]; then
     echo "Failed to add the nginx repository to the helm manager"
     echo "Exiting program"
