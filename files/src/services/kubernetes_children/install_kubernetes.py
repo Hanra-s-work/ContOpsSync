@@ -145,6 +145,14 @@ Output:
         )
         return self.error
 
+    def _install_docker_if_not_present(self) -> int:
+        """ Install docker on the host system if required and if it was not installed """
+        self.tty.run_command("is_docker_installed")
+        if self.tty.current_tty_status != self.tty.success:
+            self.tty.run_command("install_docker")
+            return self.tty.current_tty_status
+        return self.tty.current_tty_status
+
     def install_k3s(self, args: list) -> int:
         """ Install kubectl on the host system """
         function_name = "install_k3s"
@@ -173,6 +181,7 @@ Example 2 (Installing as slave node with docker set as default):
         force_docker = False
         master_token = ""
         master_ip = ""
+        status = self.tty.success
         if arg_length >= 1:
             if args[0].lower() == "true":
                 as_slave = False
@@ -187,6 +196,28 @@ Example 2 (Installing as slave node with docker set as default):
             master_token = args[2]
         if arg_length >= 4:
             master_ip = args[3]
+        if force_docker is True:
+            status = self._install_docker_if_not_present()
+        if status != self.tty.success:
+            self.print_on_tty(
+                self.tty.info_colour,
+                ""
+            )
+            self.disp.inform_message(
+                [
+                    "Failed to install k3s because docker failed to be installed on your system",
+                    "Please install docker or run the installation without the docker option"
+                ]
+            )
+            self.print_on_tty(
+                self.tty.info_colour,
+                "k3s installation status:"
+            )
+            self.print_on_tty(
+                self.tty.error_colour,
+                "[KO]\n"
+            )
+            return status
         if self.current_system == "Windows":
             return self.windows.install_k3s()
         if self.current_system == "Linux":
