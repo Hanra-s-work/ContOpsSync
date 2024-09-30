@@ -17,7 +17,7 @@ setuptools.setup(
         "requests ==2.32.2",
         "tqdm == 4.66.1",
         "elevate == 0.1.3",
-        "ask-question == 1.2.4",
+        "ask-question ==1.2.8",
         "colourise-output == 1.1.3",
         "display-tty == 1.0.1",
         "tty-ov == 1.0.18",
