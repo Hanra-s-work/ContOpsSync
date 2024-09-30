@@ -25,6 +25,10 @@ env:
   MATRIX_VERSION_PUBLISHING: "3.10"
   SOURCE_CODE_PATH: src/main.py
   LATEST_TAG: ""
+  BINARY_NAME: "ContOpsSync"
+  BINARY_BUILD_LOCATION: ""
+  BINARY_LOCATION: "./bin_dist/"
+  BINARY_LOG_LEVEL: "INFO"
 
 jobs:
   build:
@@ -139,6 +143,12 @@ jobs:
         pip install build
         python -m build
 
+    - name: build binary
+      run: |
+        cd ${{env.CWD}}
+        pip install -U pyinstaller
+        pyinstaller ${{env.SOURCE_CODE_PATH}} --workpath ${{env.BINARY_BUILD_LOCATION}} --distpath ${{env.BINARY_LOCATION}}	--onefile --noconfirm	--name ${{env.BINARY_NAME}}	--log-level=${{env.BINARY_LOG_LEVEL}}	-y
+
     - name: Update author
       run: |
         cd ${{env.CWD}}
@@ -154,6 +164,7 @@ jobs:
         {
           echo 'UG<<EOF'
           ls ${{env.CWD}}/dist/*
+          ls ${{env.CWD}}/${{env.BINARY_LOCATION}}/*
           echo EOF
         } >> "$GITHUB_OUTPUT"
 
