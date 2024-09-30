@@ -21,7 +21,7 @@ setuptools.setup(
         "colourise-output == 1.1.3",
         "display-tty == 1.0.1",
         "tty-ov == 1.0.18",
-        "psutil == 5.9.5",
+        "psutil ==5.9.8",
         "uuid == 1.30",
         "pytest == 7.4.2",
         "asciimatics_overlay_ov == 1.0.2",
