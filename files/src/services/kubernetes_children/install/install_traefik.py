@@ -8,3 +8,4 @@ from tqdm import tqdm
 from tty_ov import TTY
 
 class InstallTraefik:
+    pass
