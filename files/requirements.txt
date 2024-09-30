@@ -10,10 +10,6 @@ tty-ov == 1.0.18
 psutil == 5.9.5
 uuid == 1.30
 pytest == 7.4.2
-asciimatics == 1.14.0
 asciimatics_overlay_ov == 1.0.2
 english-words == 2.0.1
-# urwid does not natively run on windows
-# urwid == 2.2.1
-# Not Powerfull enougth
-# blessed == 1.20.0
+pyinstaller == 6.10.0
