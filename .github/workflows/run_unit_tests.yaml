@@ -169,6 +169,7 @@ jobs:
       run: |
         cd ${{env.CWD}}
         latest_tag="$(cat ${{env.TAG_FILE}})"
+        echo "Content of $(pwd): $(ls -a)"
         if [ -f ${{env.SETUP_FILE}} ]
         then
           echo "Updating version in ${{env.SETUP_FILE}}"
