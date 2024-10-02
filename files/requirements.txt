@@ -7,7 +7,7 @@ ask-question ==1.2.8
 colourise-output ==1.1.6
 display-tty == 1.0.1
 tty-ov == 1.0.18
-psutil == 5.9.5
+psutil ==5.9.8
 uuid == 1.30
 pytest == 7.4.2
 asciimatics_overlay_ov ==1.0.10
