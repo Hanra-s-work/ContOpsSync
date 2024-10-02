@@ -19,7 +19,7 @@ setuptools.setup(
         "elevate == 0.1.3",
         "ask-question ==1.2.8",
         "colourise-output ==1.1.6",
-        "display-tty == 1.0.1",
+        "display-tty ==1.1.7",
         "tty-ov ==1.0.45",
         "psutil ==5.9.8",
         "uuid == 1.30",
