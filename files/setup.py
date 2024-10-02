@@ -24,7 +24,7 @@ setuptools.setup(
         "psutil == 5.9.5",
         "uuid == 1.30",
         "pytest == 7.4.2",
-        "asciimatics_overlay_ov == 1.0.2",
+        "asciimatics_overlay_ov ==1.0.10",
         "english-words == 2.0.1",
         "pyinstaller == 6.10.0"
 
