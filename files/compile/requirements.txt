@@ -1,5 +1,5 @@
 colorama == 0.4.6
-prettytable == 3.8.0
+prettytable ==3.11.0
 requests ==2.32.3
 tqdm ==4.66.5
 elevate == 0.1.3
