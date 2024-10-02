@@ -14,7 +14,7 @@ setuptools.setup(
     install_requires=[
         "colorama == 0.4.6",
         "prettytable == 3.9.0",
-        "requests ==2.32.2",
+        "requests ==2.32.3",
         "tqdm ==4.66.3",
         "elevate == 0.1.3",
         "ask-question ==1.2.8",
