@@ -15,7 +15,7 @@ setuptools.setup(
         "colorama == 0.4.6",
         "prettytable ==3.11.0",
         "requests ==2.32.3",
-        "tqdm ==4.66.5",
+        "tqdm ==4.66.6",
         "elevate == 0.1.3",
         "ask-question ==1.2.8",
         "colourise-output ==1.1.6",
