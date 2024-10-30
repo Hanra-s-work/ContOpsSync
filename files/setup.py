@@ -13,7 +13,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     install_requires=[
         "colorama == 0.4.6",
-        "prettytable ==3.11.0",
+        "prettytable ==3.12.0",
         "requests ==2.32.3",
         "tqdm ==4.66.6",
         "elevate == 0.1.3",
