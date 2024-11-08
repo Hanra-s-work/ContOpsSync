@@ -20,7 +20,7 @@ setuptools.setup(
         "ask-question ==1.2.8",
         "colourise-output ==1.1.6",
         "display-tty ==1.1.7",
-        "tty-ov ==1.0.48",
+        "tty-ov ==1.0.49",
         "psutil ==6.1.0",
         "uuid == 1.30",
         "pytest ==8.3.3",
