@@ -23,7 +23,7 @@ setuptools.setup(
         "tty-ov ==1.0.51",
         "psutil ==6.1.0",
         "uuid == 1.30",
-        "pytest ==8.3.3",
+        "pytest ==8.3.4",
         "asciimatics_overlay_ov ==1.0.10",
         "english-words == 2.0.1",
         "pyinstaller ==6.11.1"
