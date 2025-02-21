@@ -1,6 +1,8 @@
 #!/bin/env bash
 TRUE=0
 FALSE=1
+ERROR=1
+SUCCESS=0
 MY_ENV="env"
 FRESH_ENV=$FALSE
 MAC_SYSTEM="$(uname)"
@@ -18,7 +20,7 @@ STATUS_PY=$?
 if [ $STATUS_PYTHON3 -ne 0 ] && [ $STATUS_PYTHON -ne 0 ] && [ $STATUS_PY -ne 0 ]; then
     echo "You do not have python installed, please install Python and relaunch this script"
     echo "Aborting program"
-    exit 84
+    exit $ERROR
 fi
 
 pip3 --version >/dev/null 2>&1
@@ -30,7 +32,7 @@ STATUS_PYTHON_PIP=$?
 if [ $STATUS_PIP -ne 0 ] && [ $STATUS_PIP3 -ne 0 ] && [ $STATUS_PYTHON_PIP -ne 0 ]; then
     echo "You do not have pip installed, please install pip and relaunch this script"
     echo "Aborting program"
-    exit 84
+    exit $ERROR
 fi
 
 if [ "$MY_SYSTEM" == "linux" ] || [ "$MAC_SYSTEM" == "linux" ]; then
