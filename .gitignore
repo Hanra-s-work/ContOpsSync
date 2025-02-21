@@ -1,8 +1,6 @@
 # temporary files
-*.tmp
-tmp.*
-*.useless
-useless.*
+*tmp*
+*useless*
 # tmporary folders
 **/tmp/**
 
@@ -173,3 +171,10 @@ cython_debug/
 #.idea/
 **/.DS_Store
 *.tar.gz
+
+# No compilation cache
+!files/compile/compile_program.bat
+!files/compile/compile_program.sh
+!files/compile/assets
+files/compile/**
+files/compile/setup*
