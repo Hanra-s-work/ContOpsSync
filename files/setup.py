@@ -18,7 +18,7 @@ setuptools.setup(
         "tty-ov ==1.0.75",
         "pytest ==8.3.5",
         "asciimatics_overlay_ov ==1.0.10",
-        "english-words == 2.0.1",
+        "english-words ==2.0.2",
         "pyinstaller ==6.12.0"
 
     ],
