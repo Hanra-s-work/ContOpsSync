@@ -19,7 +19,7 @@ setuptools.setup(
         "pytest ==8.3.5",
         "asciimatics_overlay_ov ==1.0.10",
         "english-words ==2.0.2",
-        "pyinstaller ==6.12.0"
+        "pyinstaller ==6.16.0"
 
     ],
     author="Henry Letellier",
