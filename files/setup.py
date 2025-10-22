@@ -16,7 +16,7 @@ setuptools.setup(
         "tqdm ==4.67.1",
         "display-tty ==1.1.12",
         "tty-ov ==1.0.103",
-        "pytest ==8.3.5",
+        "pytest ==8.4.2",
         "asciimatics_overlay_ov ==1.0.10",
         "english-words ==2.0.2",
         "pyinstaller ==6.12.0"

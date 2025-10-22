@@ -1,5 +1,5 @@
 tqdm ==4.67.1
-pytest ==8.3.5
+pytest ==8.4.2
 tty-ov ==1.0.103
 requests ==2.32.4
 display-tty ==1.1.12
