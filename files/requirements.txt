@@ -2,7 +2,7 @@ tqdm ==4.67.1
 pytest ==8.4.2
 tty-ov ==1.0.103
 requests ==2.32.5
-display-tty ==1.1.12
+display-tty ==1.1.16
 pyinstaller ==6.16.0
 english-words ==2.0.2
 asciimatics_overlay_ov ==1.0.10
