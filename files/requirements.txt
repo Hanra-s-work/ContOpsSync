@@ -1,6 +1,6 @@
 tqdm ==4.67.1
 pytest ==9.0.2
-tty-ov ==1.0.108
+tty-ov ==1.0.109
 requests ==2.32.5
 display-tty ==1.1.16
 pyinstaller ==6.17.0
