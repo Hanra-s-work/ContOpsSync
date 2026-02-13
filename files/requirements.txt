@@ -3,6 +3,6 @@ pytest ==9.0.2
 tty-ov ==1.0.121
 requests ==2.32.5
 display-tty ==1.1.17
-pyinstaller ==6.17.0
+pyinstaller ==6.18.0
 english-words ==2.0.2
 asciimatics_overlay_ov ==1.0.10
