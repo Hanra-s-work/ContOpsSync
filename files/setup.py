@@ -14,7 +14,7 @@ setuptools.setup(
     install_requires=[
         "requests ==2.32.5",
         "tqdm ==4.67.1",
-        "display-tty ==1.1.16",
+        "display-tty ==1.1.17",
         "tty-ov ==1.0.121",
         "pytest ==9.0.2",
         "asciimatics_overlay_ov ==1.0.10",
