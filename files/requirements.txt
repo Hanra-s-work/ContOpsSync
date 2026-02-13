@@ -1,4 +1,4 @@
-tqdm ==4.67.1
+tqdm ==4.67.3
 pytest ==9.0.2
 tty-ov ==1.0.121
 requests ==2.32.5
