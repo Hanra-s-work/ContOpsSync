@@ -17,7 +17,7 @@
 
 If you have never run the script before, it is recommended to run `chmod +x ./raspberry_tools.sh` to make sure the current user has the right to run the script
 
-For people running systems like rasberry pi (apt based systems) please run the tool `./raspberry_tools.sh`
+For people running systems like raspberry pi (apt based systems) please run the tool `./raspberry_tools.sh`
 Again, for the initial run it is recommended to run it with `sudo ./raspberry_tools.sh`
 The end result should still be the program running
 
