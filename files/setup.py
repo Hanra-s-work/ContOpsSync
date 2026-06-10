@@ -12,7 +12,7 @@ setuptools.setup(
     version='1.0.0',
     packages=setuptools.find_packages(),
     install_requires=[
-        "requests ==2.32.5",
+        "requests ==2.34.2",
         "tqdm ==4.67.3",
         "display-tty ==1.1.17",
         "tty-ov ==1.0.121",
