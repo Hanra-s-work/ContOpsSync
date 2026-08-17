@@ -18,7 +18,7 @@ setuptools.setup(
         "tty-ov ==1.0.121",
         "pytest ==9.0.2",
         "asciimatics_overlay_ov ==1.0.10",
-        "pyinstaller ==6.19.0"
+        "pyinstaller ==6.22.2"
 
     ],
     author="Henry Letellier",
